@@ -16,53 +16,53 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 @Controller
 public class ControladorLogin {
 
-	// La anotacion @Inject indica a Spring que en este atributo se debe setear (inyeccion de dependencias)
-	// un objeto de una clase que implemente la interface ServicioLogin, dicha clase debe estar anotada como
-	// @Service o @Repository y debe estar en un paquete de los indicados en applicationContext.xml
+	/* LA ANOTACI”N @INJECT INDICA A SPRING QUE EN ESTE ATRIBUTO SE DEBE SETEAR (INYECCI”N DE DEPENDENCIAS)
+	   UN OBJETO DE UNA CLASE QUE IMPLEMENTE LA INTERFACE SERVICIOLOGIN, DICHA CLASE DEBE ESTAR ANOTADA COMO
+	   @SERVICE O @REPOSITORY Y DEBE ESTAR EN UN PAQUETE DE LOS INDICADOS EN APPLICATIONCONTEXT.XML. */
 	@Inject
 	private ServicioLogin servicioLogin;
 
-	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
+	// ESTE M…TODO ESCUCHA LA URL LOCALHOST:8080/NOMBRE_APP/LOGIN SI LA MISMA ES INVOCADA POR M…TODO HTTP GET.
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
 
 		ModelMap modelo = new ModelMap();
-		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
-		// al model attribute del form que esta definido en la vista 'login'
+		/* SE AGREGA AL MODELO UNA OBJETO DEL TIPO USUARIO CON KEY 'USUARIO' PARA QUE EL MISMO SEA ASOCIADO
+		   AL MODELATTRIBUTE DEL FORM QUE EST¡ DEFINIDO EN LA VISTA 'LOGIN'. */
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
-		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
-		// y se envian los datos a la misma  dentro del modelo
+		/* SE VA A LA VISTA LOGIN (EL NOMBRE COMPLETO DE LA LISTA SE RESUELVE UTILIZANDO EL VIEW RESOLVER 
+		   DEFINIDO EN EL ARCHIVO SPRING-SERVLET.XML) Y SE ENVÕAN LOS DATOS A LA MISMA DENTRO DEL MODELO */
 		return new ModelAndView("login", modelo);
 	}
 
-	// Este metodo escucha la URL validar-login siempre y cuando se invoque con metodo http POST
-	// El m√©todo recibe un objeto Usuario el que tiene los datos ingresados en el form correspondiente y se corresponde con el modelAttribute definido en el
-	// tag form:form
+	// ESTE M…TODO ESCUCHA LA URL VALIDAR-LOGIN SIEMPRE Y CUANDO SE INVOQUE CON M…TODO HTTP POST.
+	/* EL M…TODO RECIBE UN OBJETO USUARIO EL QUE TIENE LOS DATOS INGRESADOS EN EL FORM CORRESPONDIENTE Y
+	   SE CORRESPONDE CON EL MODELATTRIBUTE DEFINIDO EN EL TAG FORM: FORM. */
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
 	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 
-		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL /home, esto es, en lugar de enviar a una vista
-		// hace una llamada a otro action a trav√©s de la URL correspondiente a √©sta
+		/* INVOCA EL M…TODO CONSULTARUSUARIO DEL SERVICIO Y HACE UN REDIRECT A LA URL /HOME, ESTO ES, EN LUGAR DE
+	       ENVIAR A UNA VISTA HACE UNA LLAMADA A OTRO ACTION A TRAV…S DE LA URL. */
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			return new ModelAndView("redirect:/home");
 		} else {
-			// si el usuario no existe agrega un mensaje de error en el modelo.
+			// SI EL USUARIO NO EXISTE AGREGA UN MENSAJE DE ERROR EN EL MODELO.
 			model.put("error", "Usuario o clave incorrecta");
 		}
 		return new ModelAndView("login", model);
 	}
 
-	// Escucha la URL /home por GET, y redirige a una vista.
+	// ESCUCHA LA URL /HOME POR GET, Y REDIRIGE A UNA VISTA.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome() {
 		return new ModelAndView("home");
 	}
 
-	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.
+	// ESCUCHA LA URL /, Y REDIRIGE A LA URL /LOGIN, ES LO MISMO QUE SI SE INVOCA LA URL /LOGIN DIRECTAMENTE.
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");

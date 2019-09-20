@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<!-- Bootstrap core CSS -->
+		<!-- Bootstrap core CSS -->
 	    <link href="css/bootstrap.min.css" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
@@ -20,12 +20,12 @@
 
 					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
 					<form:input path="email" id="email" type="email" class="form-control" />
-					<form:input path="password" type="password" id="password" class="form-control"/>     		  
+					<form:input path="password" type="password" id="password" class="form-control"/>
 					
-					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Login</button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 				</form:form>
 
-				<%--Bloque que es visible si el elemento error no está vacío	--%>
+				<%--Bloque que es visible si el elemento error no esta vacio--%>
 				<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>
 			        <br>

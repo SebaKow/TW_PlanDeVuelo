@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>proyecto-limpio-spring</groupId>
-	<artifactId>proyecto-limpio-spring</artifactId>
+	<groupId>proyecto-TW_PlanDeVuelo</groupId>
+	<artifactId>proyecto-TW_PlanDeVuelo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<build>
@@ -129,8 +129,10 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.16</version>
+			<version>8.0.17</version>
 		</dependency>
+		
+		<!-- DEPENDENCIA: LIBRERIA NECESARIA PARA EL FUNCIONAMIENTO DE LA APP. -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>

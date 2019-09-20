@@ -8,20 +8,19 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-// Se indica que los test que hereden de esta clase corran con el runner de junit para spring.
+// SE INDICA QUE LOS TEST QUE HEREDEN DE ESTA CLASE CORRAN CON EL RUNNER DE JUNIT PARA SPRING.
 @RunWith(SpringJUnit4ClassRunner.class)
-// Se indica
+// SE INDICA
 @ContextConfiguration(locations = {"/test-applicationContext.xml"})
-// Clase base para los test que se pretende que se corran dentro del contexto de spring
+// CLASE BASE PARA LOS TEST QUE SE PRETENDE QUE SE CORRAN DENTRO DEL CONTEXTO DE SPRING.
 public abstract class SpringTest {
-
-    // Tiene inyectado el session factory para que los test que hereden de Ã©ste tengan acceso al mismo
+	
+	// TIENE INYECTADO EL SESSION FACTORY PARA QUE LOS TEST QUE HEREDEN DE ESTE TENGAN ACCESO AL MISMO.
     @Inject
     private SessionFactory sessionFactory;
 
-    // Metodo para obtener una sesion de base de datos
+    // MÉTODO PARA OBTENER UNA SESIÓN DE LA BASE DE DATOS.
     protected Session getSession() {
         return this.sessionFactory.getCurrentSession();
     }
-
 }
