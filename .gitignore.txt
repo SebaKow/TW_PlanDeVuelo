@@ -1,4 +1,0 @@
-/target/
-src/main/resources/hibernateContext
-*.xml
-/pom.xml
