@@ -1,8 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.sql.Date;
-import java.sql.Time;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Vuelo {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -18,14 +16,13 @@ public class Vuelo {
 	private String destino;
 	
 	@ManyToOne
-	private PVContieneV PVContieneV;
+	private PVContieneV pvcontienev;
 
-	public Vuelo(Long id, String origen, String destino, ar.edu.unlam.tallerweb1.modelo.PVContieneV pVContieneV) {
-		super();
+	public Vuelo(Long id, String origen, String destino, PVContieneV pvcontienev) {
 		this.id = id;
 		this.origen = origen;
 		this.destino = destino;
-		PVContieneV = pVContieneV;
+		this.pvcontienev = pvcontienev;
 	}
 
 	public Long getId() {
@@ -52,16 +49,11 @@ public class Vuelo {
 		this.destino = destino;
 	}
 
-	public PVContieneV getPVContieneV() {
-		return PVContieneV;
+	public PVContieneV getPvcontienev() {
+		return pvcontienev;
 	}
 
-	public void setPVContieneV(PVContieneV pVContieneV) {
-		PVContieneV = pVContieneV;
+	public void setPvcontienev(PVContieneV pvcontienev) {
+		this.pvcontienev = pvcontienev;
 	}
-	
-	
-	
-	
-
 }

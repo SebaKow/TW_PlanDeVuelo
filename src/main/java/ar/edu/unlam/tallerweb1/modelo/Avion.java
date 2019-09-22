@@ -7,28 +7,30 @@ import javax.persistence.Id;
 
 @Entity
 public class Avion {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer capacidadTripulantes;
+	
 	public Avion(Long id, Integer capacidadTripulantes) {
-		super();
 		this.id = id;
 		this.capacidadTripulantes = capacidadTripulantes;
 	}
+	
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public Integer getCapacidadTripulantes() {
 		return capacidadTripulantes;
 	}
+	
 	public void setCapacidadTripulantes(Integer capacidadTripulantes) {
 		this.capacidadTripulantes = capacidadTripulantes;
 	}
-	
-	
-
 }
