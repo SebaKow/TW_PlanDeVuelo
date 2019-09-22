@@ -1,50 +1,67 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.sql.Date;
+import java.sql.Time;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.OnDelete;
 
 @Entity
-public class PlanDeVuelo {
+public class Vuelo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String origen;
+	private String destino;
 	
-	
-	
-	@OneToOne
-	private Avion avion;
 	@ManyToOne
 	private PVContieneV PVContieneV;
-	public PlanDeVuelo(Long id, Avion avion) {
+
+	public Vuelo(Long id, String origen, String destino, ar.edu.unlam.tallerweb1.modelo.PVContieneV pVContieneV) {
 		super();
 		this.id = id;
-		this.avion = avion;
-		
-		
+		this.origen = origen;
+		this.destino = destino;
+		PVContieneV = pVContieneV;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public Avion getAvion() {
-		return avion;
+
+	public String getOrigen() {
+		return origen;
 	}
-	public void setAvion(Avion avion) {
-		this.avion = avion;
+
+	public void setOrigen(String origen) {
+		this.origen = origen;
 	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
 	public PVContieneV getPVContieneV() {
 		return PVContieneV;
 	}
+
 	public void setPVContieneV(PVContieneV pVContieneV) {
 		PVContieneV = pVContieneV;
+	}
+	
+	
+	
+	
 
 }
