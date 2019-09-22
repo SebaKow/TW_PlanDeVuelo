@@ -1,4 +1,7 @@
 /target/
+<<<<<<< Updated upstream
 src/main/resources/hibernateContext
 *.xml
 /pom.xml
+=======
+>>>>>>> Stashed changes
