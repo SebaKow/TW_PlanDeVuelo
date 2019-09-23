@@ -35,6 +35,11 @@ public class ControladorLogin {
 		   DEFINIDO EN EL ARCHIVO SPRING-SERVLET.XML) Y SE ENVÍAN LOS DATOS A LA MISMA DENTRO DEL MODELO */
 		return new ModelAndView("login", modelo);
 	}
+	
+	@RequestMapping(path = "/register", method = RequestMethod.GET)
+	public ModelAndView irARegister() {
+		return new ModelAndView("register");
+	}
 
 	// ESTE MÉTODO ESCUCHA LA URL VALIDAR-LOGIN SIEMPRE Y CUANDO SE INVOQUE CON MÉTODO HTTP POST.
 	/* EL MÉTODO RECIBE UN OBJETO USUARIO EL QUE TIENE LOS DATOS INGRESADOS EN EL FORM CORRESPONDIENTE Y
@@ -60,6 +65,11 @@ public class ControladorLogin {
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome() {
 		return new ModelAndView("home");
+	}
+	
+	@RequestMapping(path = "/homeAdmin", method = RequestMethod.GET)
+	public ModelAndView irAHomeAministrador() {
+		return new ModelAndView("homeAdmin");
 	}
 
 	// ESCUCHA LA URL /, Y REDIRIGE A LA URL /LOGIN, ES LO MISMO QUE SI SE INVOCA LA URL /LOGIN DIRECTAMENTE.
