@@ -20,56 +20,39 @@ public class Usuario {
 	/* PARA EL RESTO DE LOS ATRIBUUTOS NO SE USAN ANOTACIONES, ENTONCES SE USA EL DEFAULT DE HIBERNATE:
 	   LA COLUMNA SE LLAMA IGUAL QUE EL ATRIBUTO, LA MISMA ADMITE NULOS, Y EL TIPO DE DATO SE DEDUCE DEL
 	   TIPO DE DATO DE JAVA. */
-	private String email; // ESTOS ATRIBUTOS REPRESENTAN LOS CAMPOS DE LA TABLA.
-	private String password;
-	private String rol;
-	private String nombre;
+	
+	private String nombre; // ESTOS ATRIBUTOS REPRESENTAN LOS CAMPOS DE LA TABLA.
 	private String apellido;
-	private int dni;
-//	private boolean esAdmin;
+	private Integer dni;
+	private String email;
+	private String password;
+	private Boolean esAdmin;
 	
-	public Usuario(){
-		
-	}
-
 	@ManyToOne
-	private PlanDeVuelo planDeVuelo;
+	private PlanDeVuelo plandevuelo;
 	
-	public Usuario(Long id, String email, String password, String rol,String nombre, String apellido, int dni){
+	public Usuario() {
+	
+	}
+	
+	public Usuario(Long id, String nombre, String apellido, Integer dni, String email,
+			       String password, Boolean esAdmin, PlanDeVuelo plandevuelo) {
 		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
 		this.email = email;
 		this.password = password;
-		this.rol = rol;
-		this.nombre=nombre;
-		this.apellido=apellido;
-		this.dni=dni;
+		this.esAdmin = esAdmin;
+		this.plandevuelo = plandevuelo;
 	}
-	
-	public Long getId(){
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Long id){
+
+	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getEmail(){
-		return email;
-	}
-	public void setEmail(String email){
-		this.email = email;
-	}
-	public String getPassword(){
-		return password;
-	}
-	public void setPassword(String password){
-		this.password = password;
-	}
-
-	public String getRol(){
-		return rol;
-	}
-
-	public void setRol(String rol){
-		this.rol = rol;
 	}
 
 	public String getNombre() {
@@ -88,26 +71,43 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public int getDni() {
+	public Integer getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 
-	/*
-	 * public boolean getEsAdmin() { return esAdmin; }
-	 * 
-	 * public void setEsAdmin(boolean esAdmin) { this.esAdmin = esAdmin; }
-	 */
-
-	public PlanDeVuelo getPlanDeVuelo() {
-		return planDeVuelo;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPlanDeVuelo(PlanDeVuelo planDeVuelo) {
-		this.planDeVuelo = planDeVuelo;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
+	public Boolean getEsAdmin() {
+		return esAdmin;
+	}
+	
+	public void setEsAdmin(Boolean esAdmin) {
+		this.esAdmin = esAdmin;
+	}
+
+	public PlanDeVuelo getPlandevuelo() {
+		return plandevuelo;
+	}
+
+	public void setPlandevuelo(PlanDeVuelo plandevuelo) {
+		this.plandevuelo = plandevuelo;
+	}
 }

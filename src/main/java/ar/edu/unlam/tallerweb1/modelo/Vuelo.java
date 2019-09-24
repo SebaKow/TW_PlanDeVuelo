@@ -17,6 +17,10 @@ public class Vuelo {
 	
 	@ManyToOne
 	private PVContieneV pvcontienev;
+	
+	public Vuelo() {
+		
+	}
 
 	public Vuelo(Long id, String origen, String destino, PVContieneV pvcontienev) {
 		this.id = id;

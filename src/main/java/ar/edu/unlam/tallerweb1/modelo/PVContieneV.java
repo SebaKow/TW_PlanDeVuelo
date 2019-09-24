@@ -16,6 +16,10 @@ public class PVContieneV {
 	private Timestamp horaSalida;
 	private Timestamp horaLLegada;
 	
+	public PVContieneV() {
+		
+	}
+	
 	public PVContieneV(Long id, Timestamp horaSalida, Timestamp horaLLegada) {
 		this.id = id;
 		this.horaSalida = horaSalida;

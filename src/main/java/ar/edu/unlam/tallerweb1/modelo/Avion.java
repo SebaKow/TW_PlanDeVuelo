@@ -13,6 +13,10 @@ public class Avion {
 	private Long id;
 	private Integer capacidadTripulantes;
 	
+	public Avion() {
+		
+	}
+	
 	public Avion(Long id, Integer capacidadTripulantes) {
 		this.id = id;
 		this.capacidadTripulantes = capacidadTripulantes;

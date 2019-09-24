@@ -20,6 +20,10 @@ public class PlanDeVuelo {
 	@ManyToOne
 	private PVContieneV pvcontienev;
 	
+	public PlanDeVuelo() {
+		
+	}
+	
 	public PlanDeVuelo(Long id, Avion avion, PVContieneV pvcontienev) {
 		this.id = id;
 		this.avion = avion;

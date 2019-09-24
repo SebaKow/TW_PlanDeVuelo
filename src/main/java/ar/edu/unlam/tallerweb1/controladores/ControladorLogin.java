@@ -52,32 +52,40 @@ public class ControladorLogin {
 	       ENVIAR A UNA VISTA HACE UNA LLAMADA A OTRO ACTION A TRAVÉS DE LA URL. */
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
-			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-			return new ModelAndView("redirect:/home");
+			if(usuarioBuscado.getEsAdmin() == true) {
+				request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
+				return new ModelAndView("redirect:/homeAdmin");
+			} else {
+				request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
+				return new ModelAndView("redirect:/home");
+			}
 		} else {
 			// SI EL USUARIO NO EXISTE AGREGA UN MENSAJE DE ERROR EN EL MODELO.
-			model.put("error", "Usuario o clave incorrecta");
+			model.put("error", "Los datos ingresados son incorrectos. Por favor, intente nuevamente.");
 		}
+		
 		return new ModelAndView("login", model);
 	}
 	
 	@RequestMapping(path = "/registrar-usuario", method = RequestMethod.POST)
 	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
-//		usuario.setEsAdmin(false);
+		usuario.setEsAdmin(false);
 		servicioLogin.agregarUsuario(usuario);		
-		return new ModelAndView("redirect:/home", model);
+		return new ModelAndView("homeAdmin", model);
 	}
-	
 	
 	// ESCUCHA LA URL /HOME POR GET, Y REDIRIGE A UNA VISTA.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
-	public ModelAndView irAHome() {
-		return new ModelAndView("home");
+	public ModelAndView irAHome(HttpServletRequest request) {
+		Usuario usuarioBuscado = servicioLogin.consultarUsuarioId((Long) request.getSession().getAttribute("idUsuario"));
+		ModelMap modelo = new ModelMap();
+		modelo.put("usuario", usuarioBuscado);
+		return new ModelAndView("home", modelo);
 	}
 	
 	@RequestMapping(path = "/homeAdmin", method = RequestMethod.GET)
-	public ModelAndView irAHomeAministrador() {
+	public ModelAndView irAHomeAdministrador() {
 		return new ModelAndView("homeAdmin");
 	}
 
