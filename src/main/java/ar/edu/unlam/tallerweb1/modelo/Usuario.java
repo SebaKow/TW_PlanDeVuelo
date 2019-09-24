@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 // CLASE QUE MODELA EL CONCEPTO DE USUARIO, LA ANOTACIÓN @ENTITY LE AVISA A HIBERNATE QUE ESTA CLASE ES PERSISTIBLE.
 /* EL PAQUETE AR.EDU.UNLAM.TALLERWEB1.MODELO ESTÁ INDICADO EN EL ARCHIVO HIBERNATECONTEXT.XML PARA QUE HIBERNATE
@@ -22,16 +23,26 @@ public class Usuario {
 	private String email; // ESTOS ATRIBUTOS REPRESENTAN LOS CAMPOS DE LA TABLA.
 	private String password;
 	private String rol;
+	private String nombre;
+	private String apellido;
+	private int dni;
+//	private boolean esAdmin;
 	
 	public Usuario(){
 		
 	}
+
+	@ManyToOne
+	private PlanDeVuelo planDeVuelo;
 	
-	public Usuario(Long id, String email, String password, String rol){
+	public Usuario(Long id, String email, String password, String rol,String nombre, String apellido, int dni){
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.rol = rol;
+		this.nombre=nombre;
+		this.apellido=apellido;
+		this.dni=dni;
 	}
 	
 	public Long getId(){
@@ -60,4 +71,43 @@ public class Usuario {
 	public void setRol(String rol){
 		this.rol = rol;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public int getDni() {
+		return dni;
+	}
+
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+
+	/*
+	 * public boolean getEsAdmin() { return esAdmin; }
+	 * 
+	 * public void setEsAdmin(boolean esAdmin) { this.esAdmin = esAdmin; }
+	 */
+
+	public PlanDeVuelo getPlanDeVuelo() {
+		return planDeVuelo;
+	}
+
+	public void setPlanDeVuelo(PlanDeVuelo planDeVuelo) {
+		this.planDeVuelo = planDeVuelo;
+	}
+	
 }

@@ -60,7 +60,16 @@ public class ControladorLogin {
 		}
 		return new ModelAndView("login", model);
 	}
-
+	
+	@RequestMapping(path = "/registrar-usuario", method = RequestMethod.POST)
+	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+//		usuario.setEsAdmin(false);
+		servicioLogin.agregarUsuario(usuario);		
+		return new ModelAndView("redirect:/home", model);
+	}
+	
+	
 	// ESCUCHA LA URL /HOME POR GET, Y REDIRIGE A UNA VISTA.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome() {

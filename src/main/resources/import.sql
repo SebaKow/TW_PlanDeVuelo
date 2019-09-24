@@ -27,3 +27,5 @@ insert into vuelo (origen, destino,pVContieneV) values ("Salta", "Tucuman", 1);
 insert into vuelo (origen, destino,pVContieneV) values ("Tucuman", "Jujuy", 2);
 insert into vuelo (origen, destino,pVContieneV) values ("Jujuy", "Formosa", 3);
 insert into vuelo (origen, destino,pVContieneV) values ("Formosa", "Salta", 4);
+
+insert into usuario (dni,email, password) values (1,"admin@admin.com", "admin");

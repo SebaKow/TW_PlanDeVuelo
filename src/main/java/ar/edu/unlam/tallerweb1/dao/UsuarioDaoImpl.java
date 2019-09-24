@@ -30,4 +30,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 					.add(Restrictions.eq("password", usuario.getPassword()))
 					.uniqueResult(); // uniqueResult() o list() --> Depende de la cantidad de resultados que queremos.
 	}
+	
+	@Override
+	public void agregarUsuario(Usuario usuario) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(usuario);
+	}
 }
