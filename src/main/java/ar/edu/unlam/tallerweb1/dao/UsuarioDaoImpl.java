@@ -49,6 +49,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 	
 	@Override
+	public void eliminarUsuario(Usuario usuario) {
+		sessionFactory.getCurrentSession().delete(usuario);
+	}
+	
+	@Override
 	public List<Usuario> listarTripulantes(){
 		List<Usuario> listaDeTripulantes = sessionFactory.getCurrentSession().createCriteria(Usuario.class)
 //											.add(Restrictions.isNotNull("dni"))

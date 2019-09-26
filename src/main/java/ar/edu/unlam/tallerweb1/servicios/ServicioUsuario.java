@@ -6,4 +6,8 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioUsuario {
 	List<Usuario> listarTripulantes();
+
+	Usuario consultarUsuarioId(Long id);
+
+	void eliminarUsuario(Usuario usuarioBuscado);
 }

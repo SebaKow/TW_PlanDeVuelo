@@ -20,4 +20,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 	public List<Usuario> listarTripulantes(){
 		return usuarioDao.listarTripulantes();
 	}
+	
+	@Override
+	public Usuario consultarUsuarioId(Long id) {
+		return usuarioDao.consultarUsuarioId(id);
+	}
+	
+	@Override
+	public void eliminarUsuario(Usuario usuario) {
+		usuarioDao.eliminarUsuario(usuario);
+	}
 }
