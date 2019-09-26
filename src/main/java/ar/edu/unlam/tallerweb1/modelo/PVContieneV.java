@@ -1,11 +1,11 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.google.protobuf.Timestamp;
 
 @Entity
 public class PVContieneV {
@@ -13,17 +13,17 @@ public class PVContieneV {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Timestamp horaSalida;
-	private Timestamp horaLLegada;
+	private Date horaSalida;
+	private Date horaLlegada;
 	
 	public PVContieneV() {
 		
 	}
 	
-	public PVContieneV(Long id, Timestamp horaSalida, Timestamp horaLLegada) {
+	public PVContieneV(Long id, Date horaSalida, Date horaLLegada) {
 		this.id = id;
 		this.horaSalida = horaSalida;
-		this.horaLLegada = horaLLegada;
+		this.horaLlegada = horaLLegada;
 	}
 	
 	public Long getId() {
@@ -34,19 +34,19 @@ public class PVContieneV {
 		this.id = id;
 	}
 	
-	public Timestamp getHoraSalida() {
+	public Date getHoraSalida() {
 		return horaSalida;
 	}
 	
-	public void setHoraSalida(Timestamp horaSalida) {
+	public void setHoraSalida(Date horaSalida) {
 		this.horaSalida = horaSalida;
 	}
 	
-	public Timestamp getHoraLLegada() {
-		return horaLLegada;
+	public Date getHoraLLegada() {
+		return horaLlegada;
 	}
 	
-	public void setHoraLLegada(Timestamp horaLLegada) {
-		this.horaLLegada = horaLLegada;
+	public void setHoraLLegada(Date horaLLegada) {
+		this.horaLlegada = horaLLegada;
 	}
 }

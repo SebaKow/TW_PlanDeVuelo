@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -77,7 +76,7 @@ public class ControladorLogin {
 		ModelMap model = new ModelMap();
 		usuario.setEsAdmin(false);
 		servicioLogin.agregarUsuario(usuario);		
-		return new ModelAndView("homeAdmin", model);
+		return new ModelAndView("redirect:/tripulantes", model);
 	}
 	
 	// ESCUCHA LA URL /HOME POR GET, Y REDIRIGE A UNA VISTA.
@@ -100,12 +99,5 @@ public class ControladorLogin {
 		return new ModelAndView("redirect:/login");
 	}
 	
-	@RequestMapping(path="/tripulantes", method = RequestMethod.GET)
-	public ModelAndView irATripulantes() {
-		List<Usuario> listaUsuarios = servicioUsuario.listarTripulantes();
-		ModelMap modelo = new ModelMap();
-		modelo.put("listaUsuarios", listaUsuarios);
-		return new ModelAndView("tripulantes",modelo);
-	}
 	
 }

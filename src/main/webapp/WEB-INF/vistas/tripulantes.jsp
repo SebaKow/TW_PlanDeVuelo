@@ -41,7 +41,7 @@
 
 	<div class="container-fluid">
 		<div class="text-center my-5">
-			<h2>${listaUsuarios}</h2>
+			<h2>Tripulantes/Usuarios</h2>
 		</div>
 
 		<div class="row mt-5">
@@ -50,30 +50,30 @@
 				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">Posicion</th>
 							<th scope="col">Nombre</th>
-							<th scope="col">Edad</th>
-							<th scope="col">Peso</th>
-							<th scope="col">Altura</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">DNI</th>
+							<th scope="col">Email</th>
+							<th scope="col">Password</th>
 							<th scope="col">Modificar</th>
 							<th scope="col">Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${jugadores}" var="jugador">
+						<c:forEach items="${listaUsuarios}" var="usuario">
 							<tr>
-							<td>${jugador.posicion}</td>
-							<td>${jugador.nombre}</td>
-							<td>${jugador.edad}</td>
-							<td>${jugador.peso}</td>
-							<td>${jugador.altura}</td>
-							<td><form action="modificarJugador" method="POST" modelAttribute = "jugador">
-								<input type="hidden" name="id" value="${jugador.id}" id="id">
+							<td>${usuario.nombre}</td>
+							<td>${usuario.apellido}</td>
+							<td>${usuario.dni}</td>
+							<td>${usuario.email}</td>
+							<td>${usuario.password}</td>
+							<td><form action="modificarUsuario" method="POST" modelAttribute = "usuario">
+								<input type="hidden" name="id" value="${usuario.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
 								</form>
 							</td>
-							<td><form action="eliminarJugador" method="POST" modelAttribute = "jugador">
-								<input type="hidden" name="id" value="${jugador.id}" id="id">
+							<td><form action="eliminarUsuario" method="POST" modelAttribute = "usuario">
+								<input type="hidden" name="id" value="${usuario.id}" id="id">
 								<button class="btn btn-lg btn-primary  font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>
@@ -82,7 +82,7 @@
 					</tbody>
 				</table>
 				
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="crearEquipo2" role="button">Agregar Jugador</a>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="register" role="button">Agregar Usuario</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

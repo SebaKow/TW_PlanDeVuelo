@@ -51,7 +51,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public List<Usuario> listarTripulantes(){
 		List<Usuario> listaDeTripulantes = sessionFactory.getCurrentSession().createCriteria(Usuario.class)
-											.add(Restrictions.isNotNull("dni"))
+//											.add(Restrictions.isNotNull("dni"))
 											.list();
 		return listaDeTripulantes;
 	}
