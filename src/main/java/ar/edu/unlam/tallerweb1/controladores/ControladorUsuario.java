@@ -21,7 +21,7 @@ public class ControladorUsuario {
 	@Inject
 	ServicioUsuario servicioUsuario;
 	
-	@RequestMapping(path="/tripulantes", method = RequestMethod.GET)
+	@RequestMapping(path = "/tripulantes", method = RequestMethod.GET)
 	public ModelAndView irATripulantes() {
 		List<Usuario> listaUsuarios = servicioUsuario.listarTripulantes();
 		ModelMap modelo = new ModelMap();
@@ -29,7 +29,30 @@ public class ControladorUsuario {
 		return new ModelAndView("tripulantes",modelo);
 	}
 	
-	@RequestMapping(path="/eliminarUsuario", method = RequestMethod.POST)
+	// ESTO LLEVA A LA VISTA PARA PODER EDITAR EL USUARIO.
+	@RequestMapping(path = "/modificarUsuario", method = RequestMethod.POST)
+	public ModelAndView modificarUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
+		Usuario usuarioBuscado = servicioUsuario.consultarUsuarioId(usuario.getId());
+		ModelMap modelo = new ModelMap();
+		modelo.put("usuario", usuarioBuscado);
+		
+		return new ModelAndView("editarUsuario", modelo);
+	}
+	
+	// ESTO EDITA EL USUARIO.
+	@RequestMapping(path = "/editarUsuario", method = RequestMethod.POST)
+	public ModelAndView editarUsuario(@ModelAttribute("usuario") Usuario usuarioRecibido, HttpServletRequest request) {
+		Usuario usuarioBuscado = servicioUsuario.consultarUsuarioId(usuarioRecibido.getId());
+		usuarioBuscado.setNombre(usuarioRecibido.getNombre());
+		usuarioBuscado.setApellido(usuarioRecibido.getApellido());
+		usuarioBuscado.setDni(usuarioRecibido.getDni());
+		usuarioBuscado.setEmail(usuarioRecibido.getEmail());
+		usuarioBuscado.setPassword(usuarioRecibido.getPassword());
+		servicioUsuario.editarUsuario(usuarioBuscado);
+		return new ModelAndView("redirect:/tripulantes");
+	}
+	
+	@RequestMapping(path = "/eliminarUsuario", method = RequestMethod.POST)
 	public ModelAndView eliminarUsuario(@ModelAttribute("usuario") Usuario usuarioRecibido, HttpServletRequest request) {
 		Usuario usuarioBuscado = servicioUsuario.consultarUsuarioId(usuarioRecibido.getId());
 		servicioUsuario.eliminarUsuario(usuarioBuscado);

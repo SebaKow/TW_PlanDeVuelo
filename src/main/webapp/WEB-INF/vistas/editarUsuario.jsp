@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -9,7 +9,7 @@
     <title>Plan De Vuelo</title>
 </head>
 <body>
-	
+
 	<!-- NAVIGATION -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
 	  <div class="container">
@@ -32,56 +32,45 @@
 	    </div>
 	  </div>
 	</nav>
-
-	<!-- LISTA DE TRIPULANTES -->
+  
+  	<!-- EDITAR TRIPULANTE -->
 	<div class="container-fluid my-5">
 		<div class="text-center pt-5">
-			<h2>Lista de Tripulantes</h2>
+			<h2>Editar Tripulante</h2>
 		</div>
-
+		
 		<div class="row mt-5">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<table class="table table-bordered text-center">
-					<thead>
-						<tr>
-							<th scope="col">Nombre</th>
-							<th scope="col">Apellido</th>
-							<th scope="col">DNI</th>
-							<th scope="col">Email</th>
-							<th scope="col">Password</th>
-							<th scope="col">Editar</th>
-							<th scope="col">Eliminar</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${listaUsuarios}" var="usuario">
-							<tr>
-							<td>${usuario.nombre}</td>
-							<td>${usuario.apellido}</td>
-							<td>${usuario.dni}</td>
-							<td>${usuario.email}</td>
-							<td>${usuario.password}</td>
-							<td><form action="modificarUsuario" method="POST" modelAttribute = "usuario">
-								<input type="hidden" name="id" value="${usuario.id}" id="id">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
-								</form>
-							</td>
-							<td><form action="eliminarUsuario" method="POST" modelAttribute = "usuario">
-								<input type="hidden" name="id" value="${usuario.id}" id="id">
-								<button class="btn btn-lg btn-primary  font-weight-bold mb-2" type="submit">Eliminar</button>
-								</form>
-							</td>
-							</tr>
-						</c:forEach>
-					</tbody>
+				  <thead>
+				    <tr>
+					    <th scope="col">Nombre</th>
+						<th scope="col">Apellido</th>
+						<th scope="col">DNI</th>
+						<th scope="col">Email</th>
+						<th scope="col">Password</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <form action="editarUsuario" method= "POST" modelAttribute="usuario">
+				    <tr>
+				      <td><input name="nombre" type="text" id="nombre" class="form-control" value="${usuario.nombre}" required ></td>
+				      <td><input name="apellido" type="text" id="apellido" class="form-control" value="${usuario.apellido}" required></td>
+				      <td><input name="dni" type="text" id="dni" class="form-control" value="${usuario.dni}" required></td>
+				      <td><input name="email" type="text" id="email" class="form-control" value="${usuario.email}" required></td>
+				      <td><input name="password" type="text" id="password" class="form-control" value="${usuario.password}" required></td>					   
+				    </tr>
+				  </tbody>
 				</table>
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="register" role="button">Agregar Usuario</a>
+					<input name="id" type="hidden" id="id" value="${usuario.id}">
+					<button class="btn btn-lg btn-primary float-right font-weight-bold mb-2" type="submit">Editar</button>
+				</form>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 	</div>
-   	
+	
 	<script src="js/jquery-3.4.1.min.js"></script>
    	<script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>

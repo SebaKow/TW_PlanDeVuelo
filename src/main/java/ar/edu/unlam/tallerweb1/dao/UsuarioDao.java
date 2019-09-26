@@ -11,5 +11,6 @@ public interface UsuarioDao {
 	void agregarUsuario(Usuario usuario);
 	Usuario consultarUsuarioId(Long id);
 	public List<Usuario> listarTripulantes();
+	void editarUsuario(Usuario usuario);
 	void eliminarUsuario(Usuario usuario);
 }

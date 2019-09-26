@@ -5,9 +5,9 @@ import java.util.List;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioUsuario {
+	
 	List<Usuario> listarTripulantes();
-
 	Usuario consultarUsuarioId(Long id);
-
-	void eliminarUsuario(Usuario usuarioBuscado);
+	void editarUsuario(Usuario usuario);
+	void eliminarUsuario(Usuario usuario);
 }

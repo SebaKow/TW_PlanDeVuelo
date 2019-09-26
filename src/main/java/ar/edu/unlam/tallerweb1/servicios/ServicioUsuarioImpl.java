@@ -13,6 +13,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 @Service("ServicioTripulantes")
 @Transactional
 public class ServicioUsuarioImpl implements ServicioUsuario{
+	
 	@Inject
 	UsuarioDao usuarioDao;
 	
@@ -24,6 +25,11 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 	@Override
 	public Usuario consultarUsuarioId(Long id) {
 		return usuarioDao.consultarUsuarioId(id);
+	}
+	
+	@Override
+	public void editarUsuario(Usuario usuario) {
+		usuarioDao.editarUsuario(usuario);
 	}
 	
 	@Override

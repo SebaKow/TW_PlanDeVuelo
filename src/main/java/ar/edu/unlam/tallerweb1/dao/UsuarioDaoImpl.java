@@ -35,7 +35,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	@Override
 	public Usuario consultarUsuarioId(Long id) {
-
 		final Session session = sessionFactory.getCurrentSession();
 		return (Usuario) session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("id", id))
@@ -49,13 +48,19 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 	
 	@Override
+	public void editarUsuario(Usuario usuario) {
+		sessionFactory.getCurrentSession().saveOrUpdate(usuario);
+	}
+	
+	@Override
 	public void eliminarUsuario(Usuario usuario) {
 		sessionFactory.getCurrentSession().delete(usuario);
 	}
 	
 	@Override
 	public List<Usuario> listarTripulantes(){
-		List<Usuario> listaDeTripulantes = sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+		List<Usuario> listaDeTripulantes = sessionFactory.getCurrentSession()
+											.createCriteria(Usuario.class)
 //											.add(Restrictions.isNotNull("dni"))
 											.list();
 		return listaDeTripulantes;

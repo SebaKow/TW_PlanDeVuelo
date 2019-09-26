@@ -1,20 +1,16 @@
-/*!
- * Start Bootstrap - Scrolling Nav (https://startbootstrap.com/template-overviews/scrolling-nav)
- * Copyright 2013-2019 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
- */
-
 :root {
     --input-padding-x: 1.5rem;
     --input-padding-y: 0.75rem;
 }
 
-header {
-  padding: 156px 0 100px;
-}
-
-section {
-  padding: 150px 0;
+/*================================ VISTA DE HOME */
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /*================================ VISTA DE LOGIN Y REGISTER */
@@ -45,7 +41,6 @@ section {
 .btn {
     font-size: 1.2rem;
     letter-spacing: 0.05rem;
-    padding: 0.75rem 1rem;
     border-radius: 2rem;
 }
 

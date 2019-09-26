@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <title>Plan De Vuelo</title>
 </head>
 <body>
@@ -43,8 +43,6 @@
    	</div>
    	
 	<script src="js/jquery-3.4.1.min.js"></script>
-	<script src="js/jquery.easing.min.js"></script>
    	<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="js/scrolling-nav.js" type="text/javascript"></script>
 </body>
 </html>
