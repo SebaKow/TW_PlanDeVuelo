@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorLogin {
@@ -22,6 +25,8 @@ public class ControladorLogin {
 	@Inject
 	private ServicioLogin servicioLogin;
 
+	@Inject
+	ServicioUsuario servicioUsuario;
 	// ESTE MÉTODO ESCUCHA LA URL LOCALHOST:8080/NOMBRE_APP/LOGIN SI LA MISMA ES INVOCADA POR MÉTODO HTTP GET.
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
@@ -94,4 +99,13 @@ public class ControladorLogin {
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
 	}
+	
+	@RequestMapping(path="/tripulantes", method = RequestMethod.GET)
+	public ModelAndView irATripulantes() {
+		List<Usuario> listaUsuarios = servicioUsuario.listarTripulantes();
+		ModelMap modelo = new ModelMap();
+		modelo.put("listaUsuarios", listaUsuarios);
+		return new ModelAndView("tripulantes",modelo);
+	}
+	
 }
