@@ -23,7 +23,7 @@
 			   					<div class="alert alert-danger m-5" role="alert">${error}</div>
 			   			 	</c:if>
                                 <h2 class="main-heading text-primary text-center mb-4">Plan De Vuelo</h2>
-                                <form action="validar-login" method="POST" modelAttribute="usuario">
+                                <form action="validar-login" method="POST" modelAttribute="tripulante">
                                     <div class="form-label-group">
                                         <input name="email" type="email" id="email" class="form-control" placeholder="Email" required autofocus>
                                         <label for="email">Email</label>

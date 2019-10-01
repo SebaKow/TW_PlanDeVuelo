@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Vuelo {
@@ -15,18 +14,14 @@ public class Vuelo {
 	private String origen;
 	private String destino;
 	
-	@ManyToOne
-	private PVContieneV pvcontienev;
-	
 	public Vuelo() {
 		
 	}
 
-	public Vuelo(Long id, String origen, String destino, PVContieneV pvcontienev) {
+	public Vuelo(Long id, String origen, String destino) {
 		this.id = id;
 		this.origen = origen;
 		this.destino = destino;
-		this.pvcontienev = pvcontienev;
 	}
 
 	public Long getId() {
@@ -51,13 +46,5 @@ public class Vuelo {
 
 	public void setDestino(String destino) {
 		this.destino = destino;
-	}
-
-	public PVContieneV getPvcontienev() {
-		return pvcontienev;
-	}
-
-	public void setPvcontienev(PVContieneV pvcontienev) {
-		this.pvcontienev = pvcontienev;
 	}
 }

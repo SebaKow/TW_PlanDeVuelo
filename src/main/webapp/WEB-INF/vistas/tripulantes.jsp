@@ -49,26 +49,26 @@
 							<th scope="col">Apellido</th>
 							<th scope="col">DNI</th>
 							<th scope="col">Email</th>
-							<th scope="col">Password</th>
+							<th scope="col">Contraseña</th>
 							<th scope="col">Editar</th>
 							<th scope="col">Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${listaUsuarios}" var="usuario">
+						<c:forEach items="${listaTripulantes}" var="tripulante">
 							<tr>
-							<td>${usuario.nombre}</td>
-							<td>${usuario.apellido}</td>
-							<td>${usuario.dni}</td>
-							<td>${usuario.email}</td>
-							<td>${usuario.password}</td>
-							<td><form action="modificarUsuario" method="POST" modelAttribute = "usuario">
-								<input type="hidden" name="id" value="${usuario.id}" id="id">
+							<td>${tripulante.nombre}</td>
+							<td>${tripulante.apellido}</td>
+							<td>${tripulante.dni}</td>
+							<td>${tripulante.email}</td>
+							<td>${tripulante.password}</td>
+							<td><form action="modificarTripulante" method="POST" modelAttribute="tripulante">
+								<input type="hidden" name="id" value="${tripulante.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
 								</form>
 							</td>
-							<td><form action="eliminarUsuario" method="POST" modelAttribute = "usuario">
-								<input type="hidden" name="id" value="${usuario.id}" id="id">
+							<td><form action="eliminarTripulante" method="POST" modelAttribute="tripulante">
+								<input type="hidden" name="id" value="${tripulante.id}" id="id">
 								<button class="btn btn-lg btn-primary  font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>
@@ -76,7 +76,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="register" role="button">Agregar Usuario</a>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="register" role="button">Agregar</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

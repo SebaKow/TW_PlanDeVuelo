@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <h2 class="main-heading text-primary text-center mb-4">Plan De Vuelo</h2>
-                                <form action="registrar-usuario" method="POST" modelAttribute="usuario">
+                                <form action="registrar-tripulante" method="POST" modelAttribute="tripulante">
                                 	<div class="form-label-group">
                                         <input name="nombre" type="text" id="nombreRegistro" class="form-control" placeholder="Nombre" required autofocus>
                                         <label for="nombreRegistro">Nombre</label>

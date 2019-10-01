@@ -49,21 +49,21 @@
 						<th scope="col">Apellido</th>
 						<th scope="col">DNI</th>
 						<th scope="col">Email</th>
-						<th scope="col">Password</th>
+						<th scope="col">Contraseña</th>
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <form action="editarUsuario" method= "POST" modelAttribute="usuario">
+				    <form action="editarTripulante" method= "POST" modelAttribute="tripulante">
 				    <tr>
-				      <td><input name="nombre" type="text" id="nombre" class="form-control" value="${usuario.nombre}" required ></td>
-				      <td><input name="apellido" type="text" id="apellido" class="form-control" value="${usuario.apellido}" required></td>
-				      <td><input name="dni" type="text" id="dni" class="form-control" value="${usuario.dni}" required></td>
-				      <td><input name="email" type="text" id="email" class="form-control" value="${usuario.email}" required></td>
-				      <td><input name="password" type="text" id="password" class="form-control" value="${usuario.password}" required></td>					   
+				      <td><input name="nombre" type="text" id="nombre" class="form-control" value="${tripulante.nombre}" required ></td>
+				      <td><input name="apellido" type="text" id="apellido" class="form-control" value="${tripulante.apellido}" required></td>
+				      <td><input name="dni" type="text" id="dni" class="form-control" value="${tripulante.dni}" required></td>
+				      <td><input name="email" type="text" id="email" class="form-control" value="${tripulante.email}" required></td>
+				      <td><input name="password" type="text" id="password" class="form-control" value="${tripulante.password}" required></td>					   
 				    </tr>
 				  </tbody>
 				</table>
-					<input name="id" type="hidden" id="id" value="${usuario.id}">
+					<input name="id" type="hidden" id="id" value="${tripulante.id}">
 					<button class="btn btn-lg btn-primary float-right font-weight-bold mb-2" type="submit">Editar</button>
 				</form>
 			</div>

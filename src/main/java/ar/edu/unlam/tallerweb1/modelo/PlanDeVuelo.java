@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class PlanDeVuelo {
@@ -14,20 +13,16 @@ public class PlanDeVuelo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-	private Avion avion;
-	
 	@ManyToOne
-	private PVContieneV pvcontienev;
+	private Avion avion;
 	
 	public PlanDeVuelo() {
 		
 	}
 	
-	public PlanDeVuelo(Long id, Avion avion, PVContieneV pvcontienev) {
+	public PlanDeVuelo(Long id, Avion avion) {
 		this.id = id;
 		this.avion = avion;
-		this.pvcontienev = pvcontienev;
 	}
 	
 	public Long getId() {
@@ -44,13 +39,5 @@ public class PlanDeVuelo {
 	
 	public void setAvion(Avion avion) {
 		this.avion = avion;
-	}
-
-	public PVContieneV getPvcontienev() {
-		return pvcontienev;
-	}
-
-	public void setPvcontienev(PVContieneV pvcontienev) {
-		this.pvcontienev = pvcontienev;
 	}
 }

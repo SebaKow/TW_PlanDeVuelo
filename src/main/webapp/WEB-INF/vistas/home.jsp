@@ -41,7 +41,7 @@
 	  <div class="container h-100">
 	    <div class="row h-100 align-items-center">
 	      <div class="col-12 text-center">
-	        <h1 class="font-weight-light">Bienvenido Usuario Común</h1>
+	        <h1 class="font-weight-light">Bienvenido ${tripulante.nombre} ${tripulante.apellido}</h1>
 	        <p class="lead">¡Disfrute de la aplicación!</p>
 	      </div>
 	    </div>
