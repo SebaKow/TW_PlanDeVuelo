@@ -13,7 +13,7 @@
   background-repeat: no-repeat;
 }
 
-/*================================ VISTA DE LOGIN Y REGISTER */
+/*================================ VISTA DE LOGIN Y AGREGAR... */
 .main {
     min-height: 100vh;
 }
@@ -22,12 +22,12 @@
     background-image: url('../img/background1.jpg');
 }
 
-.bg-image-register {
+.bg-image-agregar {
     background-image: url('../img/background2.jpg');
 }
 
 .bg-image-login,
-.bg-image-register {
+.bg-image-agregar {
     background-size: cover;
     background-position: center;
 }

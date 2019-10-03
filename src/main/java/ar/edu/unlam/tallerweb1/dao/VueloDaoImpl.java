@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,7 +14,8 @@ import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 @Repository("vueloDao")
-public class VueloDaoImpl implements VueloDao{
+public class VueloDaoImpl implements VueloDao {
+	
 	@Inject
 	SessionFactory sessionFactory;
 	
@@ -26,6 +26,7 @@ public class VueloDaoImpl implements VueloDao{
 											.list();
 		return listaDeVuelos;
 	}
+	
 	@Override
 	public Vuelo consultarVueloId(Long id) {
 		final Session session = sessionFactory.getCurrentSession();
@@ -33,17 +34,27 @@ public class VueloDaoImpl implements VueloDao{
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
+	
+	@Override
+	public void agregarVuelo(Vuelo vuelo) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(vuelo);
+	}
+	
 	@Override
 	public void editarVuelo(Vuelo vuelo) {
 		sessionFactory.getCurrentSession().saveOrUpdate(vuelo);
 	}
+	
 	@Override
 	public void eliminarVuelo(Vuelo vuelo) {
 		sessionFactory.getCurrentSession().delete(vuelo);
 	}
+	
 	@Override
 	public PVContieneV traerHorasDeUnVuelo(Long id) {
-		PVContieneV horaSalida = (PVContieneV) sessionFactory.getCurrentSession().createCriteria(PVContieneV.class)
+		PVContieneV horaSalida = (PVContieneV) sessionFactory.getCurrentSession()
+				.createCriteria(PVContieneV.class)
 				.createAlias("vuelo", "vueloJoin")
 				.add(Restrictions.eq("vueloJoin.id", id))
 				.uniqueResult();

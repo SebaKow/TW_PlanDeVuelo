@@ -19,13 +19,13 @@ import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
 
-
 @Controller
 public class ControladorVuelo {
 	
 	@Inject
 	ServicioVuelo servicioVuelo;
 	
+	// VUELOS
 	@RequestMapping(path = "/vuelos", method = RequestMethod.GET)
 	public ModelAndView irAVuelos() {
 		List<Vuelo> listaVuelos = servicioVuelo.listarVuelos();
@@ -43,25 +43,41 @@ public class ControladorVuelo {
 		modelo.put("listaHorariosLlegada", listaHorariosLlegada);
 		return new ModelAndView("vuelos", modelo);
 	}
-	// ESTO LLEVA A LA VISTA PARA PODER EDITAR EL VUELO.
+	
+	// VISTA AGREGAR VUELO
+	@RequestMapping(path = "/agregar-vuelo", method = RequestMethod.GET)
+	public ModelAndView irAVistaAgregarVuelo() {
+		return new ModelAndView("agregarVuelo");
+	}
+	
+	// AGREGAR VUELO
+	@RequestMapping(path = "/agregarVuelo", method = RequestMethod.POST)
+	public ModelAndView agregarVuelo(@ModelAttribute("vuelo") Vuelo vuelo, HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+		servicioVuelo.agregarVuelo(vuelo);		
+		return new ModelAndView("redirect:/vuelos", model);
+	}
+	
+	// VISTA EDITAR VUELO
 	@RequestMapping(path = "/modificarVuelo", method = RequestMethod.POST)
 	public ModelAndView modificarVuelo(@ModelAttribute("vuelo") Vuelo vuelo, HttpServletRequest request) {
 		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vuelo.getId());
 		ModelMap modelo = new ModelMap();
 		modelo.put("vuelo", vueloBuscado);
-		
-		return new ModelAndView("modificarVuelo", modelo);
+		return new ModelAndView("editarVuelo", modelo);
 	}
-	// ESTO EDITA EL VUELO.
-	@RequestMapping(path="/editarVuelo",method = RequestMethod.POST)
-	public ModelAndView editarVuelo(@ModelAttribute("vuelo")Vuelo vuelo, HttpServletRequest request) {
-		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vuelo.getId());
-		vueloBuscado.setOrigen(vuelo.getOrigen());
-		vueloBuscado.setDestino(vuelo.getDestino());
+	
+	// EDITAR VUELO
+	@RequestMapping(path = "/editarVuelo", method = RequestMethod.POST)
+	public ModelAndView editarVuelo(@ModelAttribute("vuelo") Vuelo vueloRecibido, HttpServletRequest request) {
+		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vueloRecibido.getId());
+		vueloBuscado.setOrigen(vueloRecibido.getOrigen());
+		vueloBuscado.setDestino(vueloRecibido.getDestino());
 		servicioVuelo.editarVuelo(vueloBuscado);
 		return new ModelAndView("redirect:/vuelos");
 	}
 	
+	// ELIMINAR VUELO
 	@RequestMapping(path = "/eliminarVuelo", method = RequestMethod.POST)
 	public ModelAndView eliminarVuelo(@ModelAttribute("vuelo") Vuelo vueloRecibido, HttpServletRequest request) {
 		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vueloRecibido.getId());

@@ -36,7 +36,7 @@
 	  </div>
 	</nav>
   
-  	<!-- EDITAR TRIPULANTE -->
+  	<!-- EDITAR VUELO -->
 	<div class="container-fluid my-5">
 		<div class="text-center pt-5">
 			<h2>Editar Vuelo</h2>
@@ -50,8 +50,8 @@
 				    <tr>
 						<th scope="col">Origen</th>
 						<th scope="col">Destino</th>
-						<th scope="col">HoraSalida</th>
-						<th scope="col">HoraLlegada</th>
+						<th scope="col">Hora Estimada de Despegue</th>
+						<th scope="col">Hora Estimada de Aterrizaje</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -59,8 +59,8 @@
 				    <tr>
 				      <td><input name="origen" type="text" id="origen" class="form-control" value="${vuelo.origen}" required></td>
 				      <td><input name="destino" type="text" id="destino" class="form-control" value="${vuelo.destino}" required></td>
-				 <%-- <td><input name="horaSalida" type="text" id="horaSalida" class="form-control" value="${tripulante.email}" required></td>
-				      <td><input name="horaLlegada" type="text" id="horaLlegada" class="form-control" value="${tripulante.password}" required></td>	 --%>				   
+				      <td><input name="despegueEstimado" type="text" id="despegueEstimado" class="form-control" value="${pvcontienev.vuelo.despegueEstimado}" required></td>
+				      <td><input name="aterrizajeEstimado" type="text" id="aterrizajeEstimado" class="form-control" value="${pvcontienev.vuelo.aterrizajeEstimado}" required></td>				   
 				    </tr>
 				  </tbody>
 				</table>

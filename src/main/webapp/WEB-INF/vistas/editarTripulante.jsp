@@ -26,6 +26,9 @@
 	          <a class="nav-link" href="tripulantes">Ver Tripulantes</a>
 	        </li>
 	        <li class="nav-item">
+	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
+	        </li>
+	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
 	        </li>
 	      </ul>

@@ -13,35 +13,35 @@
 
 	<div class="container-fluid">
         <div class="row no-gutter">
-            <div class="d-none d-md-flex col-md-4 col-lg-4 bg-image-register"></div>
+            <div class="d-none d-md-flex col-md-4 col-lg-4 bg-image-agregar"></div>
             <div class="col-md-8 col-lg-8">
                 <div class="main d-flex align-items-center py-5">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
-                                <h2 class="main-heading text-primary text-center mb-4">Plan De Vuelo</h2>
-                                <form action="registrar-tripulante" method="POST" modelAttribute="tripulante">
+                                <h2 class="main-heading text-primary text-center mb-4">Agregar Tripulante</h2>
+                                <form action="agregarTripulante" method="POST" modelAttribute="tripulante">
                                 	<div class="form-label-group">
-                                        <input name="nombre" type="text" id="nombreRegistro" class="form-control" placeholder="Nombre" required autofocus>
-                                        <label for="nombreRegistro">Nombre</label>
+                                        <input name="nombre" type="text" id="nombreAg" class="form-control" placeholder="Nombre" required autofocus>
+                                        <label for="nombreAg">Nombre</label>
                                     </div>
                                     <div class="form-label-group">
-                                        <input name="apellido" type="text" id="apellidoRegistro" class="form-control" placeholder="Apellido" required>
-                                        <label for="apellidoRegistro">Apellido</label>
+                                        <input name="apellido" type="text" id="apellidoAg" class="form-control" placeholder="Apellido" required>
+                                        <label for="apellidoAg">Apellido</label>
                                     </div>
                                     <div class="form-label-group">
-                                        <input name="dni" type="text" id="dniRegistro" class="form-control" placeholder="DNI" required>
-                                        <label for="dniRegistro">DNI</label>
+                                        <input name="dni" type="text" id="dniAg" class="form-control" placeholder="DNI" required>
+                                        <label for="dniAg">DNI</label>
                                     </div>
                                     <div class="form-label-group">
-                                        <input name="email" type="email" id="emailRegistro" class="form-control" placeholder="Email" required>
-                                        <label for="emailRegistro">Email</label>
+                                        <input name="email" type="email" id="emailAg" class="form-control" placeholder="Email" required>
+                                        <label for="emailAg">Email</label>
                                     </div>
                                     <div class="form-label-group">
-                                        <input name="password" type="password" id="passwordRegistro" class="form-control" placeholder="Contraseña" required>
-                                        <label for="passwordRegistro">Contraseña</label>
+                                        <input name="password" type="password" id="passwordAg" class="form-control" placeholder="Contraseña" required>
+                                        <label for="passwordAg">Contraseña</label>
                                     </div>
-                                    <button class="btn btn-lg btn-primary btn-block font-weight-bold mb-2" type="submit">Registrar</button>
+                                    <button class="btn btn-lg btn-primary btn-block font-weight-bold mb-2" type="submit">Agregar</button>
                                 </form>
                             </div>
                         </div>

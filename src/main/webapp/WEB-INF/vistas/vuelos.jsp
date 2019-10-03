@@ -36,7 +36,7 @@
 	  </div>
 	</nav>
 
-	<!-- LISTA DE TRIPULANTES -->
+	<!-- LISTA DE VUELOS -->
 	<div class="container-fluid my-5">
 		<div class="text-center pt-5">
 			<h2>Lista de Vuelos</h2>
@@ -48,11 +48,11 @@
 				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
+							<th scope="col">Id</th>
 							<th scope="col">Origen</th>
 							<th scope="col">Destino</th>
-							<th scope="col">Hora de salida</th>
-							<th scope="col">Hora de llegada</th>
+							<th scope="col">Hora Estimada de Despegue</th>
+							<th scope="col">Hora Estimada de Aterrizaje</th>
 							<th scope="col">Editar</th>
 							<th scope="col">Eliminar</th>
 						</tr>
@@ -63,8 +63,8 @@
 							<td>${vuelo.id}</td>
 							<td>${vuelo.origen}</td>
 							<td>${vuelo.destino}</td>
-							<td></td>
-							<td></td>
+							<td>${pvcontienev.vuelo.despegueEstimado}</td>
+							<td>${pvcontienev.vuelo.aterrizajeEstimado}</td>
 							<td><form action="modificarVuelo" method="POST" modelAttribute="vuelo">
 								<input type="hidden" name="id" value="${vuelo.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
@@ -79,7 +79,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="agregarVuelo" role="button">Agregar</a>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="agregar-vuelo" role="button">Agregar</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

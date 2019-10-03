@@ -21,6 +21,7 @@ public class ControladorTripulante {
 	@Inject
 	ServicioTripulante servicioTripulante;
 	
+	// TRIPULANTES
 	@RequestMapping(path = "/tripulantes", method = RequestMethod.GET)
 	public ModelAndView irATripulantes() {
 		List<Tripulante> listaTripulantes = servicioTripulante.listarTripulantes();
@@ -29,30 +30,31 @@ public class ControladorTripulante {
 		return new ModelAndView("tripulantes", modelo);
 	}
 	
-	@RequestMapping(path = "/register", method = RequestMethod.GET)
-	public ModelAndView irARegister() {
-		return new ModelAndView("register");
+	// VISTA AGREGAR TRIPULANTE
+	@RequestMapping(path = "/agregar-tripulante", method = RequestMethod.GET)
+	public ModelAndView irAVistaAgregarTripulante() {
+		return new ModelAndView("agregarTripulante");
 	}
 	
-	@RequestMapping(path = "/registrar-tripulante", method = RequestMethod.POST)
-	public ModelAndView registrarTripulante(@ModelAttribute("tripulante") Tripulante tripulante, HttpServletRequest request) {
+	// AGREGAR TRIPULANTE
+	@RequestMapping(path = "/agregarTripulante", method = RequestMethod.POST)
+	public ModelAndView agregarTripulante(@ModelAttribute("tripulante") Tripulante tripulante, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 		tripulante.setEsAdmin(false);
 		servicioTripulante.agregarTripulante(tripulante);		
 		return new ModelAndView("redirect:/tripulantes", model);
 	}
 	
-	// ESTO LLEVA A LA VISTA PARA PODER EDITAR EL TRIPULANTE.
+	// VISTA EDITAR TRIPULANTE
 	@RequestMapping(path = "/modificarTripulante", method = RequestMethod.POST)
 	public ModelAndView modificarTripulante(@ModelAttribute("tripulante") Tripulante tripulante, HttpServletRequest request) {
 		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(tripulante.getId());
 		ModelMap modelo = new ModelMap();
 		modelo.put("tripulante", tripulanteBuscado);
-		
 		return new ModelAndView("editarTripulante", modelo);
 	}
 	
-	// ESTO EDITA EL TRIPULANTE.
+	// EDITAR TRIPULANTE
 	@RequestMapping(path = "/editarTripulante", method = RequestMethod.POST)
 	public ModelAndView editarTripulante(@ModelAttribute("tripulante") Tripulante tripulanteRecibido, HttpServletRequest request) {
 		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(tripulanteRecibido.getId());
@@ -65,6 +67,7 @@ public class ControladorTripulante {
 		return new ModelAndView("redirect:/tripulantes");
 	}
 	
+	// ELIMINAR TRIPULANTE
 	@RequestMapping(path = "/eliminarTripulante", method = RequestMethod.POST)
 	public ModelAndView eliminarTripulante(@ModelAttribute("tripulante") Tripulante tripulanteRecibido, HttpServletRequest request) {
 		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(tripulanteRecibido.getId());
