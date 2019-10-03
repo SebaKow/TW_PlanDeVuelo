@@ -29,6 +29,10 @@
                                         <input name="destino" type="text" id="destinoAg" class="form-control" placeholder="Destino" required>
                                         <label for="destinoAg">Destino</label>
                                     </div>
+                                    <div class="form-label-group">
+                                        <input name="duracion" type="time" id="destinoAg" class="form-control" placeholder="Duracion" required>
+                                        <label for="destinoAg">Duracion</label>
+                                    </div>
                                     <button class="btn btn-lg btn-primary btn-block font-weight-bold mb-2" type="submit">Agregar</button>
                                 </form>
                             </div>

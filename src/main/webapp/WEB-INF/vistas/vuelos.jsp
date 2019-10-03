@@ -58,20 +58,20 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${listaVuelos}" var="vuelo">
+						<c:forEach items="${itinerarios}" var="itinerario">
 							<tr>
-							<td>${vuelo.id}</td>
-							<td>${vuelo.origen}</td>
-							<td>${vuelo.destino}</td>
-							<td>${pvcontienev.vuelo.despegueEstimado}</td>
-							<td>${pvcontienev.vuelo.aterrizajeEstimado}</td>
+							<td>${itinerario.id}</td>
+							<td>${itinerario.vuelo.origen}</td>
+							<td>${itinerario.vuelo.destino}</td>
+							<td>${itinerario.despegueEstimado}</td>
+							<td>${itinerario.aterrizajeEstimado}</td>
 							<td><form action="modificarVuelo" method="POST" modelAttribute="vuelo">
-								<input type="hidden" name="id" value="${vuelo.id}" id="id">
+								<input type="hidden" name="id" value="${itinerario.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
 								</form>
 							</td>
 							<td><form action="eliminarVuelo" method="POST" modelAttribute="vuelo">
-								<input type="hidden" name="id" value="${vuelo.id}" id="id">
+								<input type="hidden" name="id" value="${itinerario.id}" id="id">
 								<button class="btn btn-lg btn-primary  font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>

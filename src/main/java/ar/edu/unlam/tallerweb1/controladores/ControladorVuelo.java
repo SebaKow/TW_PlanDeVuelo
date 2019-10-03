@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.PVContieneV;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioItinerario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
 
 @Controller
@@ -24,23 +26,30 @@ public class ControladorVuelo {
 	
 	@Inject
 	ServicioVuelo servicioVuelo;
+	@Autowired
+	private ServicioItinerario servicioItinerario;
 	
 	// VUELOS
 	@RequestMapping(path = "/vuelos", method = RequestMethod.GET)
 	public ModelAndView irAVuelos() {
-		List<Vuelo> listaVuelos = servicioVuelo.listarVuelos();
-		List<Date> listaHorariosSalida = new ArrayList<>();
-		List<Date> listaHorariosLlegada = new ArrayList<>();
-		/*for (Vuelo vuelo : listaVuelos) {
-			PVContieneV horas = servicioVuelo.traerHorasDeUnVuelo(vuelo.getId());
-			listaHorariosSalida.add(horas.getDespegueEstimado());
-			listaHorariosLlegada.add(horas.getAterrizajeEstimado());
-		}*/
-		
+		List<PVContieneV> itinerarios = servicioItinerario.listarTodosItinerario();
 		ModelMap modelo = new ModelMap();
-		modelo.put("listaVuelos", listaVuelos);
-		modelo.put("listaHorariosSalida", listaHorariosSalida);
-		modelo.put("listaHorariosLlegada", listaHorariosLlegada);
+		modelo.put("itinerarios", itinerarios);
+		
+		
+		
+//		List<Vuelo> listaVuelos = servicioVuelo.listarVuelos();
+//		List<Date> listaHorariosSalida = new ArrayList<>();
+//		List<Date> listaHorariosLlegada = new ArrayList<>();
+//		for (Vuelo vuelo : listaVuelos) {
+//			PVContieneV horas = servicioVuelo.traerHorasDeUnVuelo(vuelo.getId());
+//			listaHorariosSalida.add(horas.getDespegueEstimado());
+//			listaHorariosLlegada.add(horas.getAterrizajeEstimado());
+//		}
+//		
+//		modelo.put("listaVuelos", listaVuelos);
+//		modelo.put("listaHorariosSalida", listaHorariosSalida);
+//		modelo.put("listaHorariosLlegada", listaHorariosLlegada);
 		return new ModelAndView("vuelos", modelo);
 	}
 	

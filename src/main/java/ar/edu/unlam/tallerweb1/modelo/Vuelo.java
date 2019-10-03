@@ -1,9 +1,16 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Vuelo {
@@ -13,6 +20,9 @@ public class Vuelo {
 	private Long id;
 	private String origen;
 	private String destino;
+	@DateTimeFormat(iso = ISO.TIME)
+	@Temporal(TemporalType.TIME)
+	private Date duracion;
 	
 	public Vuelo() {
 		
@@ -47,4 +57,13 @@ public class Vuelo {
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
+
+	public Date getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(Date duracion) {
+		this.duracion = duracion;
+	}
+	
 }

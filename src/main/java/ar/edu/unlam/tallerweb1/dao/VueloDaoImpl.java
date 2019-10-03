@@ -55,8 +55,7 @@ public class VueloDaoImpl implements VueloDao {
 	public PVContieneV traerHorasDeUnVuelo(Long id) {
 		PVContieneV horaSalida = (PVContieneV) sessionFactory.getCurrentSession()
 				.createCriteria(PVContieneV.class)
-				.createAlias("vuelo", "vueloJoin")
-				.add(Restrictions.eq("vueloJoin.id", id))
+				.add(Restrictions.eq("vuelo.id", id))
 				.uniqueResult();
 		return horaSalida;
 	}
