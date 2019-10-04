@@ -29,6 +29,9 @@
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item">
+	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	        </li>
+	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
 	        </li>
 	      </ul>
@@ -42,7 +45,7 @@
 			<h2>Editar Tripulante</h2>
 		</div>
 		
-		<div class="row mt-5">
+		<div class="row mt-4">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<table class="table table-bordered text-center">

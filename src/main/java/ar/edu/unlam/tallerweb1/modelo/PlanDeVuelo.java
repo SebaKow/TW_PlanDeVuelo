@@ -12,6 +12,7 @@ public class PlanDeVuelo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String descripcion;
 	
 	@ManyToOne
 	private Avion avion;
@@ -20,8 +21,9 @@ public class PlanDeVuelo {
 		
 	}
 	
-	public PlanDeVuelo(Long id, Avion avion) {
+	public PlanDeVuelo(Long id, String descripcion, Avion avion) {
 		this.id = id;
+		this.descripcion = descripcion;
 		this.avion = avion;
 	}
 	
@@ -33,6 +35,14 @@ public class PlanDeVuelo {
 		this.id = id;
 	}
 	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public Avion getAvion() {
 		return avion;
 	}

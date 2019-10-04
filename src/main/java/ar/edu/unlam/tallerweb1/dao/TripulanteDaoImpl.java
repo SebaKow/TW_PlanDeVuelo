@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-@Repository("usuarioDao")
+@Repository("tripulanteDao")
 public class TripulanteDaoImpl implements TripulanteDao {
 
 	@Inject

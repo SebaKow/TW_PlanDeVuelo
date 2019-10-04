@@ -18,7 +18,7 @@ public class ServicioTripulanteImpl implements ServicioTripulante{
 	TripulanteDao tripulanteDao;
 	
 	@Override
-	public List<Tripulante> listarTripulantes(){
+	public List<Tripulante> listarTripulantes() {
 		return tripulanteDao.listarTripulantes();
 	}
 	

@@ -19,7 +19,7 @@
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarResponsive">
 	      <ul class="navbar-nav ml-auto">
-	        <li class="nav-item active">
+	        <li class="nav-item">
 	          <a class="nav-link" href="homeAdmin">Inicio</a>
 	        </li>
 	        <li class="nav-item">
@@ -28,7 +28,7 @@
 	        <li class="nav-item">
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
-	        <li class="nav-item">
+	        <li class="nav-item active">
 	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
@@ -39,17 +39,27 @@
 	  </div>
 	</nav>
 
-	<!-- HEADER -->
-	<header class="masthead">
-	  <div class="container h-100">
-	    <div class="row h-100 align-items-center">
-	      <div class="col-12 text-center">
-	        <h1 class="font-weight-light">Bienvenido Administrador</h1>
-	        <p class="lead">¡Disfrute de la aplicación!</p>
-	      </div>
-	    </div>
-	  </div>
-	</header>
+	<div class="container-fluid my-5">
+		<div class="text-center pt-5">
+			<h2>Planes de Vuelo</h2>
+		</div>
+		
+		<div class="row mt-4 mx-4">
+			<c:forEach items="${listaPlanesDeVuelo}" var="plandevuelo">
+				<div class="col-md-4">
+					<div class="card w-100 mb-3">
+						<div class="card-body">
+							<h5 class="card-title text-center">${plandevuelo.descripcion}</h5>
+							<form action="datosPartido" method="POST" class="text-center">
+								<input type="hidden" name="idPartido" id="idPartido" value="${plandevuelo.id}">
+								<button class="btn btn-lg btn-primary font-weight-bold my-2" type="submit">Ver</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
    	
 	<script src="js/jquery-3.4.1.min.js"></script>
    	<script src="js/bootstrap.min.js" type="text/javascript"></script>

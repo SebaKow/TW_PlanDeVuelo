@@ -9,8 +9,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unlam.tallerweb1.modelo.PVContieneV;
-import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 @Repository("vueloDao")
@@ -21,7 +19,7 @@ public class VueloDaoImpl implements VueloDao {
 	
 	@Override
 	public List<Vuelo> listarVuelos(){
-		List<Vuelo> listaDeVuelos= sessionFactory.getCurrentSession()
+		List<Vuelo> listaDeVuelos = sessionFactory.getCurrentSession()
 											.createCriteria(Vuelo.class)
 											.list();
 		return listaDeVuelos;
@@ -49,14 +47,5 @@ public class VueloDaoImpl implements VueloDao {
 	@Override
 	public void eliminarVuelo(Vuelo vuelo) {
 		sessionFactory.getCurrentSession().delete(vuelo);
-	}
-	
-	@Override
-	public PVContieneV traerHorasDeUnVuelo(Long id) {
-		PVContieneV horaSalida = (PVContieneV) sessionFactory.getCurrentSession()
-				.createCriteria(PVContieneV.class)
-				.add(Restrictions.eq("vuelo.id", id))
-				.uniqueResult();
-		return horaSalida;
 	}
 }

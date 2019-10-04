@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.VueloDao;
-import ar.edu.unlam.tallerweb1.modelo.PVContieneV;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 @Service("ServicioVuelo")
@@ -19,7 +18,7 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	VueloDao vueloDao;
 	
 	@Override
-	public List<Vuelo> listarVuelos(){
+	public List<Vuelo> listarVuelos() {
 		return vueloDao.listarVuelos();
 	}
 	
@@ -39,12 +38,7 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	}
 	
 	@Override
-	public void eliminarVuelo(Vuelo vuelo){
+	public void eliminarVuelo(Vuelo vuelo) {
 		vueloDao.eliminarVuelo(vuelo);
-	}
-	
-	@Override
-	public PVContieneV traerHorasDeUnVuelo(Long id) {
-		return vueloDao.traerHorasDeUnVuelo(id);
 	}
 }

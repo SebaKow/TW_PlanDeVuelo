@@ -28,10 +28,11 @@ public class Vuelo {
 		
 	}
 
-	public Vuelo(Long id, String origen, String destino) {
+	public Vuelo(Long id, String origen, String destino, Date duracion) {
 		this.id = id;
 		this.origen = origen;
 		this.destino = destino;
+		this.duracion = duracion;
 	}
 
 	public Long getId() {
@@ -65,5 +66,4 @@ public class Vuelo {
 	public void setDuracion(Date duracion) {
 		this.duracion = duracion;
 	}
-	
 }

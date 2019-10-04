@@ -102,3 +102,9 @@
     font-size: 12px;
     color: #777;
 }
+
+/*================================ COLORES */
+.table,
+.card-body {
+	background-color: #ABD5E2;
+}

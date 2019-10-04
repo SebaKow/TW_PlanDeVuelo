@@ -2,7 +2,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
-import ar.edu.unlam.tallerweb1.modelo.PVContieneV;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 public interface ServicioVuelo {
@@ -12,5 +11,4 @@ public interface ServicioVuelo {
 	void agregarVuelo(Vuelo vuelo);
 	void editarVuelo(Vuelo vuelo);
 	void eliminarVuelo(Vuelo vuelo);
-	PVContieneV traerHorasDeUnVuelo(Long id);
 }

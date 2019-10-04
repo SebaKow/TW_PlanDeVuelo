@@ -29,6 +29,9 @@
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item">
+	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	        </li>
+	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
 	        </li>
 	      </ul>
@@ -42,37 +45,33 @@
 			<h2>Lista de Vuelos</h2>
 		</div>
 
-		<div class="row mt-5">
+		<div class="row mt-4">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">Id</th>
 							<th scope="col">Origen</th>
 							<th scope="col">Destino</th>
-							<th scope="col">Hora Estimada de Despegue</th>
-							<th scope="col">Hora Estimada de Aterrizaje</th>
+							<th scope="col">Duración</th>
 							<th scope="col">Editar</th>
 							<th scope="col">Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${itinerarios}" var="itinerario">
+						<c:forEach items="${listaVuelos}" var="vuelo">
 							<tr>
-							<td>${itinerario.id}</td>
-							<td>${itinerario.vuelo.origen}</td>
-							<td>${itinerario.vuelo.destino}</td>
-							<td>${itinerario.despegueEstimado}</td>
-							<td>${itinerario.aterrizajeEstimado}</td>
+							<td>${vuelo.origen}</td>
+							<td>${vuelo.destino}</td>
+							<td>${vuelo.duracion}</td>
 							<td><form action="modificarVuelo" method="POST" modelAttribute="vuelo">
-								<input type="hidden" name="id" value="${itinerario.id}" id="id">
+								<input type="hidden" name="id" value="${vuelo.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
 								</form>
 							</td>
 							<td><form action="eliminarVuelo" method="POST" modelAttribute="vuelo">
-								<input type="hidden" name="id" value="${itinerario.id}" id="id">
-								<button class="btn btn-lg btn-primary  font-weight-bold mb-2" type="submit">Eliminar</button>
+								<input type="hidden" name="id" value="${vuelo.id}" id="id">
+								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>
 							</tr>

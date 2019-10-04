@@ -9,15 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class PVContieneV {
+public class Itinerario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date despegueEstimado;
-	private Date despegue;
+	private Date despegueReal;
 	private Date aterrizajeEstimado;
-	private Date aterrizaje;
+	private Date aterrizajeReal;
 	
 	@ManyToOne
 	private PlanDeVuelo plandevuelo;
@@ -25,16 +25,16 @@ public class PVContieneV {
 	@ManyToOne
 	private Vuelo vuelo;
 	
-	public PVContieneV() {
+	public Itinerario() {
 		
 	}
 	
-	public PVContieneV(Long id, Date despegueEstimado, Date despegue, Date aterrizajeEstimado, Date aterrizaje, PlanDeVuelo plandevuelo, Vuelo vuelo) {
+	public Itinerario(Long id, Date despegueEstimado, Date despegueReal, Date aterrizajeEstimado, Date aterrizajeReal, PlanDeVuelo plandevuelo, Vuelo vuelo) {
 		this.id = id;
 		this.despegueEstimado = despegueEstimado;
-		this.despegue = despegue;
+		this.despegueReal = despegueReal;
 		this.aterrizajeEstimado = aterrizajeEstimado;
-		this.aterrizaje = aterrizaje;
+		this.aterrizajeReal = aterrizajeReal;
 		this.plandevuelo = plandevuelo;
 		this.vuelo = vuelo;
 	}
@@ -55,12 +55,12 @@ public class PVContieneV {
 		this.despegueEstimado = despegueEstimado;
 	}
 
-	public Date getDespegue() {
-		return despegue;
+	public Date getDespegueReal() {
+		return despegueReal;
 	}
 
-	public void setDespegue(Date despegue) {
-		this.despegue = despegue;
+	public void setDespegueReal(Date despegueReal) {
+		this.despegueReal = despegueReal;
 	}
 
 	public Date getAterrizajeEstimado() {
@@ -71,12 +71,12 @@ public class PVContieneV {
 		this.aterrizajeEstimado = aterrizajeEstimado;
 	}
 
-	public Date getAterrizaje() {
-		return aterrizaje;
+	public Date getAterrizajeReal() {
+		return aterrizajeReal;
 	}
 
-	public void setAterrizaje(Date aterrizaje) {
-		this.aterrizaje = aterrizaje;
+	public void setAterrizajeReal(Date aterrizajeReal) {
+		this.aterrizajeReal = aterrizajeReal;
 	}
 
 	public PlanDeVuelo getPlandevuelo() {

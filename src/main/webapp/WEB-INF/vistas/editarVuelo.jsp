@@ -29,6 +29,9 @@
 	          <a class="nav-link" href="tripulantes">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item">
+	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	        </li>
+	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
 	        </li>
 	      </ul>
@@ -42,7 +45,7 @@
 			<h2>Editar Vuelo</h2>
 		</div>
 		
-		<div class="row mt-5">
+		<div class="row mt-4">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<table class="table table-bordered text-center">
@@ -50,8 +53,7 @@
 				    <tr>
 						<th scope="col">Origen</th>
 						<th scope="col">Destino</th>
-						<th scope="col">Hora Estimada de Despegue</th>
-						<th scope="col">Hora Estimada de Aterrizaje</th>
+						<th scope="col">Duración</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -59,8 +61,7 @@
 				    <tr>
 				      <td><input name="origen" type="text" id="origen" class="form-control" value="${vuelo.origen}" required></td>
 				      <td><input name="destino" type="text" id="destino" class="form-control" value="${vuelo.destino}" required></td>
-				      <td><input name="despegueEstimado" type="text" id="despegueEstimado" class="form-control" value="${pvcontienev.vuelo.despegueEstimado}" required></td>
-				      <td><input name="aterrizajeEstimado" type="text" id="aterrizajeEstimado" class="form-control" value="${pvcontienev.vuelo.aterrizajeEstimado}" required></td>				   
+				      <td><input name="duracion" type="time" id="duracion" class="form-control" value="${vuelo.duracion}" required></td>				   
 				    </tr>
 				  </tbody>
 				</table>
