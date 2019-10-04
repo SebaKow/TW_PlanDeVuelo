@@ -25,6 +25,12 @@ public class ControladorPlanDeVuelo {
 		List<PlanDeVuelo> planesdevuelo = servicioPlanDeVuelo.listarPlanesDeVuelo();
 		ModelMap modelo = new ModelMap();
 		modelo.put("listaPlanesDeVuelo", planesdevuelo);
-		return new ModelAndView("planesdevuelo", modelo);
+		return new ModelAndView("planesDeVuelo", modelo);
+	}
+	
+	// PLAN DE VUELO SELECCIONADO
+	@RequestMapping(path = "/plandevueloseleccionado", method = RequestMethod.GET)
+	public ModelAndView irAPlanDeVueloSeleccionado() {
+		return new ModelAndView("vuelosEnPlan");
 	}
 }

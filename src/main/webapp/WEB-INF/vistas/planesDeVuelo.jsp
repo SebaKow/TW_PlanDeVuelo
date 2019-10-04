@@ -50,8 +50,8 @@
 					<div class="card w-100 mb-3">
 						<div class="card-body">
 							<h5 class="card-title text-center">${plandevuelo.descripcion}</h5>
-							<form action="datosPartido" method="POST" class="text-center">
-								<input type="hidden" name="idPartido" id="idPartido" value="${plandevuelo.id}">
+							<form action="plandevueloseleccionado" method="GET" class="text-center">
+								<input type="hidden" name="idPlanDeVuelo" id="idPlanDeVuelo" value="${plandevuelo.id}">
 								<button class="btn btn-lg btn-primary font-weight-bold my-2" type="submit">Ver</button>
 							</form>
 						</div>
