@@ -71,4 +71,11 @@ public class ControladorVuelo {
 		servicioVuelo.eliminarVuelo(vueloBuscado);
 		return new ModelAndView("redirect:/vuelos");
 	}
+	
+	//Agregar vuelo a itinerario
+	@RequestMapping(path = "/agregarVueloAPlan", method = RequestMethod.POST)
+	public ModelAndView agregarVueloAPlan(@ModelAttribute("vuelo")Vuelo vueloRecibido, HttpServletRequest request) {
+		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vueloRecibido.getId());
+		return new ModelAndView("plandevueloseleccionado");
+	}
 }

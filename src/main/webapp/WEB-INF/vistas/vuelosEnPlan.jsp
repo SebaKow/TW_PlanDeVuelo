@@ -44,7 +44,7 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-2">
 				<div class="text-left">
-					<h4><span class="badge badge-secondary">Plan de Vuelo:</span></h4>
+					<h4><span class="badge badge-secondary">Plan de Vuelo:</span>  ${planDeVuelo.id}</h4>
 				</div>
 			</div>
 			<div class="col-md-4"></div>
@@ -60,11 +60,15 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<h4>Seleccione los vuelos que desea agregar al plan:</h4>
+				<form action="agregarVueloAPlan" method="POST" modelAtribute="vuelo">
 				<select class="custom-select">
-					<option value="1">Vuelo 1</option>
-					<option value="1">Vuelo 2</option>
-					<option value="1">Vuelo 3</option>
+				<c:forEach items="${listaDeVuelos}" var="vuelo">
+					<option value="${vuelo.id}">${vuelo.origen} hasta ${vuelo.destino}</option>
+					<input type="hidden" name="id" value="${vuelo.id}" id="id">
+				</c:forEach>
 				</select>
+				<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Agregar</button>
+				</form>
 				<a class="btn btn-lg btn-primary float-right font-weight-bold my-3" href="#!" role="button">Agregar</a>
 			</div>
 			<div class="col-md-2"></div>
