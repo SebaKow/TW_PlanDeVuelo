@@ -21,6 +21,7 @@ public class ControladorPlanDeVuelo {
 
 	@Inject
 	ServicioPlanDeVuelo servicioPlanDeVuelo;
+	
 	@Inject
 	ServicioVuelo servicioVuelo;
 	
@@ -40,8 +41,8 @@ public class ControladorPlanDeVuelo {
 		ModelMap modelo = new ModelMap();
 		modelo.put("planDeVuelo", planDeVuelo);
 		
-		List<Vuelo>listaDeVuelos = servicioVuelo.listarVuelos();
+		List<Vuelo> listaDeVuelos = servicioVuelo.listarVuelos();
 		modelo.put("listaDeVuelos",listaDeVuelos);
-		return new ModelAndView("vuelosEnPlan",modelo);
+		return new ModelAndView("vuelosEnPlan", modelo);
 	}
 }

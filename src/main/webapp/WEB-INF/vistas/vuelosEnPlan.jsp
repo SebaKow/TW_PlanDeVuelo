@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -44,7 +45,7 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-2">
 				<div class="text-left">
-					<h4><span class="badge badge-secondary">Plan de Vuelo:</span>  ${planDeVuelo.id}</h4>
+					<h4><span class="badge badge-secondary">Plan de Vuelo: ${planDeVuelo.descripcion}</span></h4>
 				</div>
 			</div>
 			<div class="col-md-4"></div>
@@ -60,21 +61,20 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<h4>Seleccione los vuelos que desea agregar al plan:</h4>
-				<form action="agregarVueloAPlan" method="POST" modelAtribute="vuelo">
-				<select class="custom-select">
-				<c:forEach items="${listaDeVuelos}" var="vuelo">
-					<option value="${vuelo.id}">${vuelo.origen} hasta ${vuelo.destino}</option>
-					<input type="hidden" name="id" value="${vuelo.id}" id="id">
-				</c:forEach>
-				</select>
-				<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Agregar</button>
+				<form action="agregarVueloAPlan" method="POST" modelAttribute="vuelo">
+					<select class="custom-select" multiple>
+						<c:forEach items="${listaDeVuelos}" var="vuelo">
+							<option value="${vuelo.id}">${vuelo.origen} - ${vuelo.destino}</option>
+							<!-- <input type="hidden" name="id" value="${vuelo.id}" id="id"> -->
+						</c:forEach>
+					</select>
+					<button class="btn btn-lg btn-primary float-right font-weight-bold my-3" type="submit">Agregar</button>
 				</form>
-				<a class="btn btn-lg btn-primary float-right font-weight-bold my-3" href="#!" role="button">Agregar</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 		
-		<h3 class="text-center my-3"> -- -- -- -- -- </h3>
+		<hr class="my-5" style="border-color:red;">
 		
 		<!-- LISTA DE VUELOS DEL PLAN SELECCIONADO -->
 		<div class="text-center">

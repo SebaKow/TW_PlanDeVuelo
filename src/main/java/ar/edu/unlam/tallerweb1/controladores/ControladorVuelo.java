@@ -72,9 +72,9 @@ public class ControladorVuelo {
 		return new ModelAndView("redirect:/vuelos");
 	}
 	
-	//Agregar vuelo a itinerario
+	// AGREGAR VUELO A ITINERARIO
 	@RequestMapping(path = "/agregarVueloAPlan", method = RequestMethod.POST)
-	public ModelAndView agregarVueloAPlan(@ModelAttribute("vuelo")Vuelo vueloRecibido, HttpServletRequest request) {
+	public ModelAndView agregarVueloAPlan(@ModelAttribute("vuelo") Vuelo vueloRecibido, HttpServletRequest request) {
 		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vueloRecibido.getId());
 		return new ModelAndView("plandevueloseleccionado");
 	}

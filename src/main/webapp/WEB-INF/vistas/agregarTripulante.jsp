@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -11,46 +11,72 @@
 </head>
 <body>
 
-	<div class="container-fluid">
-        <div class="row no-gutter">
-            <div class="d-none d-md-flex col-md-4 col-lg-4 bg-image-agregar"></div>
-            <div class="col-md-8 col-lg-8">
-                <div class="main d-flex align-items-center py-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-9 col-lg-8 mx-auto">
-                                <h2 class="main-heading text-primary text-center mb-4">Agregar Tripulante</h2>
-                                <form action="agregarTripulante" method="POST" modelAttribute="tripulante">
-                                	<div class="form-label-group">
-                                        <input name="nombre" type="text" id="nombreAg" class="form-control" placeholder="Nombre" required autofocus>
-                                        <label for="nombreAg">Nombre</label>
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input name="apellido" type="text" id="apellidoAg" class="form-control" placeholder="Apellido" required>
-                                        <label for="apellidoAg">Apellido</label>
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input name="dni" type="text" id="dniAg" class="form-control" placeholder="DNI" required>
-                                        <label for="dniAg">DNI</label>
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input name="email" type="email" id="emailAg" class="form-control" placeholder="Email" required>
-                                        <label for="emailAg">Email</label>
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input name="password" type="password" id="passwordAg" class="form-control" placeholder="Contraseña" required>
-                                        <label for="passwordAg">Contraseña</label>
-                                    </div>
-                                    <button class="btn btn-lg btn-primary btn-block font-weight-bold mb-2" type="submit">Agregar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-   	</div>
-   	
+	<!-- NAVIGATION -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+	  <div class="container">
+	    <a class="navbar-brand" href="homeAdmin">Plan De Vuelo</a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarResponsive">
+	      <ul class="navbar-nav ml-auto">
+	        <li class="nav-item">
+	          <a class="nav-link" href="homeAdmin">Inicio</a>
+	        </li>
+	        <li class="nav-item active">
+	          <a class="nav-link" href="tripulantes">Ver Tripulantes</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="login">Salir</a>
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+  
+  	<!-- AGREGAR TRIPULANTE -->
+	<div class="container-fluid my-5">
+		<div class="text-center pt-5">
+			<h2>Agregar Tripulante</h2>
+		</div>
+		
+		<div class="row mt-4">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<table class="table table-bordered text-center">
+				  <thead>
+				    <tr>
+					    <th scope="col">Nombre</th>
+						<th scope="col">Apellido</th>
+						<th scope="col">DNI</th>
+						<th scope="col">Email</th>
+						<th scope="col">Contraseña</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <form action="agregarTripulante" method= "POST" modelAttribute="tripulante">
+				    <tr>
+				      <td><input name="nombre" type="text" id="nombre" class="form-control" placeholder="Nombre" required autofocus></td>
+				      <td><input name="apellido" type="text" id="apellido" class="form-control" placeholder="Apellido" required></td>
+				      <td><input name="dni" type="text" id="dni" class="form-control" placeholder="DNI" required></td>
+				      <td><input name="email" type="text" id="email" class="form-control" placeholder="Email" required></td>
+				      <td><input name="password" type="text" id="password" class="form-control" placeholder="Contraseña" required></td>					   
+				    </tr>
+				  </tbody>
+				</table>
+					<button class="btn btn-lg btn-primary float-right font-weight-bold mb-2" type="submit">Agregar</button>
+				</form>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	
 	<script src="js/jquery-3.4.1.min.js"></script>
    	<script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>

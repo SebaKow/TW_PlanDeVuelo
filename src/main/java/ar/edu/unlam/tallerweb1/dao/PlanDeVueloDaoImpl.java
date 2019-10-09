@@ -26,6 +26,7 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 		return listaDePlanesDeVuelo;
 	}
 	
+	@Override
 	public PlanDeVuelo consultarPlanDeVueloId(Long id) {
 		final Session session = sessionFactory.getCurrentSession();
 		return (PlanDeVuelo) session.createCriteria(PlanDeVuelo.class)
