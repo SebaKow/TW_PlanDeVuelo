@@ -1,11 +1,13 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,6 +25,10 @@ public class Vuelo {
 	@DateTimeFormat(iso = ISO.TIME)
 	@Temporal(TemporalType.TIME)
 	private Date duracion;
+	private Boolean estado;
+	
+	@ManyToMany(mappedBy = "vuelos")
+	private List<Itinerario> itinerarios;
 	
 	public Vuelo() {
 		
@@ -66,4 +72,22 @@ public class Vuelo {
 	public void setDuracion(Date duracion) {
 		this.duracion = duracion;
 	}
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
+
+	public List<Itinerario> getItinerarios() {
+		return itinerarios;
+	}
+
+	public void setItinerarios(List<Itinerario> itinerarios) {
+		this.itinerarios = itinerarios;
+	}
+	
+	
 }

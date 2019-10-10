@@ -1,11 +1,16 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -22,22 +27,27 @@ public class Itinerario {
 	@ManyToOne
 	private PlanDeVuelo plandevuelo;
 	
-	@ManyToOne
-	private Vuelo vuelo;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Vuelo> vuelos;
 	
 	public Itinerario() {
 		
 	}
 	
-	public Itinerario(Long id, Date despegueEstimado, Date despegueReal, Date aterrizajeEstimado, Date aterrizajeReal, PlanDeVuelo plandevuelo, Vuelo vuelo) {
+	
+
+	public Itinerario(Long id, Date despegueEstimado, Date despegueReal, Date aterrizajeEstimado, Date aterrizajeReal,
+			PlanDeVuelo plandevuelo, List<Vuelo> vuelos) {
 		this.id = id;
 		this.despegueEstimado = despegueEstimado;
 		this.despegueReal = despegueReal;
 		this.aterrizajeEstimado = aterrizajeEstimado;
 		this.aterrizajeReal = aterrizajeReal;
 		this.plandevuelo = plandevuelo;
-		this.vuelo = vuelo;
+		this.vuelos = vuelos;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -87,11 +97,13 @@ public class Itinerario {
 		this.plandevuelo = plandevuelo;
 	}
 
-	public Vuelo getVuelo() {
-		return vuelo;
+	public List<Vuelo> getVuelos() {
+		return vuelos;
 	}
 
-	public void setVuelo(Vuelo vuelo) {
-		this.vuelo = vuelo;
+	public void setVuelos(List<Vuelo> vuelos) {
+		this.vuelos = vuelos;
 	}
+	
+	
 }

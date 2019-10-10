@@ -20,6 +20,7 @@ public class TripulanteDaoImpl implements TripulanteDao {
 	public List<Tripulante> listarTripulantes(){
 		List<Tripulante> listaDeTripulantes = sessionFactory.getCurrentSession()
 											.createCriteria(Tripulante.class)
+											.add(Restrictions.eq("estado", true))
 											.list();
 		return listaDeTripulantes;
 	}
@@ -54,6 +55,6 @@ public class TripulanteDaoImpl implements TripulanteDao {
 	
 	@Override
 	public void eliminarTripulante(Tripulante tripulante) {
-		sessionFactory.getCurrentSession().delete(tripulante);
+		sessionFactory.getCurrentSession().saveOrUpdate(tripulante);
 	}
 }

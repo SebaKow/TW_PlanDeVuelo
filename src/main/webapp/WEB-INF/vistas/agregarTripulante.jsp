@@ -67,6 +67,7 @@
 				      <td><input name="dni" type="text" id="dni" class="form-control" placeholder="DNI" required></td>
 				      <td><input name="email" type="text" id="email" class="form-control" placeholder="Email" required></td>
 				      <td><input name="password" type="text" id="password" class="form-control" placeholder="Contraseña" required></td>					   
+				      <td><input name="estado" type="hidden" id="estado" class="form-control" value="true" required></td>
 				    </tr>
 				  </tbody>
 				</table>

@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
@@ -65,17 +66,11 @@ public class ControladorVuelo {
 	}
 	
 	// ELIMINAR VUELO
-	@RequestMapping(path = "/eliminarVuelo", method = RequestMethod.POST)
-	public ModelAndView eliminarVuelo(@ModelAttribute("vuelo") Vuelo vueloRecibido, HttpServletRequest request) {
-		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vueloRecibido.getId());
+	@RequestMapping(path = "/eliminarVuelo", method = RequestMethod.GET)
+	public ModelAndView eliminarVuelo(@RequestParam(value = "id") Long idRecibido) {
+		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(idRecibido);
 		servicioVuelo.eliminarVuelo(vueloBuscado);
 		return new ModelAndView("redirect:/vuelos");
 	}
 	
-	// AGREGAR VUELO A ITINERARIO
-	@RequestMapping(path = "/agregarVueloAPlan", method = RequestMethod.POST)
-	public ModelAndView agregarVueloAPlan(@ModelAttribute("vuelo") Vuelo vueloRecibido, HttpServletRequest request) {
-		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vueloRecibido.getId());
-		return new ModelAndView("plandevueloseleccionado");
-	}
 }

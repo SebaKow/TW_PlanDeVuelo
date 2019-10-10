@@ -1,9 +1,15 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -18,16 +24,19 @@ public class Tripulante {
 	private String email;
 	private String password;
 	private Boolean esAdmin;
+	private Boolean estado;
 	
-	@ManyToOne
-	private PlanDeVuelo plandevuelo;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<PlanDeVuelo> planesDeVuelo;
 	
 	public Tripulante() {
 	
 	}
 	
-	public Tripulante(Long id, String nombre, String apellido, Integer dni, String email,
-			       String password, Boolean esAdmin, PlanDeVuelo plandevuelo) {
+	
+
+	public Tripulante(Long id, String nombre, String apellido, Integer dni, String email, String password,
+			Boolean esAdmin, List<PlanDeVuelo> vuelos) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -35,8 +44,11 @@ public class Tripulante {
 		this.email = email;
 		this.password = password;
 		this.esAdmin = esAdmin;
-		this.plandevuelo = plandevuelo;
+		this.planesDeVuelo = vuelos;
+		
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -94,11 +106,23 @@ public class Tripulante {
 		this.esAdmin = esAdmin;
 	}
 
-	public PlanDeVuelo getPlandevuelo() {
-		return plandevuelo;
+	public List<PlanDeVuelo> getPlanesDeVuelo() {
+		return planesDeVuelo;
 	}
 
-	public void setPlandevuelo(PlanDeVuelo plandevuelo) {
-		this.plandevuelo = plandevuelo;
+	public void setPlanesDeVuelo(List<PlanDeVuelo> planesDeVuelo) {
+		this.planesDeVuelo = planesDeVuelo;
+	}
+
+
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
 	}
 }

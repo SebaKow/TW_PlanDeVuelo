@@ -44,6 +44,7 @@ public class ServicioTripulanteImpl implements ServicioTripulante{
 	
 	@Override
 	public void eliminarTripulante(Tripulante tripulante) {
+		tripulante.setEstado(false);
 		tripulanteDao.eliminarTripulante(tripulante);
 	}
 }

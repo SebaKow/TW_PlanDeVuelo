@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
@@ -68,9 +69,9 @@ public class ControladorTripulante {
 	}
 	
 	// ELIMINAR TRIPULANTE
-	@RequestMapping(path = "/eliminarTripulante", method = RequestMethod.POST)
-	public ModelAndView eliminarTripulante(@ModelAttribute("tripulante") Tripulante tripulanteRecibido, HttpServletRequest request) {
-		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(tripulanteRecibido.getId());
+	@RequestMapping(path = "/eliminarTripulante", method = RequestMethod.GET)
+	public ModelAndView eliminarTripulante(@RequestParam("idTripulante") Long idRecibido) {
+		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(idRecibido);
 		servicioTripulante.eliminarTripulante(tripulanteBuscado);
 		return new ModelAndView("redirect:/tripulantes");
 	}

@@ -70,7 +70,7 @@
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
 								</form>
 							</td>
-							<td><form action="eliminarVuelo" method="POST" modelAttribute="vuelo">
+							<td><form action="eliminarVuelo" method="GET">
 								<input type="hidden" name="id" value="${vuelo.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>

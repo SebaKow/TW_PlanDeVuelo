@@ -3,9 +3,11 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioItinerario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPlanDeVuelo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
 
@@ -20,10 +23,12 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
 public class ControladorPlanDeVuelo {
 
 	@Inject
-	ServicioPlanDeVuelo servicioPlanDeVuelo;
+	private ServicioPlanDeVuelo servicioPlanDeVuelo;
 	
 	@Inject
-	ServicioVuelo servicioVuelo;
+	private ServicioVuelo servicioVuelo;
+	@Inject
+	private ServicioItinerario servicioItinerario;
 	
 	// PLANES DE VUELO
 	@RequestMapping(path = "/planesdevuelo", method = RequestMethod.GET)
@@ -44,5 +49,15 @@ public class ControladorPlanDeVuelo {
 		List<Vuelo> listaDeVuelos = servicioVuelo.listarVuelos();
 		modelo.put("listaDeVuelos",listaDeVuelos);
 		return new ModelAndView("vuelosEnPlan", modelo);
+	}
+	
+	// Agregar vuelo a plan
+	@RequestMapping(path = "/agregarVueloAPlan", method = RequestMethod.GET)
+	public ModelAndView agregarVueloAPlan(@RequestParam(value="id")Long idVuelo, @RequestParam(value="idPlan")Long idPlan) {
+		Vuelo vuelo = servicioVuelo.consultarVueloId(idVuelo);
+		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
+		//Boolean agregado = servicioItinerario.agregarItinerario(plan, vuelo);
+		
+		return new ModelAndView("redirect:/vuelosEnPlan");
 	}
 }
