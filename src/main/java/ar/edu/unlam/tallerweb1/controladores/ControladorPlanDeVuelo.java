@@ -48,16 +48,19 @@ public class ControladorPlanDeVuelo {
 		
 		List<Vuelo> listaDeVuelos = servicioVuelo.listarVuelos();
 		modelo.put("listaDeVuelos",listaDeVuelos);
+		
+		List<Vuelo> vuelosAgregados = servicioItinerario.listarVuelosDePlan(idObtenido);
+		modelo.put("vuelosAgregados",vuelosAgregados);
 		return new ModelAndView("vuelosEnPlan", modelo);
 	}
 	
 	// Agregar vuelo a plan
 	@RequestMapping(path = "/agregarVueloAPlan", method = RequestMethod.GET)
-	public ModelAndView agregarVueloAPlan(@RequestParam(value="id")Long idVuelo, @RequestParam(value="idPlan")Long idPlan) {
+	public ModelAndView agregarVueloAPlan(@RequestParam(value="idVuelo")Long idVuelo, @RequestParam(value="idPlan")Long idPlan) {
 		Vuelo vuelo = servicioVuelo.consultarVueloId(idVuelo);
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
-		//Boolean agregado = servicioItinerario.agregarItinerario(plan, vuelo);
+		servicioItinerario.agregarItinerario(plan, vuelo);
 		
-		return new ModelAndView("redirect:/vuelosEnPlan");
+		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo="+idPlan);
 	}
 }

@@ -61,15 +61,16 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<h4>Seleccione los vuelos que desea agregar al plan:</h4>
-				<div>
-					<select class="custom-select" multiple>
+				<form action="agregarVueloAPlan" method="GET" class="text-center">
+					<select name="idVuelo"class="custom-select">
 						<c:forEach items="${listaDeVuelos}" var="vuelo">
 							<option value="${vuelo.id}">${vuelo.origen} - ${vuelo.destino}</option>
-							<!-- <input type="hidden" name="id" value="${vuelo.id}" id="id"> -->
 						</c:forEach>
 					</select>
-					<button class="btn btn-lg btn-primary float-right font-weight-bold my-3" type="submit" action="agregarVueloAPlan">Agregar</button>
-				</div>
+					
+						<input type="hidden" name="idPlan" value="${planDeVuelo.id}">
+					<button class="btn btn-lg btn-primary float-right font-weight-bold my-3" type="submit">Agregar</button>
+				</form>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -94,7 +95,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="" var="vuelo">
+						<c:forEach items="${vuelosAgregados}" var="vuelo">
 							<tr>
 							<td>${vuelo.origen}</td>
 							<td>${vuelo.destino}</td>

@@ -62,7 +62,7 @@
 				    <tr>
 				      <td><input name="origen" type="text" id="origen" class="form-control" value="${vuelo.origen}" required></td>
 				      <td><input name="destino" type="text" id="destino" class="form-control" value="${vuelo.destino}" required></td>
-				      <td><input name="duracion" type="time" id="duracion" class="form-control" value="${vuelo.duracion}" required></td>				   
+				      <td><input name="duracionString" type="text" id="duracion" class="form-control" value="${vuelo.duracionString}" required></td>				   
 				    </tr>
 				  </tbody>
 				</table>

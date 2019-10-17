@@ -41,6 +41,5 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	public void eliminarVuelo(Vuelo vuelo) {
 		vuelo.setEstado(false);		
 		vueloDao.eliminarVuelo(vuelo);
-		
 	}
 }

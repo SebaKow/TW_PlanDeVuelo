@@ -64,7 +64,7 @@
 							<tr>
 							<td>${vuelo.origen}</td>
 							<td>${vuelo.destino}</td>
-							<td>${vuelo.duracion}</td>
+							<td>${vuelo.duracionString}</td>
 							<td><form action="modificarVuelo" method="POST" modelAttribute="vuelo">
 								<input type="hidden" name="id" value="${vuelo.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>

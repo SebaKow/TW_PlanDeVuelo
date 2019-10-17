@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -22,11 +24,9 @@ public class Vuelo {
 	private Long id;
 	private String origen;
 	private String destino;
-	@DateTimeFormat(iso = ISO.TIME)
-	@Temporal(TemporalType.TIME)
+	private String duracionString;
 	private Date duracion;
 	private Boolean estado;
-	
 	@ManyToMany(mappedBy = "vuelos")
 	private List<Itinerario> itinerarios;
 	
@@ -34,12 +34,18 @@ public class Vuelo {
 		
 	}
 
-	public Vuelo(Long id, String origen, String destino, Date duracion) {
+	public Vuelo(Long id, String origen, String destino) throws ParseException {
 		this.id = id;
 		this.origen = origen;
 		this.destino = destino;
-		this.duracion = duracion;
-	}
+		this.duracion = stringAHora(duracionString);
+//		Integer horaMilitar = 130;
+//		Integer minutos = horaMilitar.toString().substring(horaMilitar.toString().length() - 1);
+//		if(horaMilitar > 999)
+//		Integer hora = horaMilitar.toString().substring(0,1);
+//		else
+//			Integer hora = horaMilitar.toString()[0];
+			}
 
 	public Long getId() {
 		return id;
@@ -89,5 +95,21 @@ public class Vuelo {
 		this.itinerarios = itinerarios;
 	}
 	
+	public String getDuracionString() {
+		return duracionString;
+	}
+
+	public void setDuracionString(String duracionString) {
+		this.duracionString = duracionString;
+	}
 	
+	public void setDuracionParse() throws ParseException {
+		this.duracion = stringAHora(this.duracionString);
+	}
+
+	public Date stringAHora(String string) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+		Date date = sdf.parse(string);
+		return date;
+	}
 }

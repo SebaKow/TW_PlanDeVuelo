@@ -10,10 +10,10 @@ insert into planDeVuelo (descripcion, avion_id) values ("CFTB", 2);
 insert into planDeVuelo (descripcion, avion_id) values ("FTBC", 3);
 insert into planDeVuelo (descripcion, avion_id) values ("TBCF", 4);
 
-insert into vuelo (origen, destino, duracion, estado) values ("Salta", "Tucuman", '01:00:00',b'1');
-insert into vuelo (origen, destino, duracion, estado) values ("Tucuman", "Jujuy", '01:15:00',b'1');
-insert into vuelo (origen, destino, duracion, estado) values ("Jujuy", "Formosa", '01:30:00',b'1');
-insert into vuelo (origen, destino, duracion, estado) values ("Formosa", "Salta", '02:10:00',b'1');
+insert into vuelo (origen, destino,duracion, duracionString, estado) values ("Salta", "Tucuman",'1970-01-01 01:00:00', "01:00:00",b'1');
+insert into vuelo (origen, destino,duracion, duracionString, estado) values ("Tucuman", "Jujuy",'1970-01-01 01:15:00', "01:15:00",b'1');
+insert into vuelo (origen, destino,duracion, duracionString, estado) values ("Jujuy", "Formosa",'1970-01-01 01:30:00', "01:30:00",b'1');
+insert into vuelo (origen, destino,duracion, duracionString, estado) values ("Formosa", "Salta",'1970-01-01 02:10:00', "02:10:00",b'1');
 
 insert into itinerario (despegueEstimado, despegueReal, aterrizajeEstimado, aterrizajeReal, plandevuelo_id) values('2010-01-01 06:45:00', '2010-01-01 06:50:00', '2010-01-01 09:00:00', '2010-01-01 09:05:00', 1);
 insert into itinerario (despegueEstimado, despegueReal, aterrizajeEstimado, aterrizajeReal, plandevuelo_id) values('2010-01-01 10:00:00', '2010-01-01 10:05:00', '2010-01-01 12:30:00', '2010-01-01 12:35:00', 1);

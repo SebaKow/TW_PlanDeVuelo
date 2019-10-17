@@ -9,7 +9,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.Itinerario;
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
+import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 @Repository("planDeVueloDao")
 public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
@@ -33,4 +35,6 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
+
+
 }

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -56,11 +57,12 @@ public class ControladorVuelo {
 	
 	// EDITAR VUELO
 	@RequestMapping(path = "/editarVuelo", method = RequestMethod.POST)
-	public ModelAndView editarVuelo(@ModelAttribute("vuelo") Vuelo vueloRecibido, HttpServletRequest request) {
+	public ModelAndView editarVuelo(@ModelAttribute("vuelo") Vuelo vueloRecibido, HttpServletRequest request) throws ParseException {
 		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vueloRecibido.getId());
 		vueloBuscado.setOrigen(vueloRecibido.getOrigen());
 		vueloBuscado.setDestino(vueloRecibido.getDestino());
-		vueloBuscado.setDuracion(vueloRecibido.getDuracion());
+		vueloBuscado.setDuracionString(vueloRecibido.getDuracionString());
+		vueloBuscado.setDuracionParse();
 		servicioVuelo.editarVuelo(vueloBuscado);
 		return new ModelAndView("redirect:/vuelos");
 	}

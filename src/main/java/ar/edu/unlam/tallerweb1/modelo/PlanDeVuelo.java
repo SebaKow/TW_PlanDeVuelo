@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class PlanDeVuelo {
@@ -16,12 +22,13 @@ public class PlanDeVuelo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descripcion;
-	
+	private Date fecha;
 	@ManyToOne
 	private Avion avion;
 	
 	@ManyToMany(mappedBy = "planesDeVuelo")
 	private List<Tripulante> tripulantes;
+	
 	
 	public PlanDeVuelo() {
 		
