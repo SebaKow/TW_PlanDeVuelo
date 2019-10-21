@@ -2,6 +2,10 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -30,6 +35,8 @@ public class Vuelo {
 	@ManyToMany(mappedBy = "vuelos")
 	private List<Itinerario> itinerarios;
 	
+//	LocalDateTime localdate = LocalDateTime.parse("");
+	
 	public Vuelo() {
 		
 	}
@@ -39,12 +46,6 @@ public class Vuelo {
 		this.origen = origen;
 		this.destino = destino;
 		this.duracion = stringAHora(duracionString);
-//		Integer horaMilitar = 130;
-//		Integer minutos = horaMilitar.toString().substring(horaMilitar.toString().length() - 1);
-//		if(horaMilitar > 999)
-//		Integer hora = horaMilitar.toString().substring(0,1);
-//		else
-//			Integer hora = horaMilitar.toString()[0];
 			}
 
 	public Long getId() {
@@ -112,4 +113,11 @@ public class Vuelo {
 		Date date = sdf.parse(string);
 		return date;
 	}
+	
+//	public LocalDateTime dateALocalDateTime(Date date) {
+//		LocalDateTime l = LocalDateTime.parse(date.toString());
+//		l.plusHours(date.getHours());
+//		l.plusMinutes(date.getMinute.0s());
+//		return l;
+//	}
 }

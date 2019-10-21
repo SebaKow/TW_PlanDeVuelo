@@ -5,10 +5,10 @@ insert into avion (capacidadTripulantes) values (6);
 insert into avion (capacidadTripulantes) values (6);
 insert into avion (capacidadTripulantes) values (8);
 
-insert into planDeVuelo (descripcion, avion_id) values ("BCFT", 1);
-insert into planDeVuelo (descripcion, avion_id) values ("CFTB", 2);
-insert into planDeVuelo (descripcion, avion_id) values ("FTBC", 3);
-insert into planDeVuelo (descripcion, avion_id) values ("TBCF", 4);
+insert into planDeVuelo (descripcion, avion_id, fecha) values ("BCFT", 1,'2019-10-10 06:00:00');
+insert into planDeVuelo (descripcion, avion_id, fecha) values ("CFTB", 2,'2019-10-10 13:00:00');
+insert into planDeVuelo (descripcion, avion_id, fecha) values ("FTBC", 3,'2019-10-10 21:00:00');
+insert into planDeVuelo (descripcion, avion_id, fecha) values ("TBCF", 4,'2019-10-10 08:00:00');
 
 insert into vuelo (origen, destino,duracion, duracionString, estado) values ("Salta", "Tucuman",'1970-01-01 01:00:00', "01:00:00",b'1');
 insert into vuelo (origen, destino,duracion, duracionString, estado) values ("Tucuman", "Jujuy",'1970-01-01 01:15:00', "01:15:00",b'1');

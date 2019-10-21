@@ -63,4 +63,12 @@ public class PlanDeVuelo {
 	public void setAvion(Avion avion) {
 		this.avion = avion;
 	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 }

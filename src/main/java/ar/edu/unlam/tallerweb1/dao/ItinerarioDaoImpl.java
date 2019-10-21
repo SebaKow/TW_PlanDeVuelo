@@ -40,13 +40,6 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 				.add(Restrictions.eq("plandevuelojoin.id", idObtenido))
 				.list();
 				
-//				.createAlias("plandevuelo", "plandevuelojoin")
-//				.add(Restrictions.eq("plandevuelojoin.id", idObtenido))
-//				.createAlias("vuelos", "vuelosjoin")
-//				.list();				
-				
 		return listaDeVuelos;
 	}
-	
-	
 }
