@@ -101,7 +101,8 @@
 							<td>${vuelo.destino}</td>
 							<td>${vuelo.duracion}</td>
 							<td><form action="eliminarVueloDePlan" method="GET">
-								<input type="hidden" name="idItinerario" value="${itinerario.id}" id="id">
+								<input type="hidden" name="idVuelo" value="${vuelo.id}" id="id">
+								<input type="hidden" name="idPlan" value="${planDeVuelo.id}">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>

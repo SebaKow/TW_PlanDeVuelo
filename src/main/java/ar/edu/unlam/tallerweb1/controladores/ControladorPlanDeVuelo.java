@@ -65,9 +65,14 @@ public class ControladorPlanDeVuelo {
 	
 	// ELIMINAR VUELO DE PLAN
 	@RequestMapping(path = "/eliminarVueloDePlan", method = RequestMethod.GET)
-	public ModelAndView eliminarVueloDePlan(@RequestParam(value = "idItinerario") Long idItinerario) {
-		Itinerario itinerario = servicioItinerario.consultarItinerarioId(idItinerario);
-		servicioItinerario.eliminarVueloDePlan(itinerario);
-		return new ModelAndView("vuelosEnPlan");
+	public ModelAndView eliminarVueloDePlan(@RequestParam(value = "idVuelo") Long idVuelo, 
+											@RequestParam(value = "idPlan") Long idPlan) {
+//		Itinerario itinerario = servicioItinerario.consultarItinerarioId(idItinerario);
+		
+		Vuelo vuelo = servicioVuelo.consultarVueloId(idVuelo);
+		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
+		
+		servicioItinerario.eliminarVueloDePlan(plan, vuelo);
+		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo=" + idPlan);
 	}
 }

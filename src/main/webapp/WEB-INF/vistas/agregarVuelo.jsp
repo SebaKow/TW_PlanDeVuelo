@@ -63,6 +63,7 @@
 				      <td><input name="origen" type="text" id="origen" class="form-control" placeholder="Origen" required autofocus></td>
 				      <td><input name="destino" type="text" id="destino" class="form-control" placeholder="Destino" required></td>
 				      <td><input name="duracionString" type="text" id="duracion" class="form-control" placeholder="Duración" required></td>					   
+				      <td><input name="estado" type="hidden" id="estado" class="form-control" value="true" required></td>
 				    </tr>
 				  </tbody>
 				</table>

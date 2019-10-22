@@ -52,7 +52,16 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	}
 	
 	@Override
-	public void eliminarVueloDePlan(Itinerario itinerario) {
-		sessionFactory.getCurrentSession().delete(itinerario);
+	public void eliminarVueloDePlan(PlanDeVuelo plan, Vuelo vuelo) {
+		final Session session = sessionFactory.getCurrentSession();
+		Itinerario itinerarioAEliminar = (Itinerario) session.createCriteria(Itinerario.class)
+		.createAlias("vuelos", "vuelosjoin")
+		.add(Restrictions.eq("vuelosjoin.id",vuelo.getId()))
+		.createAlias("vuelosjoin.itinerarios","itinerariosjoin")
+		.createAlias("itinerariosjoin.plandevuelo", "plandevuelojoin")
+		.add(Restrictions.eq("plandevuelojoin.id",plan.getId()))
+		.uniqueResult();
+		
+		session.delete(itinerarioAEliminar);
 	}
 }

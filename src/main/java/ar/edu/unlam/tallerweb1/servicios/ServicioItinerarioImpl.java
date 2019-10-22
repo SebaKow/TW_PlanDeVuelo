@@ -67,8 +67,8 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	}
 	
 	@Override
-	public void eliminarVueloDePlan(Itinerario itinerario) {
-		itinerarioDao.eliminarVueloDePlan(itinerario);
+	public void eliminarVueloDePlan(PlanDeVuelo plan, Vuelo vuelo) {
+		itinerarioDao.eliminarVueloDePlan(plan,vuelo);
 	}
 	
 	public LocalDateTime dateALocalDateTime(Date date) {

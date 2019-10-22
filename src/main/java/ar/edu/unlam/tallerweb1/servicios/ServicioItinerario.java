@@ -11,5 +11,5 @@ public interface ServicioItinerario {
 	Itinerario consultarItinerarioId(Long idItinerario);
 	List<Vuelo> listarVuelosDePlan(Long idObtenido);
 	void agregarItinerario(PlanDeVuelo plan, Vuelo vuelo);
-	void eliminarVueloDePlan(Itinerario itinerario);
+	void eliminarVueloDePlan(PlanDeVuelo plan, Vuelo vuelo);
 }

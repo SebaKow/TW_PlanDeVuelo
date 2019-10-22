@@ -38,7 +38,6 @@ public class Vuelo {
 		this.destino = destino;
 		this.duracionString = duracionString;
 		this.duracion = stringAHora(duracionString);
-		this.estado = estado;
 	}
 
 	public Long getId() {

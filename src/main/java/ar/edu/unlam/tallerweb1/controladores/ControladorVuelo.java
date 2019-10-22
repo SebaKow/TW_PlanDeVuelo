@@ -40,15 +40,16 @@ public class ControladorVuelo {
 	
 	// AGREGAR VUELO
 	@RequestMapping(path = "/agregarVuelo", method = RequestMethod.POST)
-	public ModelAndView agregarVuelo(@ModelAttribute("vuelo") Vuelo vuelo, HttpServletRequest request) {
+	public ModelAndView agregarVuelo(@ModelAttribute("vuelo") Vuelo vuelo, HttpServletRequest request) throws ParseException {
 		ModelMap model = new ModelMap();
-		servicioVuelo.agregarVuelo(vuelo);		
+		vuelo.setDuracionParse();
+		servicioVuelo.agregarVuelo(vuelo);
 		return new ModelAndView("redirect:/vuelos", model);
 	}
 	
 	// VISTA EDITAR VUELO
 	@RequestMapping(path = "/modificarVuelo", method = RequestMethod.POST)
-	public ModelAndView modificarVuelo(@ModelAttribute("vuelo") Vuelo vuelo, HttpServletRequest request) {
+	public ModelAndView modificarVuelo(@ModelAttribute("vuelo") Vuelo vuelo, HttpServletRequest request){
 		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vuelo.getId());
 		ModelMap modelo = new ModelMap();
 		modelo.put("vuelo", vueloBuscado);
