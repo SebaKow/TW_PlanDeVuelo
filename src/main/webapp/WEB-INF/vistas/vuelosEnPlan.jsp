@@ -62,7 +62,7 @@
 			<div class="col-md-8">
 				<h4>Seleccione los vuelos que desea agregar al plan:</h4>
 				<form action="agregarVueloAPlan" method="GET" class="text-center">
-					<select name="idVuelo"class="custom-select">
+					<select name="idVuelo" class="custom-select">
 						<c:forEach items="${listaDeVuelos}" var="vuelo">
 							<option value="${vuelo.id}">${vuelo.origen} - ${vuelo.destino}</option>
 						</c:forEach>
@@ -100,8 +100,8 @@
 							<td>${vuelo.origen}</td>
 							<td>${vuelo.destino}</td>
 							<td>${vuelo.duracion}</td>
-							<td><form action="eliminarVuelo" method="POST" modelAttribute="vuelo">
-								<input type="hidden" name="id" value="${vuelo.id}" id="id">
+							<td><form action="eliminarVueloDePlan" method="GET">
+								<input type="hidden" name="idItinerario" value="${itinerario.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>

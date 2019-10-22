@@ -9,11 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class PlanDeVuelo {
@@ -23,6 +18,7 @@ public class PlanDeVuelo {
 	private Long id;
 	private String descripcion;
 	private Date fecha;
+	
 	@ManyToOne
 	private Avion avion;
 	
@@ -34,9 +30,10 @@ public class PlanDeVuelo {
 		
 	}
 	
-	public PlanDeVuelo(Long id, String descripcion, Avion avion) {
+	public PlanDeVuelo(Long id, String descripcion, Date fecha, Avion avion) {
 		this.id = id;
 		this.descripcion = descripcion;
+		this.fecha = fecha;
 		this.avion = avion;
 	}
 	
@@ -55,6 +52,14 @@ public class PlanDeVuelo {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 
 	public Avion getAvion() {
 		return avion;
@@ -62,13 +67,5 @@ public class PlanDeVuelo {
 	
 	public void setAvion(Avion avion) {
 		this.avion = avion;
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 }

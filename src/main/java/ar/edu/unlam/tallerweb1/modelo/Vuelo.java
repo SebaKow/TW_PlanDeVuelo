@@ -2,10 +2,6 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.TemporalAmount;
-import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.cglib.core.Local;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Vuelo {
@@ -32,6 +22,7 @@ public class Vuelo {
 	private String duracionString;
 	private Date duracion;
 	private Boolean estado;
+	
 	@ManyToMany(mappedBy = "vuelos")
 	private List<Itinerario> itinerarios;
 	
@@ -41,12 +32,14 @@ public class Vuelo {
 		
 	}
 
-	public Vuelo(Long id, String origen, String destino) throws ParseException {
+	public Vuelo(Long id, String origen, String destino, String duracionString, Date duracion, Boolean estado) throws ParseException {
 		this.id = id;
 		this.origen = origen;
 		this.destino = destino;
+		this.duracionString = duracionString;
 		this.duracion = stringAHora(duracionString);
-			}
+		this.estado = estado;
+	}
 
 	public Long getId() {
 		return id;
@@ -70,6 +63,14 @@ public class Vuelo {
 
 	public void setDestino(String destino) {
 		this.destino = destino;
+	}
+	
+	public String getDuracionString() {
+		return duracionString;
+	}
+
+	public void setDuracionString(String duracionString) {
+		this.duracionString = duracionString;
 	}
 
 	public Date getDuracion() {
@@ -96,14 +97,6 @@ public class Vuelo {
 		this.itinerarios = itinerarios;
 	}
 	
-	public String getDuracionString() {
-		return duracionString;
-	}
-
-	public void setDuracionString(String duracionString) {
-		this.duracionString = duracionString;
-	}
-	
 	public void setDuracionParse() throws ParseException {
 		this.duracion = stringAHora(this.duracionString);
 	}
@@ -113,11 +106,4 @@ public class Vuelo {
 		Date date = sdf.parse(string);
 		return date;
 	}
-	
-//	public LocalDateTime dateALocalDateTime(Date date) {
-//		LocalDateTime l = LocalDateTime.parse(date.toString());
-//		l.plusHours(date.getHours());
-//		l.plusMinutes(date.getMinute.0s());
-//		return l;
-//	}
 }

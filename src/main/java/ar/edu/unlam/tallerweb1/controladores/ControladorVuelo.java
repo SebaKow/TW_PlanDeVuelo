@@ -74,5 +74,4 @@ public class ControladorVuelo {
 		servicioVuelo.eliminarVuelo(vueloBuscado);
 		return new ModelAndView("redirect:/vuelos");
 	}
-	
 }

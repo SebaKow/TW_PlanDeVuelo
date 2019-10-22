@@ -70,7 +70,7 @@ public class ControladorTripulante {
 	
 	// ELIMINAR TRIPULANTE
 	@RequestMapping(path = "/eliminarTripulante", method = RequestMethod.GET)
-	public ModelAndView eliminarTripulante(@RequestParam("idTripulante") Long idRecibido) {
+	public ModelAndView eliminarTripulante(@RequestParam(value = "idTripulante") Long idRecibido) {
 		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(idRecibido);
 		servicioTripulante.eliminarTripulante(tripulanteBuscado);
 		return new ModelAndView("redirect:/tripulantes");

@@ -77,7 +77,6 @@
 							<td><form action="eliminarTripulante" method="GET">
 								<input type="hidden" name="idTripulante" value="${tripulante.id}" id="idTripulante">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
-								
 								</form>
 							</td>
 							</tr>

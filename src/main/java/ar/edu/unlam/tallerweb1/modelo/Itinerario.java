@@ -1,9 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -34,9 +32,7 @@ public class Itinerario {
 		
 	}
 	
-	
-
-	public Itinerario(Long id, Date despegueEstimado, Date despegueReal, Date aterrizajeEstimado, Date aterrizajeReal,
+	public Itinerario(Long id, Date despegueEstimado, Date despegueReal, Date aterrizajeEstimado, Date aterrizajeReal, 
 			PlanDeVuelo plandevuelo, List<Vuelo> vuelos) {
 		this.id = id;
 		this.despegueEstimado = despegueEstimado;
@@ -46,8 +42,6 @@ public class Itinerario {
 		this.plandevuelo = plandevuelo;
 		this.vuelos = vuelos;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -104,6 +98,4 @@ public class Itinerario {
 	public void setVuelos(List<Vuelo> vuelos) {
 		this.vuelos = vuelos;
 	}
-	
-	
 }

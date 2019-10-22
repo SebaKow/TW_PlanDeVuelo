@@ -27,9 +27,11 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	}
 	
 	@Override
-	public void agregarItinerario(Itinerario itinerario) {
-		Session session = sessionFactory.getCurrentSession();		
-		session.save(itinerario);
+	public Itinerario consultarItinerarioId(Long idItinerario) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Itinerario) session.createCriteria(Itinerario.class)
+				.add(Restrictions.eq("id", idItinerario))
+				.uniqueResult();
 	}
 
 	@Override
@@ -41,5 +43,16 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 				.list();
 				
 		return listaDeVuelos;
+	}
+	
+	@Override
+	public void agregarItinerario(Itinerario itinerario) {
+		Session session = sessionFactory.getCurrentSession();		
+		session.save(itinerario);
+	}
+	
+	@Override
+	public void eliminarVueloDePlan(Itinerario itinerario) {
+		sessionFactory.getCurrentSession().delete(itinerario);
 	}
 }
