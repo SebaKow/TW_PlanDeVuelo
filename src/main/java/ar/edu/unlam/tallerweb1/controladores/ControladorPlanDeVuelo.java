@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Itinerario;
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioItinerario;
@@ -51,6 +50,8 @@ public class ControladorPlanDeVuelo {
 		
 		List<Vuelo> vuelosAgregados = servicioItinerario.listarVuelosDePlan(idObtenido);
 		modelo.put("vuelosAgregados", vuelosAgregados);
+		modelo.put("cantidadVuelosAgregados", vuelosAgregados.size());
+		
 		return new ModelAndView("vuelosEnPlan", modelo);
 	}
 	
@@ -65,13 +66,9 @@ public class ControladorPlanDeVuelo {
 	
 	// ELIMINAR VUELO DE PLAN
 	@RequestMapping(path = "/eliminarVueloDePlan", method = RequestMethod.GET)
-	public ModelAndView eliminarVueloDePlan(@RequestParam(value = "idVuelo") Long idVuelo, 
-											@RequestParam(value = "idPlan") Long idPlan) {
-//		Itinerario itinerario = servicioItinerario.consultarItinerarioId(idItinerario);
-		
+	public ModelAndView eliminarVueloDePlan(@RequestParam(value = "idVuelo") Long idVuelo, @RequestParam(value = "idPlan") Long idPlan) {
 		Vuelo vuelo = servicioVuelo.consultarVueloId(idVuelo);
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
-		
 		servicioItinerario.eliminarVueloDePlan(plan, vuelo);
 		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo=" + idPlan);
 	}

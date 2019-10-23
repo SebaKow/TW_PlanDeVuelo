@@ -57,28 +57,31 @@
 			<div class="col-md-2"></div>
 		</div>
 		
-		<div class="row mt-4 pt-5">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<h4>Seleccione los vuelos que desea agregar al plan:</h4>
-				<form action="agregarVueloAPlan" method="GET" class="text-center">
-					<select name="idVuelo" class="custom-select">
-						<c:forEach items="${listaDeVuelos}" var="vuelo">
-							<option value="${vuelo.id}">${vuelo.origen} - ${vuelo.destino}</option>
-						</c:forEach>
-					</select>
-					
-						<input type="hidden" name="idPlan" value="${planDeVuelo.id}">
-					<button class="btn btn-lg btn-primary float-right font-weight-bold my-3" type="submit">Agregar</button>
-				</form>
+		<c:set var="cantidadVuelosAgregados" value="${cantidadVuelosAgregados}"/>
+		<c:if test="${cantidadVuelosAgregados < 6}">
+			<div class="row mt-4 pt-5">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<h4>Seleccione los vuelos que desea agregar al plan:</h4>
+					<form action="agregarVueloAPlan" method="GET" class="text-center">
+						<select name="idVuelo" class="custom-select">
+							<c:forEach items="${listaDeVuelos}" var="vuelo">
+								<option value="${vuelo.id}">${vuelo.origen} - ${vuelo.destino}</option>
+							</c:forEach>
+						</select>
+						
+							<input type="hidden" name="idPlan" value="${planDeVuelo.id}">
+						<button class="btn btn-lg btn-primary float-right font-weight-bold my-3" type="submit">Agregar</button>
+					</form>
+				</div>
+				<div class="col-md-2"></div>
 			</div>
-			<div class="col-md-2"></div>
-		</div>
 		
 		<hr class="my-5" style="border-color:red;">
+		</c:if>
 		
 		<!-- LISTA DE VUELOS DEL PLAN SELECCIONADO -->
-		<div class="text-center">
+		<div class="text-center mt-4">
 			<h2>Vuelos Agregados</h2>
 		</div>
 
@@ -102,7 +105,7 @@
 							<td>${vuelo.duracion}</td>
 							<td><form action="eliminarVueloDePlan" method="GET">
 								<input type="hidden" name="idVuelo" value="${vuelo.id}" id="id">
-								<input type="hidden" name="idPlan" value="${planDeVuelo.id}">
+								<input type="hidden" name="idPlan" value="${planDeVuelo.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>

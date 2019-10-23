@@ -23,23 +23,10 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	@Inject
 	private ItinerarioDao itinerarioDao;
 
-	/*@Override
-	public Boolean agregarItinerario(PlanDeVuelo plan, Vuelo vuelo) {
-		Boolean validacion1 = validacionPlan();
-		//Validacion 1
-		
-		return true;
-	}
-
-	private Boolean validacion1() {
+	/*private Boolean validacion1() {
 		// TODO Auto-generated method stub
 		return null;
 	}*/
-	
-	@Override
-	public Itinerario consultarItinerarioId(Long idItinerario) {
-		return itinerarioDao.consultarItinerarioId(idItinerario);
-	}
 	
 	@Override
 	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
@@ -68,7 +55,7 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	
 	@Override
 	public void eliminarVueloDePlan(PlanDeVuelo plan, Vuelo vuelo) {
-		itinerarioDao.eliminarVueloDePlan(plan,vuelo);
+		itinerarioDao.eliminarVueloDePlan(plan, vuelo);
 	}
 	
 	public LocalDateTime dateALocalDateTime(Date date) {

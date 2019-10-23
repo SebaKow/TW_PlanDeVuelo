@@ -25,14 +25,6 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 		Boolean seGuardo = (Boolean) session.save(vuelo);
 		return seGuardo;
 	}
-	
-	@Override
-	public Itinerario consultarItinerarioId(Long idItinerario) {
-		final Session session = sessionFactory.getCurrentSession();
-		return (Itinerario) session.createCriteria(Itinerario.class)
-				.add(Restrictions.eq("id", idItinerario))
-				.uniqueResult();
-	}
 
 	@Override
 	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
@@ -56,10 +48,10 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 		final Session session = sessionFactory.getCurrentSession();
 		Itinerario itinerarioAEliminar = (Itinerario) session.createCriteria(Itinerario.class)
 		.createAlias("vuelos", "vuelosjoin")
-		.add(Restrictions.eq("vuelosjoin.id",vuelo.getId()))
-		.createAlias("vuelosjoin.itinerarios","itinerariosjoin")
+		.add(Restrictions.eq("vuelosjoin.id", vuelo.getId()))
+		.createAlias("vuelosjoin.itinerarios", "itinerariosjoin")
 		.createAlias("itinerariosjoin.plandevuelo", "plandevuelojoin")
-		.add(Restrictions.eq("plandevuelojoin.id",plan.getId()))
+		.add(Restrictions.eq("plandevuelojoin.id", plan.getId()))
 		.uniqueResult();
 		
 		session.delete(itinerarioAEliminar);

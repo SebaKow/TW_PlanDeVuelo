@@ -49,7 +49,7 @@ public class ControladorVuelo {
 	
 	// VISTA EDITAR VUELO
 	@RequestMapping(path = "/modificarVuelo", method = RequestMethod.POST)
-	public ModelAndView modificarVuelo(@ModelAttribute("vuelo") Vuelo vuelo, HttpServletRequest request){
+	public ModelAndView modificarVuelo(@ModelAttribute("vuelo") Vuelo vuelo, HttpServletRequest request) {
 		Vuelo vueloBuscado = servicioVuelo.consultarVueloId(vuelo.getId());
 		ModelMap modelo = new ModelMap();
 		modelo.put("vuelo", vueloBuscado);

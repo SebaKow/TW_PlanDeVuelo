@@ -26,8 +26,6 @@ public class Vuelo {
 	@ManyToMany(mappedBy = "vuelos")
 	private List<Itinerario> itinerarios;
 	
-//	LocalDateTime localdate = LocalDateTime.parse("");
-	
 	public Vuelo() {
 		
 	}
