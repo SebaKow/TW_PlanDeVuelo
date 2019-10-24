@@ -60,8 +60,14 @@ public class ControladorPlanDeVuelo {
 	public ModelAndView agregarVueloAPlan(@RequestParam(value = "idVuelo") Long idVuelo, @RequestParam(value = "idPlan") Long idPlan) {
 		Vuelo vuelo = servicioVuelo.consultarVueloId(idVuelo);
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
-		servicioItinerario.agregarItinerario(plan, vuelo);
-		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo=" + idPlan);
+		ModelMap modelo = new ModelMap();
+		try {
+			servicioItinerario.agregarItinerario(plan, vuelo);
+		} catch (Exception e) {
+			String error = e.getMessage();
+			modelo.put("error",error);
+		}
+		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo=" + idPlan,modelo);
 	}
 	
 	// ELIMINAR VUELO DE PLAN

@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Vuelo {
@@ -20,6 +22,7 @@ public class Vuelo {
 	private String origen;
 	private String destino;
 	private String duracionString;
+	
 	private Date duracion;
 	private Boolean estado;
 	

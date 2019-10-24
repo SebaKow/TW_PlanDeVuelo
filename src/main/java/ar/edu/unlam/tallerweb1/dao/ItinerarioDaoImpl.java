@@ -38,6 +38,16 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	}
 	
 	@Override
+	public List<Itinerario> listarItinerariosDePlan(Long id){
+		List<Itinerario> listaItinerarios = sessionFactory.getCurrentSession().createCriteria(Itinerario.class)
+				.createAlias("plandevuelo","plandevuelojoin")
+				.add(Restrictions.eq("plandevuelojoin.id",id))
+				.list();
+		
+		return listaItinerarios;
+	}
+	
+	@Override
 	public void agregarItinerario(Itinerario itinerario) {
 		Session session = sessionFactory.getCurrentSession();		
 		session.save(itinerario);

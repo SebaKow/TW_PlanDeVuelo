@@ -51,7 +51,7 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-2">
 				<div class="text-right">
-					<h4><span class="badge badge-secondary">Fecha:</span></h4>
+					<h4><span class="badge badge-secondary">Fecha: ${planDeVuelo.fecha}</span></h4>
 				</div>
 			</div>
 			<div class="col-md-2"></div>

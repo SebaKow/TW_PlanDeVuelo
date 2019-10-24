@@ -10,6 +10,7 @@ public interface ItinerarioDao {
 
 	Boolean agregarVuelo(Vuelo vuelo);
 	List<Vuelo> listarVuelosDePlan(Long idObtenido);
+	List<Itinerario> listarItinerariosDePlan(Long id);
 	void agregarItinerario(Itinerario itinerario);
 	void eliminarVueloDePlan(PlanDeVuelo plan, Vuelo vuelo);
 }
