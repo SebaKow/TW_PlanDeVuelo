@@ -30,7 +30,7 @@
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	          <a class="nav-link" href="planesDeVuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
@@ -75,7 +75,7 @@
 								</form>
 							</td>
 							<td><form action="eliminarTripulante" method="GET">
-								<input type="hidden" name="idTripulante" value="${tripulante.id}" id="idTripulante">
+								<input type="hidden" name="id" id="id" value="${tripulante.id}">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>
@@ -83,7 +83,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="agregar-tripulante" role="button">Agregar</a>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="agregarTripulante" role="button">Agregar</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

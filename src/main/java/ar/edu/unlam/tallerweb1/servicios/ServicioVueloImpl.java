@@ -39,7 +39,7 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	
 	@Override
 	public void eliminarVuelo(Vuelo vuelo) {
-		vuelo.setEstado(false);		
+		vuelo.setEstado(false);
 		vueloDao.eliminarVuelo(vuelo);
 	}
 }

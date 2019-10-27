@@ -33,7 +33,7 @@ public class ControladorVuelo {
 	}
 	
 	// VISTA AGREGAR VUELO
-	@RequestMapping(path = "/agregar-vuelo", method = RequestMethod.GET)
+	@RequestMapping(path = "/agregarVuelo", method = RequestMethod.GET)
 	public ModelAndView irAVistaAgregarVuelo() {
 		return new ModelAndView("agregarVuelo");
 	}

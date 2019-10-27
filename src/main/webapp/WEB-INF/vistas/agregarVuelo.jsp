@@ -30,7 +30,7 @@
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	          <a class="nav-link" href="planesDeVuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>

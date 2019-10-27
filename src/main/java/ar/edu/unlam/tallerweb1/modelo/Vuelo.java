@@ -4,14 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Vuelo {
@@ -22,7 +21,6 @@ public class Vuelo {
 	private String origen;
 	private String destino;
 	private String duracionString;
-	
 	private Date duracion;
 	private Boolean estado;
 	
@@ -33,12 +31,14 @@ public class Vuelo {
 		
 	}
 
-	public Vuelo(Long id, String origen, String destino, String duracionString, Date duracion, Boolean estado) throws ParseException {
+	public Vuelo(Long id, String origen, String destino, String duracionString, Date duracion, Boolean estado, List<Itinerario> itinerarios) throws ParseException {
 		this.id = id;
 		this.origen = origen;
 		this.destino = destino;
 		this.duracionString = duracionString;
 		this.duracion = stringAHora(duracionString);
+		this.estado = estado;
+		this.itinerarios = itinerarios;
 	}
 
 	public Long getId() {
@@ -102,7 +102,8 @@ public class Vuelo {
 	}
 
 	public Date stringAHora(String string) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
 		Date date = sdf.parse(string);
 		return date;
 	}

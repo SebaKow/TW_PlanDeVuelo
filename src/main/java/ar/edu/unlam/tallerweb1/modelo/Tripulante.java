@@ -39,6 +39,7 @@ public class Tripulante {
 		this.email = email;
 		this.password = password;
 		this.esAdmin = esAdmin;
+		this.estado = estado;
 		this.planesDeVuelo = planesDeVuelo;
 	}
 

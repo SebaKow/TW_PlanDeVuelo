@@ -32,7 +32,7 @@ public class ControladorTripulante {
 	}
 	
 	// VISTA AGREGAR TRIPULANTE
-	@RequestMapping(path = "/agregar-tripulante", method = RequestMethod.GET)
+	@RequestMapping(path = "/agregarTripulante", method = RequestMethod.GET)
 	public ModelAndView irAVistaAgregarTripulante() {
 		return new ModelAndView("agregarTripulante");
 	}
@@ -70,7 +70,7 @@ public class ControladorTripulante {
 	
 	// ELIMINAR TRIPULANTE
 	@RequestMapping(path = "/eliminarTripulante", method = RequestMethod.GET)
-	public ModelAndView eliminarTripulante(@RequestParam(value = "idTripulante") Long idRecibido) {
+	public ModelAndView eliminarTripulante(@RequestParam(value = "id") Long idRecibido) {
 		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(idRecibido);
 		servicioTripulante.eliminarTripulante(tripulanteBuscado);
 		return new ModelAndView("redirect:/tripulantes");

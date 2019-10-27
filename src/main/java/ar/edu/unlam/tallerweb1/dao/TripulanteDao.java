@@ -8,10 +8,8 @@ import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 public interface TripulanteDao {
 	
 	public List<Tripulante> listarTripulantes();
-	
 	Tripulante consultarTripulante(Tripulante tripulante);
 	Tripulante consultarTripulanteId(Long id);
-	
 	void agregarTripulante(Tripulante tripulante);
 	void editarTripulante(Tripulante tripulante);
 	void eliminarTripulante(Tripulante tripulante);

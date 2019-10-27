@@ -30,7 +30,7 @@
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	          <a class="nav-link" href="planesDeVuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
@@ -62,11 +62,11 @@
 				  <tbody>
 				    <form action="editarTripulante" method= "POST" modelAttribute="tripulante">
 				    <tr>
-				      <td><input name="nombre" type="text" id="nombre" class="form-control" value="${tripulante.nombre}" required ></td>
+				      <td><input name="nombre" type="text" id="nombre" class="form-control" value="${tripulante.nombre}" required autofocus></td>
 				      <td><input name="apellido" type="text" id="apellido" class="form-control" value="${tripulante.apellido}" required></td>
 				      <td><input name="dni" type="text" id="dni" class="form-control" value="${tripulante.dni}" required></td>
 				      <td><input name="email" type="text" id="email" class="form-control" value="${tripulante.email}" required></td>
-				      <td><input name="password" type="text" id="password" class="form-control" value="${tripulante.password}" required></td>					   
+				      <td><input name="password" type="text" id="password" class="form-control" value="${tripulante.password}" required></td>
 				    </tr>
 				  </tbody>
 				</table>

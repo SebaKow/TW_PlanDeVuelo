@@ -19,12 +19,12 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	@Inject
 	SessionFactory sessionFactory;
 	
-	@Override
-	public Boolean agregarVuelo(Vuelo vuelo) {
-		Session session = sessionFactory.getCurrentSession();
-		Boolean seGuardo = (Boolean) session.save(vuelo);
-		return seGuardo;
-	}
+//	@Override
+//	public Boolean agregarVuelo(Vuelo vuelo) {
+//		Session session = sessionFactory.getCurrentSession();
+//		Boolean seGuardo = (Boolean) session.save(vuelo);
+//		return seGuardo;
+//	}
 
 	@Override
 	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
@@ -40,8 +40,8 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	@Override
 	public List<Itinerario> listarItinerariosDePlan(Long id){
 		List<Itinerario> listaItinerarios = sessionFactory.getCurrentSession().createCriteria(Itinerario.class)
-				.createAlias("plandevuelo","plandevuelojoin")
-				.add(Restrictions.eq("plandevuelojoin.id",id))
+				.createAlias("plandevuelo", "plandevuelojoin")
+				.add(Restrictions.eq("plandevuelojoin.id", id))
 				.list();
 		
 		return listaItinerarios;
@@ -57,12 +57,12 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	public void eliminarVueloDePlan(PlanDeVuelo plan, Vuelo vuelo) {
 		final Session session = sessionFactory.getCurrentSession();
 		Itinerario itinerarioAEliminar = (Itinerario) session.createCriteria(Itinerario.class)
-		.createAlias("vuelos", "vuelosjoin")
-		.add(Restrictions.eq("vuelosjoin.id", vuelo.getId()))
-		.createAlias("vuelosjoin.itinerarios", "itinerariosjoin")
-		.createAlias("itinerariosjoin.plandevuelo", "plandevuelojoin")
-		.add(Restrictions.eq("plandevuelojoin.id", plan.getId()))
-		.uniqueResult();
+				.createAlias("vuelos", "vuelosjoin")
+				.add(Restrictions.eq("vuelosjoin.id", vuelo.getId()))
+				.createAlias("vuelosjoin.itinerarios", "itinerariosjoin")
+				.createAlias("itinerariosjoin.plandevuelo", "plandevuelojoin")
+				.add(Restrictions.eq("plandevuelojoin.id", plan.getId()))
+				.uniqueResult();
 		
 		session.delete(itinerarioAEliminar);
 	}

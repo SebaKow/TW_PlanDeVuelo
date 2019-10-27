@@ -6,9 +6,9 @@ import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 public interface VueloDao {
 	
-	public List<Vuelo> listarVuelos();
-	public Vuelo consultarVueloId(Long id);
-	public void agregarVuelo(Vuelo vuelo);
-	public void editarVuelo(Vuelo vuelo);
-	public void eliminarVuelo(Vuelo vuelo);
+	List<Vuelo> listarVuelos();
+	Vuelo consultarVueloId(Long id);
+	void agregarVuelo(Vuelo vuelo);
+	void editarVuelo(Vuelo vuelo);
+	void eliminarVuelo(Vuelo vuelo);
 }

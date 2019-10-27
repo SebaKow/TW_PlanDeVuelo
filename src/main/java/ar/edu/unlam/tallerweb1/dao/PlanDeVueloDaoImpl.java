@@ -21,6 +21,7 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 	public List<PlanDeVuelo> listarPlanesDeVuelo() {
 		List<PlanDeVuelo> listaDePlanesDeVuelo = sessionFactory.getCurrentSession()
 				.createCriteria(PlanDeVuelo.class)
+				.add(Restrictions.eq("estado", true))
 				.list();
 		
 		return listaDePlanesDeVuelo;
@@ -32,5 +33,21 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 		return (PlanDeVuelo) session.createCriteria(PlanDeVuelo.class)
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
+	}
+	
+	@Override
+	public void agregarPlanDeVuelo(PlanDeVuelo planDeVuelo) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(planDeVuelo);
+	}
+	
+	@Override
+	public void editarPlanDeVuelo(PlanDeVuelo planDeVuelo) {
+		sessionFactory.getCurrentSession().saveOrUpdate(planDeVuelo);
+	}
+	
+	@Override
+	public void eliminarPlanDeVuelo(PlanDeVuelo planDeVuelo) {
+		sessionFactory.getCurrentSession().saveOrUpdate(planDeVuelo);
 	}
 }

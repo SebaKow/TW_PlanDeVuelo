@@ -30,7 +30,7 @@
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item active">
-	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	          <a class="nav-link" href="planesDeVuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
@@ -51,7 +51,7 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-2">
 				<div class="text-right">
-					<h4><span class="badge badge-secondary">Fecha: ${planDeVuelo.fecha}</span></h4>
+					<h4><span class="badge badge-secondary">Fecha: ${planDeVuelo.fechaString}</span></h4>
 				</div>
 			</div>
 			<div class="col-md-2"></div>
@@ -102,7 +102,7 @@
 							<tr>
 							<td>${vuelo.origen}</td>
 							<td>${vuelo.destino}</td>
-							<td>${vuelo.duracion}</td>
+							<td>${vuelo.duracionString}</td>
 							<td><form action="eliminarVueloDePlan" method="GET">
 								<input type="hidden" name="idVuelo" value="${vuelo.id}" id="id">
 								<input type="hidden" name="idPlan" value="${planDeVuelo.id}" id="id">

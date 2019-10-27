@@ -6,6 +6,9 @@ import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
 
 public interface PlanDeVueloDao {
 
-	public List<PlanDeVuelo> listarPlanesDeVuelo();
-	public PlanDeVuelo consultarPlanDeVueloId(Long id);
+	List<PlanDeVuelo> listarPlanesDeVuelo();
+	PlanDeVuelo consultarPlanDeVueloId(Long id);
+	void agregarPlanDeVuelo(PlanDeVuelo planDeVuelo);
+	void editarPlanDeVuelo(PlanDeVuelo planDeVuelo);
+	void eliminarPlanDeVuelo(PlanDeVuelo planDeVuelo);
 }

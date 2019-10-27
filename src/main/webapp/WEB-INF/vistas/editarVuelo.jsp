@@ -30,7 +30,7 @@
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	          <a class="nav-link" href="planesDeVuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
@@ -60,9 +60,9 @@
 				  <tbody>
 				    <form action="editarVuelo" method= "POST" modelAttribute="vuelo">
 				    <tr>
-				      <td><input name="origen" type="text" id="origen" class="form-control" value="${vuelo.origen}" required></td>
+				      <td><input name="origen" type="text" id="origen" class="form-control" value="${vuelo.origen}" required autofocus></td>
 				      <td><input name="destino" type="text" id="destino" class="form-control" value="${vuelo.destino}" required></td>
-				      <td><input name="duracionString" type="text" id="duracion" class="form-control" value="${vuelo.duracionString}" required></td>				   
+				      <td><input name="duracionString" type="text" id="duracion" class="form-control" value="${vuelo.duracionString}" required></td>
 				    </tr>
 				  </tbody>
 				</table>

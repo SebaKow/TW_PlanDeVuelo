@@ -10,7 +10,7 @@
     <title>Plan De Vuelo</title>
 </head>
 <body>
-	
+
 	<!-- NAVIGATION -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
 	  <div class="container">
@@ -26,11 +26,11 @@
 	        <li class="nav-item">
 	          <a class="nav-link" href="tripulantes">Ver Tripulantes</a>
 	        </li>
-	        <li class="nav-item active">
+	        <li class="nav-item">
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="planesDeVuelo">Ver Planes de Vuelo</a>
+	          <a class="nav-link active" href="planesDeVuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
@@ -39,52 +39,39 @@
 	    </div>
 	  </div>
 	</nav>
-
-	<!-- LISTA DE VUELOS -->
+  
+  	<!-- AGREGAR PLAN DE VUELO -->
 	<div class="container-fluid my-5">
 		<div class="text-center pt-5">
-			<h2>Lista de Vuelos</h2>
+			<h2>Agregar Plan de vuelo</h2>
 		</div>
-
+		
 		<div class="row mt-4">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<table class="table table-bordered text-center">
-					<thead>
-						<tr>
-							<th scope="col">Origen</th>
-							<th scope="col">Destino</th>
-							<th scope="col">Duración</th>
-							<th scope="col">Editar</th>
-							<th scope="col">Eliminar</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${listaVuelos}" var="vuelo">
-							<tr>
-							<td>${vuelo.origen}</td>
-							<td>${vuelo.destino}</td>
-							<td>${vuelo.duracionString}</td>
-							<td><form action="modificarVuelo" method="POST" modelAttribute="vuelo">
-								<input type="hidden" name="id" id="id" value="${vuelo.id}">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
-								</form>
-							</td>
-							<td><form action="eliminarVuelo" method="GET">
-								<input type="hidden" name="id" id="id" value="${vuelo.id}">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
-								</form>
-							</td>
-							</tr>
-						</c:forEach>
-					</tbody>
+				  <thead>
+				    <tr>
+					    <th scope="col">Descripción</th>
+						<th scope="col">Fecha</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <form action="agregarPlanDeVuelo" method= "POST" modelAttribute="planDeVuelo">
+				    <tr>
+				      <td><input name="descripcion" type="text" id="descripcion" class="form-control" placeholder="Descripción" required autofocus></td>
+				      <td><input name="fechaString" type="text" id="fecha" class="form-control" placeholder="Fecha" required></td>
+				      <td><input name="estado" type="hidden" id="estado" class="form-control" value="true" required></td>
+				    </tr>
+				  </tbody>
 				</table>
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="agregarVuelo" role="button">Agregar</a>
+					<button class="btn btn-lg btn-primary float-right font-weight-bold mb-2" type="submit">Agregar</button>
+				</form>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 	</div>
-   	
+	
 	<script src="js/jquery-3.4.1.min.js"></script>
    	<script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>

@@ -19,9 +19,10 @@ public class TripulanteDaoImpl implements TripulanteDao {
 	@Override
 	public List<Tripulante> listarTripulantes(){
 		List<Tripulante> listaDeTripulantes = sessionFactory.getCurrentSession()
-											.createCriteria(Tripulante.class)
-											.add(Restrictions.eq("estado", true))
-											.list();
+				.createCriteria(Tripulante.class)
+				.add(Restrictions.eq("estado", true))
+				.list();
+		
 		return listaDeTripulantes;
 	}
 	
@@ -31,7 +32,7 @@ public class TripulanteDaoImpl implements TripulanteDao {
 			 return (Tripulante) session.createCriteria(Tripulante.class)
 					.add(Restrictions.eq("email", tripulante.getEmail()))
 					.add(Restrictions.eq("password", tripulante.getPassword()))
-					.uniqueResult(); // uniqueResult() o list() --> Depende de la cantidad de resultados que queremos.
+					.uniqueResult(); // uniqueResult() o list() --> DEPENDE DE LA CANTIDAD DE RESULTADOS QUE QUEREMOS.
 	}
 	
 	@Override

@@ -30,7 +30,7 @@
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
 	        <li class="nav-item active">
-	          <a class="nav-link" href="planesdevuelo">Ver Planes de Vuelo</a>
+	          <a class="nav-link" href="planesDeVuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="login">Salir</a>
@@ -40,25 +40,52 @@
 	  </div>
 	</nav>
 
+	<!-- LISTA DE PLANES DE VUELO -->
 	<div class="container-fluid my-5">
 		<div class="text-center pt-5">
-			<h2>Planes de Vuelo</h2>
+			<h2>Lista de Planes de Vuelo</h2>
 		</div>
-		
-		<div class="row mt-4 mx-4">
-			<c:forEach items="${listaPlanesDeVuelo}" var="plandevuelo">
-				<div class="col-md-4">
-					<div class="card w-100 mb-3">
-						<div class="card-body">
-							<h5 class="card-title text-center">${plandevuelo.descripcion}</h5>
-							<form action="plandevueloseleccionado" method="GET" class="text-center">
+
+		<div class="row mt-4">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<table class="table table-bordered text-center">
+					<thead>
+						<tr>
+							<th scope="col">Descripción</th>
+							<th scope="col">Fecha</th>
+							<th scope="col">Ver</th>
+							<th scope="col">Editar</th>
+							<th scope="col">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${listaPlanesDeVuelo}" var="plandevuelo">
+							<tr>
+							<td>${plandevuelo.descripcion}</td>
+							<td>${plandevuelo.fechaString}</td>
+							<td><form action="plandevueloseleccionado" method="GET">
 								<input type="hidden" name="idPlanDeVuelo" id="idPlanDeVuelo" value="${plandevuelo.id}">
 								<button class="btn btn-lg btn-primary font-weight-bold my-2" type="submit">Ver</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
+								</form>
+							</td>
+							<td><form action="modificarPlanDeVuelo" method="POST" modelAttribute="planDeVuelo">
+								<input type="hidden" name="id" id="id" value="${plandevuelo.id}">
+								<button class="btn btn-lg btn-primary font-weight-bold my-2" type="submit">Editar</button>
+								</form>
+							</td>
+							<td><form action="eliminarPlanDeVuelo" method="GET">
+								<input type="hidden" name="id" id="id" value="${plandevuelo.id}">
+								<button class="btn btn-lg btn-primary font-weight-bold my-2" type="submit">Eliminar</button>
+								</form>
+							</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="agregarPlanDeVuelo" role="button">Agregar</a>
+			</div>
+			<div class="col-md-2"></div>
 		</div>
 	</div>
    	

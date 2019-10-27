@@ -20,9 +20,10 @@ public class VueloDaoImpl implements VueloDao {
 	@Override
 	public List<Vuelo> listarVuelos(){
 		List<Vuelo> listaDeVuelos = sessionFactory.getCurrentSession()
-											.createCriteria(Vuelo.class)
-											.add(Restrictions.eq("estado",true))
-											.list();
+				.createCriteria(Vuelo.class)
+				.add(Restrictions.eq("estado",true))
+				.list();
+		
 		return listaDeVuelos;
 	}
 	

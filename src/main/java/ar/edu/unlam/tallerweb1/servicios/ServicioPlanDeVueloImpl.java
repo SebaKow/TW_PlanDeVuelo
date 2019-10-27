@@ -26,4 +26,20 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 	public PlanDeVuelo consultarPlanDeVueloId(Long id) {
 		return planDeVueloDao.consultarPlanDeVueloId(id);
 	}
+	
+	@Override
+	public void agregarPlanDeVuelo(PlanDeVuelo planDeVuelo) {
+		planDeVueloDao.agregarPlanDeVuelo(planDeVuelo);
+	}
+	
+	@Override
+	public void editarPlanDeVuelo(PlanDeVuelo planDeVuelo) {
+		planDeVueloDao.editarPlanDeVuelo(planDeVuelo);
+	}
+	
+	@Override
+	public void eliminarPlanDeVuelo(PlanDeVuelo planDeVuelo) {
+		planDeVuelo.setEstado(false);
+		planDeVueloDao.eliminarPlanDeVuelo(planDeVuelo);
+	}
 }

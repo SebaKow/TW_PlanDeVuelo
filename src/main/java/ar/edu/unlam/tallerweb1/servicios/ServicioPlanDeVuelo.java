@@ -8,4 +8,7 @@ public interface ServicioPlanDeVuelo {
 
 	List<PlanDeVuelo> listarPlanesDeVuelo();
 	PlanDeVuelo consultarPlanDeVueloId(Long id);
+	void agregarPlanDeVuelo(PlanDeVuelo planDeVuelo);
+	void editarPlanDeVuelo(PlanDeVuelo planDeVuelo);
+	void eliminarPlanDeVuelo(PlanDeVuelo planDeVuelo);
 }
