@@ -48,14 +48,16 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	private void validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
 		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
 		Calendar cal = Calendar.getInstance();
-		Date fechaVacia = new Date(1970,01,01,00,00, 00);
+		Date fechaVacia = new Date(1970,01,01);
+		fechaVacia.setHours(0);
+		fechaVacia.setMinutes(0);
 		cal.setTime(fechaVacia);
 		for (Vuelo vuelo2 : listaDeVuelosEnPlan) {
 			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo2.getDuracion().getHours());
 			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
 		}
 		
-		if(cal.get(Calendar.HOUR)>2) {
+		if(cal.get(Calendar.HOUR)>1 && cal.get(Calendar.MINUTE)>=1) {
 			throw new Exception("El tiempo de vuelo no puede superar las 8 horas");
 		}
 	}
