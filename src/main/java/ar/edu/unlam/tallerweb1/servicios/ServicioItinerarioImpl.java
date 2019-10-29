@@ -33,21 +33,39 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	}
 	
 	@Override
-	public void agregarItinerario(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
+	public void agregarItinerario(PlanDeVuelo plan, Vuelo vuelo) throws Exception  {
 		Itinerario itinerario = calcularHoraDespegueYAterrizaje(vuelo, plan);
 		validaciones(plan, vuelo);
+		
 		itinerarioDao.agregarItinerario(itinerario);
 	}
 	
 	private void validaciones(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		validarQueElOrigenSeaIgualAlDestinoAnterior(plan, vuelo);
-//		validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo
+//		validarQueElOrigenSeaIgualAlDestinoAnterior(plan, vuelo);
+		validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(plan,vuelo);
 	}
 	
+	private void validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
+		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
+		Calendar cal = Calendar.getInstance();
+		Date fechaVacia = new Date(1970,01,01,00,00, 00);
+		cal.setTime(fechaVacia);
+		for (Vuelo vuelo2 : listaDeVuelosEnPlan) {
+			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo2.getDuracion().getHours());
+			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
+		}
+		
+		if(cal.get(Calendar.HOUR)>2) {
+			throw new Exception("El tiempo de vuelo no puede superar las 8 horas");
+		}
+	}
+
 	private void validarQueElOrigenSeaIgualAlDestinoAnterior(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
 		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
-		if(!listaDeVuelosEnPlan.get(listaDeVuelosEnPlan.size() - 1).getDestino().equals(vuelo.getOrigen())) {
+		if(listaDeVuelosEnPlan != null) {
+			if(!listaDeVuelosEnPlan.get(listaDeVuelosEnPlan.size() - 1).getDestino().equals(vuelo.getOrigen())) {
 			throw new Exception("El origen del vuelo a agregar no coincide con el destino del vuelo anterior.");
+			}
 		}
 	}
 	
@@ -62,7 +80,6 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 			cal.setTime(fechaPlan);
 			Date fechaCalDespegue = cal.getTime();
 			itinerario.setDespegueEstimado(fechaCalDespegue);
-			
 			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo.getDuracion().getHours());
 			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo.getDuracion().getMinutes());
 			Date fechaCalAterrizaje = cal.getTime();

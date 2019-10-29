@@ -57,8 +57,7 @@
 			<div class="col-md-2"></div>
 		</div>
 		
-		<c:set var="cantidadVuelosAgregados" value="${cantidadVuelosAgregados}"/>
-		<c:if test="${cantidadVuelosAgregados < 6}">
+		
 			<div class="row mt-4 pt-5">
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
@@ -77,8 +76,11 @@
 				<div class="col-md-2"></div>
 			</div>
 		
+		<div class="alert alert-danger" role="alert">
+ 			 ${error}
+		</div>
 		<hr class="my-5" style="border-color:red;">
-		</c:if>
+	
 		
 		<!-- LISTA DE VUELOS DEL PLAN SELECCIONADO -->
 		<div class="text-center mt-4">
