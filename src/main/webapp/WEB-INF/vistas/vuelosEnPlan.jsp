@@ -57,31 +57,37 @@
 			<div class="col-md-2"></div>
 		</div>
 		
-		
-			<div class="row mt-4 pt-5">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
-					<h4>Seleccione los vuelos que desea agregar al plan:</h4>
-					<form action="agregarVueloAPlan" method="GET" class="text-center">
-						<select name="idVuelo" class="custom-select">
-							<c:forEach items="${listaDeVuelos}" var="vuelo">
-								<option value="${vuelo.id}">${vuelo.origen} - ${vuelo.destino}</option>
-							</c:forEach>
-						</select>
-						
-							<input type="hidden" name="idPlan" value="${planDeVuelo.id}">
-						<button class="btn btn-lg btn-primary float-right font-weight-bold my-3" type="submit">Agregar</button>
-					</form>
-				</div>
-				<div class="col-md-2"></div>
+		<div class="row mt-4 pt-5">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h4>Seleccione los vuelos que desea agregar al plan:</h4>
+				<form action="agregarVueloAPlan" method="GET" class="text-center">
+					<select name="idVuelo" class="custom-select">
+						<c:forEach items="${listaDeVuelos}" var="vuelo">
+							<option value="${vuelo.id}">${vuelo.origen} - ${vuelo.destino}</option>
+						</c:forEach>
+					</select>
+					
+						<input type="hidden" name="idPlan" value="${planDeVuelo.id}">
+					<button class="btn btn-lg btn-primary float-right font-weight-bold my-3" type="submit">Agregar</button>
+				</form>
 			</div>
-		
-		<div class="alert alert-danger" role="alert">
- 			 ${error}
+			<div class="col-md-2"></div>
 		</div>
+		
+		<!-- ALERTA DE ERROR -->
+		<div class="row mt-4">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<c:if test="${not empty error}">
+			   		<div class="alert alert-danger text-center" role="alert">${error}</div>
+			   	</c:if>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		
 		<hr class="my-5" style="border-color:red;">
 	
-		
 		<!-- LISTA DE VUELOS DEL PLAN SELECCIONADO -->
 		<div class="text-center mt-4">
 			<h2>Vuelos Agregados</h2>

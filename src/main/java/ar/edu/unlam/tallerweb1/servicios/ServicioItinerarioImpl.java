@@ -33,22 +33,40 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	}
 	
 	@Override
-	public void agregarItinerario(PlanDeVuelo plan, Vuelo vuelo) throws Exception  {
+	public void agregarItinerario(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
 		Itinerario itinerario = calcularHoraDespegueYAterrizaje(vuelo, plan);
 		validaciones(plan, vuelo);
-		
 		itinerarioDao.agregarItinerario(itinerario);
 	}
 	
 	private void validaciones(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-//		validarQueElOrigenSeaIgualAlDestinoAnterior(plan, vuelo);
-		validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(plan,vuelo);
+		validarQueNoSeAgregueElMismoVueloDosVeces(plan, vuelo);
+		validarQueElOrigenSeaIgualAlDestinoAnterior(plan, vuelo);
+		validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(plan, vuelo);
+	}
+	
+	private void validarQueNoSeAgregueElMismoVueloDosVeces(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
+		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
+		for (Vuelo vueloDeLista : listaDeVuelosEnPlan) {
+			if(vueloDeLista.getId() == vuelo.getId()) {
+				throw new Exception("No se puede agregar el mismo vuelo dos veces al mismo plan.");
+			}
+		}
+	}
+	
+	private void validarQueElOrigenSeaIgualAlDestinoAnterior(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
+		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
+		if(listaDeVuelosEnPlan.size() != 0) {
+			if(!listaDeVuelosEnPlan.get(listaDeVuelosEnPlan.size() - 1).getDestino().equals(vuelo.getOrigen())) {
+				throw new Exception("El origen del vuelo a agregar no coincide con el destino del vuelo anterior.");
+			}
+		}
 	}
 	
 	private void validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
 		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
 		Calendar cal = Calendar.getInstance();
-		Date fechaVacia = new Date(1970,01,01);
+		Date fechaVacia = new Date();
 		fechaVacia.setHours(0);
 		fechaVacia.setMinutes(0);
 		cal.setTime(fechaVacia);
@@ -57,17 +75,8 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
 		}
 		
-		if(cal.get(Calendar.HOUR)>1 && cal.get(Calendar.MINUTE)>=1) {
-			throw new Exception("El tiempo de vuelo no puede superar las 8 horas");
-		}
-	}
-
-	private void validarQueElOrigenSeaIgualAlDestinoAnterior(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
-		if(listaDeVuelosEnPlan != null) {
-			if(!listaDeVuelosEnPlan.get(listaDeVuelosEnPlan.size() - 1).getDestino().equals(vuelo.getOrigen())) {
-			throw new Exception("El origen del vuelo a agregar no coincide con el destino del vuelo anterior.");
-			}
+		if(cal.get(Calendar.HOUR) > 8 && cal.get(Calendar.MINUTE) > 0) {
+			throw new Exception("El tiempo de vuelo no puede superar las 8 horas.");
 		}
 	}
 	
@@ -82,6 +91,7 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 			cal.setTime(fechaPlan);
 			Date fechaCalDespegue = cal.getTime();
 			itinerario.setDespegueEstimado(fechaCalDespegue);
+			
 			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo.getDuracion().getHours());
 			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo.getDuracion().getMinutes());
 			Date fechaCalAterrizaje = cal.getTime();
