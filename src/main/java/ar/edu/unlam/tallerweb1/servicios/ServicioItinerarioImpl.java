@@ -74,8 +74,13 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo2.getDuracion().getHours());
 			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
 		}
+		cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+vuelo.getDuracion().getHours());
+		cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+vuelo.getDuracion().getMinutes());	
 		
-		if(cal.get(Calendar.HOUR) > 8 && cal.get(Calendar.MINUTE) > 0) {
+		if(cal.get(Calendar.HOUR) == 8 && cal.get(Calendar.MINUTE) > 0) {
+			throw new Exception("El tiempo de vuelo no puede superar las 8 horas.");
+		}
+		if(cal.get(Calendar.HOUR) > 8 ) {
 			throw new Exception("El tiempo de vuelo no puede superar las 8 horas.");
 		}
 	}
