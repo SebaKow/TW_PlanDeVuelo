@@ -99,6 +99,8 @@
 				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
+							<th scope="col">Fecha de salida</th>
+							<th scope="col">Fecha de llegada</th>
 							<th scope="col">Origen</th>
 							<th scope="col">Destino</th>
 							<th scope="col">Duración</th>
@@ -106,8 +108,11 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach items="${itinerariosAgregados}" var="itinerario">
+							<td>${itinerario.despegueEstimado}</td>
+							<td>${itinerario.aterrizajeEstimado}</td>
+						</c:forEach>
 						<c:forEach items="${vuelosAgregados}" var="vuelo">
-							<tr>
 							<td>${vuelo.origen}</td>
 							<td>${vuelo.destino}</td>
 							<td>${vuelo.duracionString}</td>
@@ -117,7 +122,7 @@
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>
-							</tr>
+							
 						</c:forEach>
 					</tbody>
 				</table>

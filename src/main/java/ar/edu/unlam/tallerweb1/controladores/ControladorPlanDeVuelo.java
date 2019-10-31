@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Itinerario;
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioItinerario;
@@ -96,7 +97,9 @@ public class ControladorPlanDeVuelo {
 		
 		List<Vuelo> vuelosAgregados = servicioItinerario.listarVuelosDePlan(idObtenido);
 		modelo.put("vuelosAgregados", vuelosAgregados);
-		modelo.put("cantidadVuelosAgregados", vuelosAgregados.size());
+		
+		List<Itinerario>listaDeItinerarios = servicioItinerario.listarItinerariosDePlan(idObtenido);
+		modelo.put("itinerariosAgregados",listaDeItinerarios);
 		
 		return new ModelAndView("vuelosEnPlan", modelo);
 	}
