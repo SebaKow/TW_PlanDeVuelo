@@ -113,6 +113,7 @@
 							<td>${itinerario.aterrizajeEstimado}</td>
 						</c:forEach>
 						<c:forEach items="${vuelosAgregados}" var="vuelo">
+						    <br>
 							<td>${vuelo.origen}</td>
 							<td>${vuelo.destino}</td>
 							<td>${vuelo.duracionString}</td>

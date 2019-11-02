@@ -40,7 +40,7 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	}
 	
 	private void validaciones(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		validarQueNoSeAgregueElMismoVueloDosVeces(plan, vuelo);
+//		validarQueNoSeAgregueElMismoVueloDosVeces(plan, vuelo);
 		validarQueElOrigenSeaIgualAlDestinoAnterior(plan, vuelo);
 		validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(plan, vuelo);
 		validarQueElVueloAAgregarNoSupereLas15HorasDeTSV(plan,vuelo);
@@ -61,29 +61,29 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 		cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+vuelo.getDuracion().getMinutes());
 		cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
 		
-		if(listaDeVuelosEnPlan.size()==0){
-			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
-		}
 		if(listaDeVuelosEnPlan.size()==1){
-			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+1);
+			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
 		}
 		if(listaDeVuelosEnPlan.size()==2){
 			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+1);
-			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
 		}
 		if(listaDeVuelosEnPlan.size()==3){
-			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+2);
+			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+1);
 			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
 		}
 		if(listaDeVuelosEnPlan.size()==4){
+			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+2);
+			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
+		}
+		if(listaDeVuelosEnPlan.size()==5){
 			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+3);
 			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
 		}
-		if(cal.get(Calendar.HOUR) == 15 && cal.get(Calendar.MINUTE) > 0) {
-			throw new Exception("El tiempo de servicio no puede superar las 15 horas.");
+		if(cal.get(Calendar.HOUR) == 13 && cal.get(Calendar.MINUTE) > 0) {
+			throw new Exception("El tiempo de servicio no puede superar las 13 horas.");
 		}
-		if(cal.get(Calendar.HOUR) > 15) {
-			throw new Exception("El tiempo de servicio no puede superar las 15 horas.");
+		if(cal.get(Calendar.HOUR) > 13) {
+			throw new Exception("El tiempo de servicio no puede superar las 13 horas.");
 		}
 		
 	}

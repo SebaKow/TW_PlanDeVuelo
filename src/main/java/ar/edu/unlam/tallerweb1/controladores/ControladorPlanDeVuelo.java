@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -87,7 +88,9 @@ public class ControladorPlanDeVuelo {
 	
 	// PLAN DE VUELO SELECCIONADO
 	@RequestMapping(path = "/plandevueloseleccionado", method = RequestMethod.GET)
-	public ModelAndView irAPlanDeVueloSeleccionado(@RequestParam(value = "idPlanDeVuelo") Long idObtenido) {
+	public ModelAndView irAPlanDeVueloSeleccionado(
+			@RequestParam(value = "idPlanDeVuelo") Long idObtenido,
+			@RequestParam(value="error", required = false)String error) {
 		PlanDeVuelo planDeVuelo = servicioPlanDeVuelo.consultarPlanDeVueloId(idObtenido);
 		ModelMap modelo = new ModelMap();
 		modelo.put("planDeVuelo", planDeVuelo);
@@ -100,6 +103,7 @@ public class ControladorPlanDeVuelo {
 		
 		List<Itinerario>listaDeItinerarios = servicioItinerario.listarItinerariosDePlan(idObtenido);
 		modelo.put("itinerariosAgregados",listaDeItinerarios);
+		modelo.put("error",error);
 		
 		return new ModelAndView("vuelosEnPlan", modelo);
 	}
@@ -110,12 +114,13 @@ public class ControladorPlanDeVuelo {
 		Vuelo vuelo = servicioVuelo.consultarVueloId(idVuelo);
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
 		ModelMap modelo = new ModelMap();
+		String error = null;
 		try {
 			servicioItinerario.agregarItinerario(plan, vuelo);
 		} catch (Exception e) {
-			String error = e.getMessage();
-			modelo.put("error", error);
+			 error = e.getMessage();
 		}
+		modelo.put("error", error);
 		
 		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo=" + idPlan, modelo);
 	}
