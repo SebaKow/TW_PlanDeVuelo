@@ -60,11 +60,11 @@
 		<div class="row mt-4 pt-5">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<h4>Seleccione los vuelos que desea agregar al plan:</h4>
-				<form action="agregarVueloAPlan" method="GET" class="text-center">
-					<select name="idVuelo" class="custom-select">
-						<c:forEach items="${listaDeVuelos}" var="vuelo">
-							<option value="${vuelo.id}">${vuelo.origen} - ${vuelo.destino}</option>
+				<h4>Seleccione los tripulantes que desea agregar al plan:</h4>
+				<form action="agregarTripulanteAPlan" method="GET" class="text-center">
+					<select name="idTripulante" class="custom-select">
+						<c:forEach items="${listaDeTripulantes}" var="tripulante">
+							<option value="${tripulante.id}">${tripulante.nombre} ${tripulante.apellido}</option>
 						</c:forEach>
 					</select>
 					
@@ -88,9 +88,9 @@
 		
 		<hr class="my-5" style="border-color:red;">
 	
-		<!-- LISTA DE VUELOS DEL PLAN SELECCIONADO -->
+		<!-- LISTA DE TRIPULANTES DEL PLAN SELECCIONADO -->
 		<div class="text-center mt-4">
-			<h2>Vuelos Agregados</h2>
+			<h2>Tripulantes Agregados</h2>
 		</div>
 
 		<div class="row mt-4">
@@ -99,25 +99,19 @@
 				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">Fecha de salida</th>
-							<th scope="col">Fecha de llegada</th>
-							<th scope="col">Origen</th>
-							<th scope="col">Destino</th>
-							<th scope="col">Duración</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">DNI</th>
 							<th scope="col">Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${itinerariosAgregados}" var="itinerario">
-							<td>${itinerario.despegueEstimado}</td>
-							<td>${itinerario.aterrizajeEstimado}</td>
-						</c:forEach>
-						<c:forEach items="${vuelosAgregados}" var="vuelo">
-							<td>${vuelo.origen}</td>
-							<td>${vuelo.destino}</td>
-							<td>${vuelo.duracionString}</td>
-							<td><form action="eliminarVueloDePlan" method="GET">
-								<input type="hidden" name="idVuelo" value="${vuelo.id}" id="id">
+						<c:forEach items="${tripulantesAgregados}" var="vuelo">
+							<td>${tripulante.nombre}</td>
+							<td>${tripulante.apellido}</td>
+							<td>${tripulante.dni}</td>
+							<td><form action="eliminarTripulanteDePlan" method="GET">
+								<input type="hidden" name="idTripulante" value="${tripulante.id}" id="id">
 								<input type="hidden" name="idPlan" value="${planDeVuelo.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
@@ -125,10 +119,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-					<form action="plandevueloseleccionado2" method="GET">
-						<input type="hidden" name="idPlanDeVuelo" id="idPlanDeVuelo" value="${planDeVuelo.id}">
-						<button class="btn btn-lg btn-primary float-right font-weight-bold mb-2" type="submit">Siguiente</button>
-					</form>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="#!" role="button">Finalizar</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

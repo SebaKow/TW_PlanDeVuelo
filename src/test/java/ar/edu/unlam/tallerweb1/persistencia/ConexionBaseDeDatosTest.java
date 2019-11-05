@@ -14,6 +14,4 @@ public class ConexionBaseDeDatosTest extends SpringTest{
     public void pruebaConexion(){
         assertThat(getSession().isConnected()).isTrue();
     }
-	
-	
 }

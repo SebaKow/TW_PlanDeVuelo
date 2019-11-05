@@ -21,6 +21,7 @@ public class TripulanteDaoImpl implements TripulanteDao {
 		List<Tripulante> listaDeTripulantes = sessionFactory.getCurrentSession()
 				.createCriteria(Tripulante.class)
 				.add(Restrictions.eq("estado", true))
+				.add(Restrictions.eq("esAdmin", false))
 				.list();
 		
 		return listaDeTripulantes;

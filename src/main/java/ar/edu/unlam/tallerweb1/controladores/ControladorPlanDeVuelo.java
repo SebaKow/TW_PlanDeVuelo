@@ -6,7 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Itinerario;
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
+import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioItinerario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPlanDeVuelo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
 
 @Controller
@@ -30,6 +31,9 @@ public class ControladorPlanDeVuelo {
 	
 	@Inject
 	private ServicioVuelo servicioVuelo;
+	
+	@Inject
+	private ServicioTripulante servicioTripulante;
 	
 	@Inject
 	private ServicioItinerario servicioItinerario;
@@ -63,7 +67,7 @@ public class ControladorPlanDeVuelo {
 	public ModelAndView modificarPlanDeVuelo(@ModelAttribute("planDeVuelo") PlanDeVuelo planDeVuelo, HttpServletRequest request) {
 		PlanDeVuelo planDeVueloBuscado = servicioPlanDeVuelo.consultarPlanDeVueloId(planDeVuelo.getId());
 		ModelMap modelo = new ModelMap();
-		modelo.put("plandevuelo", planDeVueloBuscado);
+		modelo.put("planDeVuelo", planDeVueloBuscado);
 		return new ModelAndView("editarPlanDeVuelo", modelo);
 	}
 	
@@ -86,11 +90,11 @@ public class ControladorPlanDeVuelo {
 		return new ModelAndView("redirect:/planesDeVuelo");
 	}
 	
-	// PLAN DE VUELO SELECCIONADO
+	// PLAN DE VUELO SELECCIONADO PARA VUELOS
 	@RequestMapping(path = "/plandevueloseleccionado", method = RequestMethod.GET)
 	public ModelAndView irAPlanDeVueloSeleccionado(
-			@RequestParam(value = "idPlanDeVuelo") Long idObtenido,
-			@RequestParam(value="error", required = false)String error) {
+			@RequestParam(value = "idPlanDeVuelo") Long idObtenido, 
+			@RequestParam(value = "error", required = false) String error) {
 		PlanDeVuelo planDeVuelo = servicioPlanDeVuelo.consultarPlanDeVueloId(idObtenido);
 		ModelMap modelo = new ModelMap();
 		modelo.put("planDeVuelo", planDeVuelo);
@@ -101,11 +105,26 @@ public class ControladorPlanDeVuelo {
 		List<Vuelo> vuelosAgregados = servicioItinerario.listarVuelosDePlan(idObtenido);
 		modelo.put("vuelosAgregados", vuelosAgregados);
 		
-		List<Itinerario>listaDeItinerarios = servicioItinerario.listarItinerariosDePlan(idObtenido);
-		modelo.put("itinerariosAgregados",listaDeItinerarios);
-		modelo.put("error",error);
+		List<Itinerario> listaDeItinerarios = servicioItinerario.listarItinerariosDePlan(idObtenido);
+		modelo.put("itinerariosAgregados", listaDeItinerarios);
 		
+		modelo.put("error", error);
 		return new ModelAndView("vuelosEnPlan", modelo);
+	}
+	
+	// PLAN DE VUELO SELECCIONADO PARA TRIPULANTES
+	@RequestMapping(path = "/plandevueloseleccionado2", method = RequestMethod.GET)
+	public ModelAndView irAPlanDeVueloSeleccionado2(@RequestParam(value = "idPlanDeVuelo") Long idObtenido, 
+			@RequestParam(value = "error", required = false) String error) {
+		PlanDeVuelo planDeVuelo = servicioPlanDeVuelo.consultarPlanDeVueloId(idObtenido);
+		ModelMap modelo = new ModelMap();
+		modelo.put("planDeVuelo", planDeVuelo);
+		
+		List<Tripulante> listaDeTripulantes = servicioTripulante.listarTripulantes();
+		modelo.put("listaDeTripulantes", listaDeTripulantes);
+		
+		modelo.put("error", error);
+		return new ModelAndView("tripulantesEnPlan", modelo);
 	}
 	
 	// AGREGAR VUELO A PLAN
@@ -120,8 +139,8 @@ public class ControladorPlanDeVuelo {
 		} catch (Exception e) {
 			 error = e.getMessage();
 		}
-		modelo.put("error", error);
 		
+		modelo.put("error", error);
 		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo=" + idPlan, modelo);
 	}
 	

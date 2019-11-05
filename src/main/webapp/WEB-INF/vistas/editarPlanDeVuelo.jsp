@@ -59,12 +59,12 @@
 				  <tbody>
 				    <form action="editarPlanDeVuelo" method= "POST" modelAttribute="planDeVuelo">
 				    <tr>
-				      <td><input name="descripcion" type="text" id="descripcion" class="form-control" value="${plandevuelo.descripcion}" required autofocus></td>
-				      <td><input name="fechaString" type="text" id="fecha" class="form-control" value="${plandevuelo.fechaString}" required></td>
+				      <td><input name="descripcion" type="text" id="descripcion" class="form-control" value="${planDeVuelo.descripcion}" required autofocus></td>
+				      <td><input name="fechaString" type="text" id="fecha" class="form-control" value="${planDeVuelo.fechaString}" required></td>
 				    </tr>
 				  </tbody>
 				</table>
-					<input name="id" type="hidden" id="id" value="${plandevuelo.id}">
+					<input name="id" type="hidden" id="id" value="${planDeVuelo.id}">
 					<button class="btn btn-lg btn-primary float-right font-weight-bold mb-2" type="submit">Editar</button>
 				</form>
 			</div>

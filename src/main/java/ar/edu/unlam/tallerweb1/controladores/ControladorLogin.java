@@ -24,7 +24,6 @@ public class ControladorLogin {
 	
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
-
 		ModelMap modelo = new ModelMap();
 		Tripulante tripulante = new Tripulante();
 		modelo.put("tripulante", tripulante);
@@ -38,7 +37,6 @@ public class ControladorLogin {
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
 	public ModelAndView validarLogin(@ModelAttribute("tripulante") Tripulante tripulante, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
-		
 		/* INVOCA EL MÉTODO CONSULTARTRIPULANTE DEL SERVICIO Y HACE UN REDIRECT A LA URL /HOME, ESTO ES, EN LUGAR DE
 	       ENVIAR A UNA VISTA HACE UNA LLAMADA A OTRO ACTION A TRAVÉS DE LA URL. */
 		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulante(tripulante);

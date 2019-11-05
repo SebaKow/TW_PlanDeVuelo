@@ -60,22 +60,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${listaPlanesDeVuelo}" var="plandevuelo">
+						<c:forEach items="${listaPlanesDeVuelo}" var="planDeVuelo">
 							<tr>
-							<td>${plandevuelo.descripcion}</td>
-							<td>${plandevuelo.fechaString}</td>
+							<td>${planDeVuelo.descripcion}</td>
+							<td>${planDeVuelo.fechaString}</td>
 							<td><form action="plandevueloseleccionado" method="GET">
-								<input type="hidden" name="idPlanDeVuelo" id="idPlanDeVuelo" value="${plandevuelo.id}">
+								<input type="hidden" name="idPlanDeVuelo" id="idPlanDeVuelo" value="${planDeVuelo.id}">
 								<button class="btn btn-lg btn-primary font-weight-bold my-2" type="submit">Ver</button>
 								</form>
 							</td>
 							<td><form action="modificarPlanDeVuelo" method="POST" modelAttribute="planDeVuelo">
-								<input type="hidden" name="id" id="id" value="${plandevuelo.id}">
+								<input type="hidden" name="id" id="id" value="${planDeVuelo.id}">
 								<button class="btn btn-lg btn-primary font-weight-bold my-2" type="submit">Editar</button>
 								</form>
 							</td>
 							<td><form action="eliminarPlanDeVuelo" method="GET">
-								<input type="hidden" name="id" id="id" value="${plandevuelo.id}">
+								<input type="hidden" name="id" id="id" value="${planDeVuelo.id}">
 								<button class="btn btn-lg btn-primary font-weight-bold my-2" type="submit">Eliminar</button>
 								</form>
 							</td>

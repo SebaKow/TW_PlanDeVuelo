@@ -40,61 +40,9 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	}
 	
 	private void validaciones(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-//		validarQueNoSeAgregueElMismoVueloDosVeces(plan, vuelo);
 		validarQueElOrigenSeaIgualAlDestinoAnterior(plan, vuelo);
-		validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(plan, vuelo);
-		validarQueElVueloAAgregarNoSupereLas15HorasDeTSV(plan,vuelo);
-	}
-	
-	private void validarQueElVueloAAgregarNoSupereLas15HorasDeTSV(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
-		Calendar cal = Calendar.getInstance();
-		Date fechaVacia = new Date();
-		fechaVacia.setHours(0);
-		fechaVacia.setMinutes(0);
-		cal.setTime(fechaVacia);
-		for (Vuelo vuelo2 : listaDeVuelosEnPlan) {
-			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo2.getDuracion().getHours());
-			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
-		}
-		cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+vuelo.getDuracion().getHours()+1);
-		cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+vuelo.getDuracion().getMinutes());
-		cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
-		
-		if(listaDeVuelosEnPlan.size()==1){
-			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
-		}
-		if(listaDeVuelosEnPlan.size()==2){
-			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+1);
-		}
-		if(listaDeVuelosEnPlan.size()==3){
-			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+1);
-			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
-		}
-		if(listaDeVuelosEnPlan.size()==4){
-			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+2);
-			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
-		}
-		if(listaDeVuelosEnPlan.size()==5){
-			cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+3);
-			cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+30);
-		}
-		if(cal.get(Calendar.HOUR) == 13 && cal.get(Calendar.MINUTE) > 0) {
-			throw new Exception("El tiempo de servicio no puede superar las 13 horas.");
-		}
-		if(cal.get(Calendar.HOUR) > 13) {
-			throw new Exception("El tiempo de servicio no puede superar las 13 horas.");
-		}
-		
-	}
-
-	private void validarQueNoSeAgregueElMismoVueloDosVeces(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
-		for (Vuelo vueloDeLista : listaDeVuelosEnPlan) {
-			if(vueloDeLista.getId() == vuelo.getId()) {
-				throw new Exception("No se puede agregar el mismo vuelo dos veces al mismo plan.");
-			}
-		}
+		validarQueElVueloAAgregarNoSupereLas8HorasDeTV(plan, vuelo);
+		validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(plan,vuelo);
 	}
 	
 	private void validarQueElOrigenSeaIgualAlDestinoAnterior(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
@@ -106,7 +54,7 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 		}
 	}
 	
-	private void validarQueElVueloAAgregarNoSupereLas8HorasDeTiempoDeVuelo(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
+	private void validarQueElVueloAAgregarNoSupereLas8HorasDeTV(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
 		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
 		Calendar cal = Calendar.getInstance();
 		Date fechaVacia = new Date();
@@ -117,14 +65,62 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo2.getDuracion().getHours());
 			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
 		}
-		cal.set(Calendar.HOUR,cal.get(Calendar.HOUR)+vuelo.getDuracion().getHours());
-		cal.set(Calendar.MINUTE,cal.get(Calendar.MINUTE)+vuelo.getDuracion().getMinutes());	
+		cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo.getDuracion().getHours());
+		cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo.getDuracion().getMinutes());	
 		
 		if(cal.get(Calendar.HOUR) == 8 && cal.get(Calendar.MINUTE) > 0) {
 			throw new Exception("El tiempo de vuelo no puede superar las 8 horas.");
 		}
+		
 		if(cal.get(Calendar.HOUR) > 8 ) {
 			throw new Exception("El tiempo de vuelo no puede superar las 8 horas.");
+		}
+	}
+	
+	private void validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
+		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
+		Calendar cal = Calendar.getInstance();
+		Date fechaVacia = new Date();
+		fechaVacia.setHours(0);
+		fechaVacia.setMinutes(0);
+		cal.setTime(fechaVacia);
+		for (Vuelo vuelo2 : listaDeVuelosEnPlan) {
+			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo2.getDuracion().getHours());
+			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
+		}
+		cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo.getDuracion().getHours() + 1);
+		cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo.getDuracion().getMinutes());
+		cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
+		
+		if(listaDeVuelosEnPlan.size() == 1){
+			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
+		}
+		
+		if(listaDeVuelosEnPlan.size() == 2){
+			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + 1);
+		}
+		
+		if(listaDeVuelosEnPlan.size() == 3){
+			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + 1);
+			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
+		}
+		
+		if(listaDeVuelosEnPlan.size() == 4){
+			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + 2);
+			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
+		}
+		
+		if(listaDeVuelosEnPlan.size() == 5){
+			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + 3);
+			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
+		}
+		
+		if(cal.get(Calendar.HOUR) == 13 && cal.get(Calendar.MINUTE) > 0) {
+			throw new Exception("El tiempo de servicio no puede superar las 13 horas.");
+		}
+		
+		if(cal.get(Calendar.HOUR) > 13) {
+			throw new Exception("El tiempo de servicio no puede superar las 13 horas.");
 		}
 	}
 	

@@ -1,22 +1,17 @@
 package ar.edu.unlam.tallerweb1;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;import java.util.Enumeration;
+import static org.mockito.Mockito.*;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
 
-import org.hibernate.type.AnyType;
 import org.junit.Test;
-import org.mockito.BDDMockito.Then;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
-import ar.edu.unlam.tallerweb1.controladores.ControladorTripulante;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
 
@@ -30,10 +25,9 @@ public class TestLoginMock extends SpringTest{
 		when(servicioTripulanteMock.consultarTripulante(any(Tripulante.class))).thenReturn(tripulanteMock);
 		HttpServletRequest httpMock = mock(HttpServletRequest.class);
 		when(httpMock.getSession()).thenReturn(httpSessionMock);
-		ControladorLogin controladorLogin= new ControladorLogin();
+		ControladorLogin controladorLogin = new ControladorLogin();
 		controladorLogin.setServicioTripulante(servicioTripulanteMock);
 		tripulanteMock.setEsAdmin(true);
-		
 		
 		ModelAndView vista = controladorLogin.validarLogin(tripulanteMock, httpMock);
 		assertThat(vista.getViewName()).isEqualTo("redirect:/homeAdmin");
