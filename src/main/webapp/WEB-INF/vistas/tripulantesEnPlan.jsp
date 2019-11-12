@@ -106,7 +106,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${tripulantesAgregados}" var="vuelo">
+						<c:forEach items="${tripulantesAgregados}" var="tripulante">
 							<tr>
 							<td>${tripulante.nombre}</td>
 							<td>${tripulante.apellido}</td>

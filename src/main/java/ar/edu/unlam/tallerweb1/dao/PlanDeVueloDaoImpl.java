@@ -52,8 +52,20 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 		sessionFactory.getCurrentSession().saveOrUpdate(planDeVuelo);
 	}
 	
-//	@Override
-//	public void agregarTripulanteAPlan(Tripulante tripulante, PlanDeVuelo plan) {
-//		
-//	}
+	@Override
+	public void agregarTripulanteAPlan(PlanDeVuelo plan) {
+		sessionFactory.getCurrentSession().saveOrUpdate(plan);
+		
+	}
+
+	@Override
+	public List<Tripulante> listarTripulantesEnPlan(Long idPlan) {
+		List<Tripulante> listaDeTripulantesEnPlan = sessionFactory.getCurrentSession()
+				.createCriteria(Tripulante.class)
+				.createAlias("planesDeVuelo","planesDeVueloJoin")
+				.add(Restrictions.eq("planesDeVueloJoin.id", idPlan))
+				.list();
+		
+		return listaDeTripulantesEnPlan;
+	}
 }

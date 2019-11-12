@@ -44,8 +44,14 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		planDeVueloDao.eliminarPlanDeVuelo(planDeVuelo);
 	}
 	
-//	@Override
-//	public void agregarTripulanteAPlan(Tripulante tripulante, PlanDeVuelo plan) {
-//		planDeVueloDao.agregarTripulanteAPlan(tripulante, plan);
-//	}
+	@Override
+	public void agregarTripulanteAPlan(List<Tripulante> tripulantesDelPlan, PlanDeVuelo plan) {
+		plan.setTripulantes(tripulantesDelPlan);
+		planDeVueloDao.agregarTripulanteAPlan(plan);
+	}
+
+	@Override
+	public List<Tripulante> listarTripulantesEnPlan(Long idPlan) {
+		return planDeVueloDao.listarTripulantesEnPlan(idPlan);
+	}
 }

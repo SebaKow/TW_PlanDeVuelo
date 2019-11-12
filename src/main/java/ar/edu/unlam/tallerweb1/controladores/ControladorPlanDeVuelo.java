@@ -122,7 +122,8 @@ public class ControladorPlanDeVuelo {
 		
 		List<Tripulante> listaDeTripulantes = servicioTripulante.listarTripulantes();
 		modelo.put("listaDeTripulantes", listaDeTripulantes);
-		
+		List<Tripulante> tripulantesAgregados = servicioPlanDeVuelo.listarTripulantesEnPlan(idObtenido);
+		modelo.put("tripulantesAgregados",tripulantesAgregados);
 		modelo.put("error", error);
 		return new ModelAndView("tripulantesEnPlan", modelo);
 	}
@@ -149,8 +150,15 @@ public class ControladorPlanDeVuelo {
 	public ModelAndView agregarTripulanteAPlan(@RequestParam(value = "idTripulante") Long idTripulante, @RequestParam(value = "idPlan") Long idPlan) {
 		Tripulante tripulante = servicioTripulante.consultarTripulanteId(idTripulante);
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
-//		servicioPlanDeVuelo.agregarTripulanteAPlan(tripulante, plan);
-		return new ModelAndView();
+		ModelMap modelo = new ModelMap();
+		
+		List<Tripulante> tripulantesDelPlan = plan.getTripulantes();
+		tripulantesDelPlan.add(tripulante);
+		servicioPlanDeVuelo.agregarTripulanteAPlan(tripulantesDelPlan, plan);
+		
+		
+		
+		return new ModelAndView("redirect:/plandevueloseleccionado2?idPlanDeVuelo=" + idPlan);
 	}
 	
 	// ELIMINAR VUELO DE PLAN

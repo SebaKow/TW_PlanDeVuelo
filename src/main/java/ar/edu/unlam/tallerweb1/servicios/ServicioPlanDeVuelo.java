@@ -12,5 +12,6 @@ public interface ServicioPlanDeVuelo {
 	void agregarPlanDeVuelo(PlanDeVuelo planDeVuelo);
 	void editarPlanDeVuelo(PlanDeVuelo planDeVuelo);
 	void eliminarPlanDeVuelo(PlanDeVuelo planDeVuelo);
-//	void agregarTripulanteAPlan(Tripulante tripulante, PlanDeVuelo plan);
+	void agregarTripulanteAPlan(List<Tripulante> tripulantesDelPlan, PlanDeVuelo plan);
+	List<Tripulante> listarTripulantesEnPlan(Long idPlan);
 }
