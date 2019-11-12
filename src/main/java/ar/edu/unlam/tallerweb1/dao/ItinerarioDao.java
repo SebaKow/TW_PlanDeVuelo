@@ -8,7 +8,6 @@ import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 public interface ItinerarioDao {
 
-//	Boolean agregarVuelo(Vuelo vuelo);
 	List<Vuelo> listarVuelosDePlan(Long idObtenido);
 	List<Itinerario> listarItinerariosDePlan(Long id);
 	void agregarItinerario(Itinerario itinerario);

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.PlanDeVueloDao;
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
+import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 
 @Service("ServicioPlanDeVuelo")
 @Transactional
@@ -42,4 +43,9 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		planDeVuelo.setEstado(false);
 		planDeVueloDao.eliminarPlanDeVuelo(planDeVuelo);
 	}
+	
+//	@Override
+//	public void agregarTripulanteAPlan(Tripulante tripulante, PlanDeVuelo plan) {
+//		planDeVueloDao.agregarTripulanteAPlan(tripulante, plan);
+//	}
 }

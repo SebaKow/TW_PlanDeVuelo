@@ -18,13 +18,6 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	
 	@Inject
 	SessionFactory sessionFactory;
-	
-//	@Override
-//	public Boolean agregarVuelo(Vuelo vuelo) {
-//		Session session = sessionFactory.getCurrentSession();
-//		Boolean seGuardo = (Boolean) session.save(vuelo);
-//		return seGuardo;
-//	}
 
 	@Override
 	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {

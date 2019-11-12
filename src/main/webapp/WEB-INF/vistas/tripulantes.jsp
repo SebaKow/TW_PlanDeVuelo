@@ -70,13 +70,13 @@
 							<td>${tripulante.email}</td>
 							<td>${tripulante.password}</td>
 							<td><form action="modificarTripulante" method="POST" modelAttribute="tripulante">
-								<input type="hidden" name="id" value="${tripulante.id}" id="id">
+								<input type="hidden" name="id" id="id" value="${tripulante.id}">
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
 								</form>
 							</td>
-							<td><form action="eliminarTripulante" method="GET">
+							<td><form action="eliminarTripulante" method="GET" id="search_form">
 								<input type="hidden" name="id" id="id" value="${tripulante.id}">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
+								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="button" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
 								</form>
 							</td>
 							</tr>
@@ -87,6 +87,27 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
+	</div>
+	
+	<!-- ALERTA PARA CONFIRMAR DELETE -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Tripulante</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	¿Está seguro que desea eliminar este tripulante?
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger font-weight-bold" data-dismiss="modal">Cancelar</button>
+	        <button type="submit" class="btn btn-success font-weight-bold" form="search_form">Aceptar</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
    	
 	<script src="js/jquery-3.4.1.min.js"></script>

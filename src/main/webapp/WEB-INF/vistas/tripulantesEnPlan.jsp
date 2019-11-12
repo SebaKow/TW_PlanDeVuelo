@@ -107,6 +107,7 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${tripulantesAgregados}" var="vuelo">
+							<tr>
 							<td>${tripulante.nombre}</td>
 							<td>${tripulante.apellido}</td>
 							<td>${tripulante.dni}</td>
@@ -116,6 +117,7 @@
 								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
 								</form>
 							</td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>

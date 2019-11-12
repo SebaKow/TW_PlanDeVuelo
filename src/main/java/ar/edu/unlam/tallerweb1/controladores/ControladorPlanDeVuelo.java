@@ -144,6 +144,15 @@ public class ControladorPlanDeVuelo {
 		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo=" + idPlan, modelo);
 	}
 	
+	// AGREGAR TRIPULANTE A PLAN
+	@RequestMapping(path = "/agregarTripulanteAPlan", method = RequestMethod.GET)
+	public ModelAndView agregarTripulanteAPlan(@RequestParam(value = "idTripulante") Long idTripulante, @RequestParam(value = "idPlan") Long idPlan) {
+		Tripulante tripulante = servicioTripulante.consultarTripulanteId(idTripulante);
+		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
+//		servicioPlanDeVuelo.agregarTripulanteAPlan(tripulante, plan);
+		return new ModelAndView();
+	}
+	
 	// ELIMINAR VUELO DE PLAN
 	@RequestMapping(path = "/eliminarVueloDePlan", method = RequestMethod.GET)
 	public ModelAndView eliminarVueloDePlan(@RequestParam(value = "idVuelo") Long idVuelo, @RequestParam(value = "idPlan") Long idPlan) {

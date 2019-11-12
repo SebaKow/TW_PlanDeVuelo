@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
+import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 
 @Repository("planDeVueloDao")
 public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
@@ -50,4 +51,9 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 	public void eliminarPlanDeVuelo(PlanDeVuelo planDeVuelo) {
 		sessionFactory.getCurrentSession().saveOrUpdate(planDeVuelo);
 	}
+	
+//	@Override
+//	public void agregarTripulanteAPlan(Tripulante tripulante, PlanDeVuelo plan) {
+//		
+//	}
 }

@@ -42,7 +42,7 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	private void validaciones(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
 		validarQueElOrigenSeaIgualAlDestinoAnterior(plan, vuelo);
 		validarQueElVueloAAgregarNoSupereLas8HorasDeTV(plan, vuelo);
-		validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(plan,vuelo);
+		validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(plan, vuelo);
 	}
 	
 	private void validarQueElOrigenSeaIgualAlDestinoAnterior(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
@@ -161,7 +161,7 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 			Date fechaCalAterrizaje = cal.getTime();
 			itinerario.setAterrizajeEstimado(fechaCalAterrizaje);
 		} else {
-			throw new Exception("No se puede agregar más de 6 vuelos a un plan.");
+			throw new Exception("No se permite agregar una cantidad mayor a 6 vuelos.");
 		}
 		
 		itinerario.setPlandevuelo(plan);
