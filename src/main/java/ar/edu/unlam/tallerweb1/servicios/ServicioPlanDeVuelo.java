@@ -12,6 +12,6 @@ public interface ServicioPlanDeVuelo {
 	void agregarPlanDeVuelo(PlanDeVuelo planDeVuelo);
 	void editarPlanDeVuelo(PlanDeVuelo planDeVuelo);
 	void eliminarPlanDeVuelo(PlanDeVuelo planDeVuelo);
-	void agregarTripulanteAPlan(List<Tripulante> tripulantesDelPlan, PlanDeVuelo plan);
+	void agregarTripulanteAPlan(Tripulante tripulante, PlanDeVuelo plan) throws Exception;
 	List<Tripulante> listarTripulantesEnPlan(PlanDeVuelo plan);
 }

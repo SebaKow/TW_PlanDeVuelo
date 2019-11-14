@@ -151,14 +151,18 @@ public class ControladorPlanDeVuelo {
 		Tripulante tripulante = servicioTripulante.consultarTripulanteId(idTripulante);
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
 		ModelMap modelo = new ModelMap();
+		String error=null;
+		try {
+			servicioPlanDeVuelo.agregarTripulanteAPlan(tripulante, plan);
+		} catch (Exception e) {
+			error=e.getMessage();
+		}
+
+		modelo.put("error", error);
 		
-		List<Tripulante> tripulantesDelPlan = plan.getTripulantes();
-		tripulantesDelPlan.add(tripulante);
-		servicioPlanDeVuelo.agregarTripulanteAPlan(tripulantesDelPlan, plan);
 		
 		
-		
-		return new ModelAndView("redirect:/plandevueloseleccionado2?idPlanDeVuelo=" + idPlan);
+		return new ModelAndView("redirect:/plandevueloseleccionado2?idPlanDeVuelo=" + idPlan,modelo);
 	}
 	
 	// ELIMINAR VUELO DE PLAN
