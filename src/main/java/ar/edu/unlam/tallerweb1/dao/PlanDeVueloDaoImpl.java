@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -59,11 +60,12 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 	}
 
 	@Override
-	public List<Tripulante> listarTripulantesEnPlan(Long idPlan) {
-		List<Tripulante> listaDeTripulantesEnPlan = sessionFactory.getCurrentSession()
+	public List<Tripulante> listarTripulantesEnPlan(PlanDeVuelo plan) {
+		List<Tripulante> listaDeTripulantesEnPlan =  sessionFactory.getCurrentSession()
 				.createCriteria(Tripulante.class)
 				.createAlias("planesDeVuelo","planesDeVueloJoin")
-				.add(Restrictions.eq("planesDeVueloJoin.id", idPlan))
+				.add(Restrictions.eq("planesDeVueloJoin.id", plan.getId()))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)  
 				.list();
 		
 		return listaDeTripulantesEnPlan;

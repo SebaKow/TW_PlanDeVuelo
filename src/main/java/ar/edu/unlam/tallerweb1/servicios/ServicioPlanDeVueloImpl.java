@@ -51,7 +51,7 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 	}
 
 	@Override
-	public List<Tripulante> listarTripulantesEnPlan(Long idPlan) {
-		return planDeVueloDao.listarTripulantesEnPlan(idPlan);
+	public List<Tripulante> listarTripulantesEnPlan(PlanDeVuelo plan) {
+		return planDeVueloDao.listarTripulantesEnPlan(plan);
 	}
 }

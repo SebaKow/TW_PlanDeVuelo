@@ -13,5 +13,5 @@ public interface PlanDeVueloDao {
 	void editarPlanDeVuelo(PlanDeVuelo planDeVuelo);
 	void eliminarPlanDeVuelo(PlanDeVuelo planDeVuelo);
 	void agregarTripulanteAPlan(PlanDeVuelo plan);
-	List<Tripulante> listarTripulantesEnPlan(Long idPlan);
+	List<Tripulante> listarTripulantesEnPlan(PlanDeVuelo plan);
 }
