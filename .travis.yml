@@ -3,5 +3,5 @@ jdk:
   - oraclejdk8
 install: mvn install
 notifications:
-  slack: taller-web-1-unlam:HCycIRl2pDHH9YAHltMIzk1g
+  slack: taller-web-1-unlam:0k6Q7CEzIBYX4w3svomr5Kvj
 dist: trusty
