@@ -82,9 +82,18 @@ public class ControladorPlanDeVuelo {
 		return new ModelAndView("redirect:/planesDeVuelo");
 	}
 	
+	// VISTA ELIMINAR PLAN DE VUELO
+	@RequestMapping(path = "/eliminarPlanDeVuelo", method = RequestMethod.POST)
+	public ModelAndView eliminarPlanDeVuelo(@ModelAttribute("planDeVuelo") PlanDeVuelo planDeVuelo, HttpServletRequest request) {
+		PlanDeVuelo planDeVueloBuscado = servicioPlanDeVuelo.consultarPlanDeVueloId(planDeVuelo.getId());
+		ModelMap modelo = new ModelMap();
+		modelo.put("planDeVueloAEliminar", planDeVueloBuscado);
+		return new ModelAndView("eliminarPlanDeVuelo", modelo);
+	}
+	
 	// ELIMINAR PLAN DE VUELO
-	@RequestMapping(path = "/eliminarPlanDeVuelo", method = RequestMethod.GET)
-	public ModelAndView eliminarPlanDeVuelo(@RequestParam(value = "id") Long idRecibido) {
+	@RequestMapping(path = "/eliminarPlanDeVueloDeLista", method = RequestMethod.GET)
+	public ModelAndView eliminarPlanDeVueloDeLista(@RequestParam(value = "id") Long idRecibido) {
 		PlanDeVuelo planDeVueloBuscado = servicioPlanDeVuelo.consultarPlanDeVueloId(idRecibido);
 		servicioPlanDeVuelo.eliminarPlanDeVuelo(planDeVueloBuscado);
 		return new ModelAndView("redirect:/planesDeVuelo");

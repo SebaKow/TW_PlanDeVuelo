@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -103,7 +102,6 @@ public class Vuelo {
 
 	public Date stringAHora(String string) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-		sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
 		Date date = sdf.parse(string);
 		return date;
 	}

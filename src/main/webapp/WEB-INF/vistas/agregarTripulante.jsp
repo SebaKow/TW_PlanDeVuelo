@@ -71,7 +71,7 @@
 				    </tr>
 				  </tbody>
 				</table>
-					<button class="btn btn-lg btn-primary float-right font-weight-bold mb-2" type="submit">Agregar</button>
+					<button class="btn btn-lg btn-primary float-right font-weight-bold" type="submit">Agregar</button>
 				</form>
 			</div>
 			<div class="col-md-2"></div>

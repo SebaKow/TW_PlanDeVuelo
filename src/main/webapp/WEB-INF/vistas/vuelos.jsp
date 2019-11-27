@@ -67,19 +67,19 @@
 							<td>${vuelo.duracionString}</td>
 							<td><form action="modificarVuelo" method="POST" modelAttribute="vuelo">
 								<input type="hidden" name="id" id="id" value="${vuelo.id}">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
+								<button class="btn btn-lg btn-primary font-weight-bold" type="submit">Editar</button>
 								</form>
 							</td>
-							<td><form action="eliminarVuelo" method="GET">
+							<td><form action="eliminarVuelo" method="POST" modelAttribute="vuelo">
 								<input type="hidden" name="id" id="id" value="${vuelo.id}">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
+								<button class="btn btn-lg btn-primary font-weight-bold" type="submit">Eliminar</button>
 								</form>
 							</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="agregarVuelo" role="button">Agregar</a>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold" href="agregarVuelo" role="button">Agregar</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

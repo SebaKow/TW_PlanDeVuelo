@@ -66,24 +66,24 @@
 							<td>${planDeVuelo.fechaString}</td>
 							<td><form action="plandevueloseleccionado" method="GET">
 								<input type="hidden" name="idPlanDeVuelo" id="idPlanDeVuelo" value="${planDeVuelo.id}">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Ver</button>
+								<button class="btn btn-lg btn-primary font-weight-bold" type="submit">Ver</button>
 								</form>
 							</td>
 							<td><form action="modificarPlanDeVuelo" method="POST" modelAttribute="planDeVuelo">
 								<input type="hidden" name="id" id="id" value="${planDeVuelo.id}">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Editar</button>
+								<button class="btn btn-lg btn-primary font-weight-bold" type="submit">Editar</button>
 								</form>
 							</td>
-							<td><form action="eliminarPlanDeVuelo" method="GET">
+							<td><form action="eliminarPlanDeVuelo" method="POST" modelAttribute="planDeVuelo">
 								<input type="hidden" name="id" id="id" value="${planDeVuelo.id}">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
+								<button class="btn btn-lg btn-primary font-weight-bold" type="submit">Eliminar</button>
 								</form>
 							</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="agregarPlanDeVuelo" role="button">Agregar</a>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold" href="agregarPlanDeVuelo" role="button">Agregar</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

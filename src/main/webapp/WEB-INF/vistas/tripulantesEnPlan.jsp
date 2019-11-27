@@ -114,14 +114,14 @@
 							<td><form action="eliminarTripulanteDePlan" method="GET">
 								<input type="hidden" name="idTripulante" value="${tripulante.id}" id="id">
 								<input type="hidden" name="idPlan" value="${planDeVuelo.id}" id="id">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
+								<button class="btn btn-lg btn-primary font-weight-bold" type="submit">Eliminar</button>
 								</form>
 							</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-					<a class="btn btn-lg btn-primary float-right font-weight-bold mb-2" href="#!" role="button">Finalizar</a>
+					<a class="btn btn-lg btn-primary float-right font-weight-bold" href="planesDeVuelo" role="button">Finalizar</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

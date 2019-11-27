@@ -10,7 +10,7 @@
     <title>Plan De Vuelo</title>
 </head>
 <body>
-
+	
 	<!-- NAVIGATION -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
 	  <div class="container">
@@ -26,10 +26,10 @@
 	        <li class="nav-item">
 	          <a class="nav-link" href="tripulantes">Ver Tripulantes</a>
 	        </li>
-	        <li class="nav-item active">
+	        <li class="nav-item">
 	          <a class="nav-link" href="vuelos">Ver Vuelos</a>
 	        </li>
-	        <li class="nav-item">
+	        <li class="nav-item active">
 	          <a class="nav-link" href="planesDeVuelo">Ver Planes de Vuelo</a>
 	        </li>
 	        <li class="nav-item">
@@ -39,41 +39,26 @@
 	    </div>
 	  </div>
 	</nav>
-  
-  	<!-- EDITAR VUELO -->
-	<div class="container-fluid my-5">
-		<div class="text-center pt-5">
-			<h2>Editar Vuelo</h2>
-		</div>
-		
-		<div class="row mt-4">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<table class="table table-bordered text-center">
-				  <thead>
-				    <tr>
-						<th scope="col">Origen</th>
-						<th scope="col">Destino</th>
-						<th scope="col">Duración</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <form action="editarVuelo" method= "POST" modelAttribute="vuelo">
-				    <tr>
-				      <td><input name="origen" type="text" id="origen" class="form-control" value="${vuelo.origen}" required autofocus></td>
-				      <td><input name="destino" type="text" id="destino" class="form-control" value="${vuelo.destino}" required></td>
-				      <td><input name="duracionString" type="text" id="duracion" class="form-control" value="${vuelo.duracionString}" required></td>
-				    </tr>
-				  </tbody>
-				</table>
-					<input name="id" type="hidden" id="id" value="${vuelo.id}">
-					<button class="btn btn-lg btn-primary float-right font-weight-bold" type="submit">Editar</button>
+	
+	<!-- ELIMINAR PLAN DE VUELO -->
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Plan De Vuelo</h5>
+			</div>
+			<div class="modal-body">
+				¿Está seguro que desea eliminar el plan de vuelo: ${planDeVueloAEliminar.descripcion}?
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-lg btn-primary font-weight-bold" href="planesDeVuelo" role="button">Cancelar</a>
+				<form action="eliminarPlanDeVueloDeLista" method="GET">
+					<input type="hidden" name="id" id="id" value="${planDeVuelo.id}">
+					<button type="submit" class="btn btn-lg btn-primary font-weight-bold">Aceptar</button>
 				</form>
 			</div>
-			<div class="col-md-2"></div>
 		</div>
 	</div>
-	
+   	
 	<script src="js/jquery-3.4.1.min.js"></script>
    	<script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>

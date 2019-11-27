@@ -68,9 +68,18 @@ public class ControladorTripulante {
 		return new ModelAndView("redirect:/tripulantes");
 	}
 	
+	// VISTA ELIMINAR TRIPULANTE
+	@RequestMapping(path = "/eliminarTripulante", method = RequestMethod.POST)
+	public ModelAndView eliminarTripulante(@ModelAttribute("tripulante") Tripulante tripulante, HttpServletRequest request) {
+		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(tripulante.getId());
+		ModelMap modelo = new ModelMap();
+		modelo.put("tripulanteAEliminar", tripulanteBuscado);
+		return new ModelAndView("eliminarTripulante", modelo);
+	}
+	
 	// ELIMINAR TRIPULANTE
-	@RequestMapping(path = "/eliminarTripulante", method = RequestMethod.GET)
-	public ModelAndView eliminarTripulante(@RequestParam(value = "id") Long idRecibido) {
+	@RequestMapping(path = "/eliminarTripulanteDeLista", method = RequestMethod.GET)
+	public ModelAndView eliminarTripulanteDeLista(@RequestParam(value = "id") Long idRecibido) {
 		Tripulante tripulanteBuscado = servicioTripulante.consultarTripulanteId(idRecibido);
 		servicioTripulante.eliminarTripulante(tripulanteBuscado);
 		return new ModelAndView("redirect:/tripulantes");

@@ -1,5 +1,6 @@
 /* Carga de datos */
 use db;
+SET GLOBAL time_zone = '-3:00';
 insert into avion (capacidadTripulantes) values (4);
 insert into avion (capacidadTripulantes) values (6);
 insert into avion (capacidadTripulantes) values (6);

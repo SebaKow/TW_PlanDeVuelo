@@ -99,8 +99,6 @@
 				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
-							<!--<th scope="col">Fecha de salida</th>
-							<th scope="col">Fecha de llegada</th>-->
 							<th scope="col">Origen</th>
 							<th scope="col">Destino</th>
 							<th scope="col">Duración</th>
@@ -108,10 +106,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!--<c:forEach items="${itinerariosAgregados}" var="itinerario">
-							<td>${itinerario.despegueEstimado}</td>
-							<td>${itinerario.aterrizajeEstimado}</td>
-						</c:forEach>-->
 						<c:forEach items="${vuelosAgregados}" var="vuelo">
 							<tr>
 							<td>${vuelo.origen}</td>
@@ -120,7 +114,7 @@
 							<td><form action="eliminarVueloDePlan" method="GET">
 								<input type="hidden" name="idVuelo" value="${vuelo.id}" id="id">
 								<input type="hidden" name="idPlan" value="${planDeVuelo.id}" id="id">
-								<button class="btn btn-lg btn-primary font-weight-bold mb-2" type="submit">Eliminar</button>
+								<button class="btn btn-lg btn-primary font-weight-bold" type="submit">Eliminar</button>
 								</form>
 							</td>
 							</tr>
@@ -129,7 +123,7 @@
 				</table>
 					<form action="plandevueloseleccionado2" method="GET">
 						<input type="hidden" name="idPlanDeVuelo" id="idPlanDeVuelo" value="${planDeVuelo.id}">
-						<button class="btn btn-lg btn-primary float-right font-weight-bold mb-2" type="submit">Siguiente</button>
+						<button class="btn btn-lg btn-primary float-right font-weight-bold" type="submit">Siguiente</button>
 					</form>
 			</div>
 			<div class="col-md-2"></div>

@@ -32,7 +32,7 @@
                                         <input name="password" type="password" id="password" class="form-control" placeholder="Contraseña" required>
                                         <label for="password">Contraseña</label>
                                     </div>
-                                    <button class="btn btn-lg btn-primary btn-block font-weight-bold mb-2" type="submit">Entrar</button>
+                                    <button class="btn btn-lg btn-primary btn-block font-weight-bold" type="submit">Entrar</button>
                                 </form>
                             </div>
                         </div>

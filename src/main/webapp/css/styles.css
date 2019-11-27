@@ -97,6 +97,7 @@
 
 /*================================ COLORES */
 .table,
-.card-body {
+.card-body,
+.modal-content {
 	background-color: #ABD5E2;
 }
