@@ -34,7 +34,9 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	
 	@Override
 	public void agregarItinerario(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
+		List<Itinerario> itinerarios = listarItinerariosDePlan(plan.getId());
 		Itinerario itinerario = calcularHoraDespegueYAterrizaje(vuelo, plan);
+		itinerarios.add(itinerario);
 		validaciones(plan, vuelo);
 		itinerarioDao.agregarItinerario(itinerario);
 	}

@@ -84,4 +84,9 @@ public class ControladorTripulante {
 		servicioTripulante.eliminarTripulante(tripulanteBuscado);
 		return new ModelAndView("redirect:/tripulantes");
 	}
+
+	public void setServicioTripulante(ServicioTripulante servicioTripulanteMock) {
+		// TODO Auto-generated method stub
+		
+	}
 }
