@@ -26,6 +26,7 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 		List<PlanDeVuelo> listaDePlanesDeVuelo = sessionFactory.getCurrentSession()
 				.createCriteria(PlanDeVuelo.class)
 				.add(Restrictions.eq("estado", true))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
 		
 		return listaDePlanesDeVuelo;

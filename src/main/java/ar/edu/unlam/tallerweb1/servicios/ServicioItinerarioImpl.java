@@ -44,7 +44,7 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	private void validaciones(List<Itinerario> itinerarios) throws Exception {
 		validarQueElOrigenSeaIgualAlDestinoAnterior(itinerarios);
 		validarQueElVueloAAgregarNoSupereLas8HorasDeTV(itinerarios);
-	//  validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(itinerarios);
+	    validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(itinerarios);
 	}
 	
 	private void validarQueElOrigenSeaIgualAlDestinoAnterior(List<Itinerario> itinerarios) throws Exception {
@@ -83,50 +83,15 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 		}
 	}
 	
-	private void validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
-		Calendar cal = Calendar.getInstance();
-		Date fechaVacia = new Date();
-		fechaVacia.setHours(0);
-		fechaVacia.setMinutes(0);
-		cal.setTime(fechaVacia);
-		for (Vuelo vuelo2 : listaDeVuelosEnPlan) {
-			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo2.getDuracion().getHours());
-			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
-		}
-		cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo.getDuracion().getHours() + 1);
-		cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo.getDuracion().getMinutes());
-		cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
+	private void validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(List<Itinerario> itinerarios) throws Exception {
 		
-		if(listaDeVuelosEnPlan.size() == 1){
-			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
-		}
-		
-		if(listaDeVuelosEnPlan.size() == 2){
-			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + 1);
-		}
-		
-		if(listaDeVuelosEnPlan.size() == 3){
-			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + 1);
-			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
-		}
-		
-		if(listaDeVuelosEnPlan.size() == 4){
-			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + 2);
-			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
-		}
-		
-		if(listaDeVuelosEnPlan.size() == 5){
-			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + 3);
-			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
-		}
-		
-		if(cal.get(Calendar.HOUR) == 13 && cal.get(Calendar.MINUTE) > 0) {
-			throw new Exception("El tiempo de servicio no puede superar las 13 horas.");
-		}
-		
-		if(cal.get(Calendar.HOUR) > 13) {
-			throw new Exception("El tiempo de servicio no puede superar las 13 horas.");
+		Date horaFinal = itinerarios.get(itinerarios.size()-1).getAterrizajeEstimado();
+		Date horaInicial = itinerarios.get(0).getDespegueEstimado();
+		long calculo = horaFinal.getTime()-horaInicial.getTime();
+		long calculoEnMinutos = (int)(calculo/60000);
+
+		if(calculoEnMinutos >= 690 ) {
+			throw new Exception("El tiempo de servicio no puede superar las 11.30 horas.");
 		}
 	}
 	

@@ -28,7 +28,7 @@ public class TestMock {
 		controladorTripulante.setServicioTripulante(servicioTripulanteMock);
 		
 		servicioTripulanteMock.agregarTripulante(tripulanteMock);
-		when(servicioTripulanteMock.consultarTripulante(tripulanteMock)).th
+	//	when(servicioTripulanteMock.consultarTripulante(tripulanteMock)).th
 		Tripulante tripulante = servicioTripulanteMock.consultarTripulante(tripulanteMock);
 		assertThat(tripulante).isEqualTo(tripulanteMock);
 	}
