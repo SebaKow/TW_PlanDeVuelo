@@ -106,13 +106,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${vuelosAgregados}" var="vuelo">
+						<c:forEach items="${itinerariosAgregados}" var="itinerario">
 							<tr>
-							<td>${vuelo.origen}</td>
-							<td>${vuelo.destino}</td>
-							<td>${vuelo.duracionString}</td>
+							<td>${itinerario.vuelo.origen}</td>
+							<td>${itinerario.vuelo.destino}</td>
+							<td>${itinerario.vuelo.duracionString}</td>
 							<td><form action="eliminarVueloDePlan" method="GET">
-								<input type="hidden" name="idVuelo" value="${vuelo.id}" id="id">
+								<input type="hidden" name="idItinerario" value="${itinerario.id}" id="id">
 								<input type="hidden" name="idPlan" value="${planDeVuelo.id}" id="id">
 								<button class="btn btn-lg btn-primary font-weight-bold" type="submit">Eliminar</button>
 								</form>

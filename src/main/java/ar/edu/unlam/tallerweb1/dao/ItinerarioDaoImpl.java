@@ -19,16 +19,16 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	@Inject
 	SessionFactory sessionFactory;
 
-	@Override
-	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
-		List<Vuelo> listaDeVuelos = sessionFactory.getCurrentSession().createCriteria(Vuelo.class)
-				.createAlias("itinerarios", "itinerariosjoin")
-				.createAlias("itinerariosjoin.plandevuelo", "plandevuelojoin")
-				.add(Restrictions.eq("plandevuelojoin.id", idObtenido))
-				.list();
-				
-		return listaDeVuelos;
-	}
+//	@Override
+//	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
+//		List<Vuelo> listaDeVuelos = sessionFactory.getCurrentSession().createCriteria(Vuelo.class)
+//				.createAlias("itinerarios", "itinerariosjoin")
+//				.createAlias("itinerariosjoin.plandevuelo", "plandevuelojoin")
+//				.add(Restrictions.eq("plandevuelojoin.id", idObtenido))
+//				.list();
+//				
+//		return listaDeVuelos;
+//	}
 	
 	@Override
 	public List<Itinerario> listarItinerariosDePlan(Long id){
@@ -47,13 +47,11 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	}
 	
 	@Override
-	public void eliminarVueloDePlan(PlanDeVuelo plan, Vuelo vuelo) {
+	public void eliminarVueloDePlan(PlanDeVuelo plan, Long idItinerario) {
 		final Session session = sessionFactory.getCurrentSession();
 		Itinerario itinerarioAEliminar = (Itinerario) session.createCriteria(Itinerario.class)
-				.createAlias("vuelos", "vuelosjoin")
-				.add(Restrictions.eq("vuelosjoin.id", vuelo.getId()))
-				.createAlias("vuelosjoin.itinerarios", "itinerariosjoin")
-				.createAlias("itinerariosjoin.plandevuelo", "plandevuelojoin")
+				.add(Restrictions.eq("id",idItinerario))
+				.createAlias("plandevuelo", "plandevuelojoin")
 				.add(Restrictions.eq("plandevuelojoin.id", plan.getId()))
 				.uniqueResult();
 		

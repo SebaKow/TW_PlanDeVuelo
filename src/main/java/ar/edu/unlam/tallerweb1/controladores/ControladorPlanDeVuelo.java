@@ -111,8 +111,8 @@ public class ControladorPlanDeVuelo {
 		List<Vuelo> listaDeVuelos = servicioVuelo.listarVuelos();
 		modelo.put("listaDeVuelos", listaDeVuelos);
 		
-		List<Vuelo> vuelosAgregados = servicioItinerario.listarVuelosDePlan(idObtenido);
-		modelo.put("vuelosAgregados", vuelosAgregados);
+//		List<Vuelo> vuelosAgregados = servicioItinerario.listarVuelosDePlan(idObtenido);
+//		modelo.put("vuelosAgregados", vuelosAgregados);
 		
 		List<Itinerario> listaDeItinerarios = servicioItinerario.listarItinerariosDePlan(idObtenido);
 		modelo.put("itinerariosAgregados", listaDeItinerarios);
@@ -187,10 +187,9 @@ public class ControladorPlanDeVuelo {
 	
 	// ELIMINAR VUELO DE PLAN
 	@RequestMapping(path = "/eliminarVueloDePlan", method = RequestMethod.GET)
-	public ModelAndView eliminarVueloDePlan(@RequestParam(value = "idVuelo") Long idVuelo, @RequestParam(value = "idPlan") Long idPlan) {
-		Vuelo vuelo = servicioVuelo.consultarVueloId(idVuelo);
+	public ModelAndView eliminarVueloDePlan(@RequestParam(value = "idItinerario") Long idItinerario, @RequestParam(value = "idPlan") Long idPlan) {
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
-		servicioItinerario.eliminarVueloDePlan(plan, vuelo);
+		servicioItinerario.eliminarVueloDePlan(plan, idItinerario);
 		return new ModelAndView("redirect:/plandevueloseleccionado?idPlanDeVuelo=" + idPlan);
 	}
 }

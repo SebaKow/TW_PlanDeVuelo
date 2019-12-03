@@ -23,21 +23,17 @@ public class Vuelo {
 	private Date duracion;
 	private Boolean estado;
 	
-	@ManyToMany(mappedBy = "vuelos")
-	private List<Itinerario> itinerarios;
-	
 	public Vuelo() {
 		
 	}
 
-	public Vuelo(Long id, String origen, String destino, String duracionString, Date duracion, Boolean estado, List<Itinerario> itinerarios) throws ParseException {
+	public Vuelo(Long id, String origen, String destino, String duracionString, Date duracion, Boolean estado) throws ParseException {
 		this.id = id;
 		this.origen = origen;
 		this.destino = destino;
 		this.duracionString = duracionString;
 		this.duracion = stringAHora(duracionString);
 		this.estado = estado;
-		this.itinerarios = itinerarios;
 	}
 
 	public Long getId() {
@@ -86,14 +82,6 @@ public class Vuelo {
 
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
-	}
-
-	public List<Itinerario> getItinerarios() {
-		return itinerarios;
-	}
-
-	public void setItinerarios(List<Itinerario> itinerarios) {
-		this.itinerarios = itinerarios;
 	}
 	
 	public void setDuracionParse() throws ParseException {

@@ -22,10 +22,10 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	@Inject
 	private ItinerarioDao itinerarioDao;
 
-	@Override
-	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
-		return itinerarioDao.listarVuelosDePlan(idObtenido);
-	}
+//	@Override
+//	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
+//		return itinerarioDao.listarVuelosDePlan(idObtenido);
+//	}
 	
 	@Override
 	public List<Itinerario> listarItinerariosDePlan(Long id){
@@ -37,38 +37,42 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 		List<Itinerario> itinerarios = listarItinerariosDePlan(plan.getId());
 		Itinerario itinerario = calcularHoraDespegueYAterrizaje(vuelo, plan);
 		itinerarios.add(itinerario);
-		validaciones(plan, vuelo);
+		validaciones(itinerarios);
 		itinerarioDao.agregarItinerario(itinerario);
 	}
 	
-	private void validaciones(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		validarQueElOrigenSeaIgualAlDestinoAnterior(plan, vuelo);
-		validarQueElVueloAAgregarNoSupereLas8HorasDeTV(plan, vuelo);
-		validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(plan, vuelo);
+	private void validaciones(List<Itinerario> itinerarios) throws Exception {
+		validarQueElOrigenSeaIgualAlDestinoAnterior(itinerarios);
+		validarQueElVueloAAgregarNoSupereLas8HorasDeTV(itinerarios);
+	//  validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(itinerarios);
 	}
 	
-	private void validarQueElOrigenSeaIgualAlDestinoAnterior(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
-		if(listaDeVuelosEnPlan.size() != 0) {
-			if(!listaDeVuelosEnPlan.get(listaDeVuelosEnPlan.size() - 1).getDestino().equals(vuelo.getOrigen())) {
-				throw new Exception("El origen del vuelo a agregar no coincide con el destino del vuelo anterior.");
+	private void validarQueElOrigenSeaIgualAlDestinoAnterior(List<Itinerario> itinerarios) throws Exception {
+		
+		
+		if(itinerarios.size()> 1 ) {
+			if(!itinerarios.get(itinerarios.size()-2).getVuelo().getDestino().equals(itinerarios.get(itinerarios.size()-1).getVuelo().getOrigen())) {
+				throw new Exception("El origen del vuelo a agregar no coincide con el destino del vuelo anterior");
 			}
 		}
 	}
 	
-	private void validarQueElVueloAAgregarNoSupereLas8HorasDeTV(PlanDeVuelo plan, Vuelo vuelo) throws Exception {
-		List<Vuelo> listaDeVuelosEnPlan = listarVuelosDePlan(plan.getId());
+	private void validarQueElVueloAAgregarNoSupereLas8HorasDeTV(List<Itinerario> itinerarios) throws Exception {
+		List<Vuelo> listaDeVuelosEnPlan = new ArrayList<>();
+		
+		for (Itinerario itinerario : itinerarios) {
+			listaDeVuelosEnPlan.add(itinerario.getVuelo());
+		}
+		
 		Calendar cal = Calendar.getInstance();
 		Date fechaVacia = new Date();
 		fechaVacia.setHours(0);
 		fechaVacia.setMinutes(0);
 		cal.setTime(fechaVacia);
-		for (Vuelo vuelo2 : listaDeVuelosEnPlan) {
-			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo2.getDuracion().getHours());
-			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo2.getDuracion().getMinutes());
+		for (Vuelo vuelo : listaDeVuelosEnPlan) {
+			cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo.getDuracion().getHours());
+			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo.getDuracion().getMinutes());
 		}
-		cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) + vuelo.getDuracion().getHours());
-		cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + vuelo.getDuracion().getMinutes());	
 		
 		if(cal.get(Calendar.HOUR) == 8 && cal.get(Calendar.MINUTE) > 0) {
 			throw new Exception("El tiempo de vuelo no puede superar las 8 horas.");
@@ -130,7 +134,7 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 		Calendar cal = Calendar.getInstance();
 		Date fechaPlan = plan.getFecha();
 		Itinerario itinerario = new Itinerario();
-		List<Vuelo> listaVuelos = new ArrayList<>();
+		Vuelo vuelo2 = new Vuelo();
 		
 		List<Itinerario> itinerariosEnPlan = listarItinerariosDePlan(plan.getId());
 		if(itinerariosEnPlan.size() == 0) {
@@ -167,13 +171,12 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 		}
 		
 		itinerario.setPlandevuelo(plan);
-		listaVuelos.add(vuelo);
-		itinerario.setVuelos(listaVuelos);
+		itinerario.setVuelo(vuelo);
 		return itinerario;
 	}
 	
 	@Override
-	public void eliminarVueloDePlan(PlanDeVuelo plan, Vuelo vuelo) {
-		itinerarioDao.eliminarVueloDePlan(plan, vuelo);
+	public void eliminarVueloDePlan(PlanDeVuelo plan, Long idItinerario) {
+		itinerarioDao.eliminarVueloDePlan(plan, idItinerario);
 	}
 }
