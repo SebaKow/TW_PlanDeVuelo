@@ -1,7 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +13,6 @@ import ar.edu.unlam.tallerweb1.dao.PlanDeVueloDao;
 import ar.edu.unlam.tallerweb1.modelo.Itinerario;
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
-import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 @Service("ServicioPlanDeVuelo")
 @Transactional
@@ -73,8 +70,18 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 
 	private void validaciones(PlanDeVuelo plan, Tripulante tripulante, List<Itinerario> itinerarios) throws Exception {
 		validarQueNoSeAgregueDosVecesElMismoTripulante(plan,tripulante);
-		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante);
-		validarQueElTripulanteNoSupereLas13HorasDeTSV(itinerarios, tripulante);
+		
+		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 1);
+		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 2);
+		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 7);
+		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 30);
+		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 90);
+		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 365);
+		
+		validarQueElTripulanteNoSupereLasHorasDeTSV(itinerarios, tripulante, 1);
+		validarQueElTripulanteNoSupereLasHorasDeTSV(itinerarios, tripulante, 2);
+		validarQueElTripulanteNoSupereLasHorasDeTSV(itinerarios, tripulante, 7);
+		validarQueElTripulanteNoSupereLasHorasDeTSV(itinerarios, tripulante, 30);
 	}
 
 	public void validarQueNoSeAgregueDosVecesElMismoTripulante(PlanDeVuelo plan, Tripulante tripulante) throws Exception {
@@ -86,38 +93,76 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		}
 	}
 
-	public void validarQueElTripulanteNoSupereLas8HorasDeTV(List<Itinerario> itinerarios, Tripulante tripulante) throws Exception {
+	public void validarQueElTripulanteNoSupereLas8HorasDeTV(List<Itinerario> itinerarios, Tripulante tripulante, Integer dias) throws Exception {
 		long calculoTotalEnMinutos = 0;
 		PlanDeVuelo plan = itinerarios.get(0).getPlandevuelo();
 		Itinerario primerItinerario = itinerarios.get(0);
+		int tiempoMaximo = 0;
 
 		calculoTotalEnMinutos += calcularTVDeUnPlan(plan);
 
-		List<PlanDeVuelo> planes = planDeVueloDao.listarPlanesPorTripulanteYFecha(tripulante, primerItinerario.getDespegueEstimado(), 1);
+		List<PlanDeVuelo> planes = planDeVueloDao.listarPlanesPorTripulanteYFecha(tripulante, primerItinerario.getDespegueEstimado(), dias);
 		for (PlanDeVuelo planDeVuelo : planes) {
 			calculoTotalEnMinutos += calcularTVDeUnPlan(planDeVuelo);
 		}
-
-		if (calculoTotalEnMinutos >= 480) {
-			throw new Exception("El tiempo de vuelo del tripulante no puede superar las 8 horas en 24 horas consecutivas.");
+		
+		switch (dias) {
+		case 1:
+			tiempoMaximo = 480;
+			break;
+		case 2:
+			tiempoMaximo = 840;
+			break;
+		case 7:
+			tiempoMaximo = 2040;
+			break;
+		case 30:
+			tiempoMaximo = 5400;
+		case 90:
+			tiempoMaximo = 14400;
+			break;
+		case 365:
+			tiempoMaximo = 51600;
+		default:
+			break;
+		}
+		
+		if(calculoTotalEnMinutos >= tiempoMaximo) {
+			throw new Exception("El tiempo de vuelo del tripulante no puede superar las "+(tiempoMaximo/60)+" horas en los ultimos "+dias+" días.");
 		}
 	}
 
-	public void validarQueElTripulanteNoSupereLas13HorasDeTSV(List<Itinerario> itinerarios, Tripulante tripulante) throws Exception {
+	public void validarQueElTripulanteNoSupereLasHorasDeTSV(List<Itinerario> itinerarios, Tripulante tripulante, Integer dias) throws Exception {
 		long calculoTotalEnMinutos = 0;
 		PlanDeVuelo plan = itinerarios.get(0).getPlandevuelo();
+		int tiempoMaximo = 0;
 		
-		calculoTotalEnMinutos +=calcularTSVDeUnPlan(plan);
+		calculoTotalEnMinutos += calcularTSVDeUnPlan(plan);
 		
-		List<PlanDeVuelo> planes = planDeVueloDao.listarPlanesPorTripulanteYFecha(tripulante, plan.getFecha(), 1);
+		List<PlanDeVuelo> planes = planDeVueloDao.listarPlanesPorTripulanteYFecha(tripulante, plan.getFecha(), dias);
 		for (PlanDeVuelo planDeVuelo : planes) {
 			calculoTotalEnMinutos += calcularTSVDeUnPlan(planDeVuelo);
 		}
 		
-		if(calculoTotalEnMinutos >= 780) {
-			throw new Exception("El tiempo de servicio de vuelo del tripulante no puede superar las 13 horas en 24 horas consecutivas");
+		switch (dias) {
+		case 1:
+			tiempoMaximo = 780;
+			break;
+		case 2:
+			tiempoMaximo = 1320;
+			break;
+		case 7:
+			tiempoMaximo = 3900;
+			break;
+		case 30:
+			tiempoMaximo = 12000;
+		default:
+			break;
 		}
 		
+		if(calculoTotalEnMinutos >= tiempoMaximo) {
+			throw new Exception("El tiempo de servicio de vuelo del tripulante no puede superar las "+(tiempoMaximo/60)+" horas en los ultimos "+dias+" días.");
+		}
 	}
 
 	@Override
@@ -126,7 +171,6 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		tripulantesDelPlan.remove(tripulante);
 		plan.setTripulantes(tripulantesDelPlan);
 		planDeVueloDao.eliminarTripulanteDePlan(plan);
-
 	}
 
 	public long calcularTVDeUnPlan(PlanDeVuelo plan) {
