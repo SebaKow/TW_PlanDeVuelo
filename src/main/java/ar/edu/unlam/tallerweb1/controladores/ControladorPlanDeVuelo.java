@@ -176,9 +176,7 @@ public class ControladorPlanDeVuelo {
 	public ModelAndView eliminarTripulanteDePlan(@RequestParam(value = "idTripulante") Long idTripulante, @RequestParam(value = "idPlan") Long idPlan) {
 		Tripulante tripulante = servicioTripulante.consultarTripulanteId(idTripulante);
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
-	
 		servicioPlanDeVuelo.eliminarTripulanteDePlan(tripulante, plan);
-		
 		return new ModelAndView("redirect:/plandevueloseleccionado2?idPlanDeVuelo=" + idPlan);
 	}
 	

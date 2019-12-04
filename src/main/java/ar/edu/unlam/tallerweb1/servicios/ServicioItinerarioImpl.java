@@ -84,9 +84,10 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 		Date horaFinal = itinerarios.get(itinerarios.size() - 1).getAterrizajeEstimado();
 		Date horaInicial = itinerarios.get(0).getDespegueEstimado();
 		long calculo = horaFinal.getTime() - horaInicial.getTime();
-		long calculoEnMinutos = (int)(calculo/60000);
+		long calculoEnMinutos = (int) (calculo/60000);
+		calculoEnMinutos += 90;
 
-		if(calculoEnMinutos >= 690 ) {
+		if(calculoEnMinutos >= 690) {
 			throw new Exception("El tiempo de servicio de vuelo no puede superar las 11 horas y media.");
 		}
 	}

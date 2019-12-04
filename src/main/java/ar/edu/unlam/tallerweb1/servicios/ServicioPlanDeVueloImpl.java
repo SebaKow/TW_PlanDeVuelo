@@ -165,14 +165,6 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		}
 	}
 
-	@Override
-	public void eliminarTripulanteDePlan(Tripulante tripulante, PlanDeVuelo plan) {
-		List<Tripulante> tripulantesDelPlan = plan.getTripulantes();
-		tripulantesDelPlan.remove(tripulante);
-		plan.setTripulantes(tripulantesDelPlan);
-		planDeVueloDao.eliminarTripulanteDePlan(plan);
-	}
-
 	public long calcularTVDeUnPlan(PlanDeVuelo plan) {
 		long calculoTotalEnMinutos = 0;
 		List<Itinerario> itinerarios2 = servicioItinerario.listarItinerariosDePlan(plan.getId());
@@ -192,9 +184,17 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		Date horaFinal = itinerarios.get(itinerarios.size() - 1).getAterrizajeEstimado();
 		Date horaInicial = itinerarios.get(0).getDespegueEstimado();
 		long calculo = horaFinal.getTime() - horaInicial.getTime();
-		long calculoEnMinutos = (int) (calculo / 60000);
+		long calculoEnMinutos = (int) (calculo/60000);
 		calculoEnMinutos += 90;
 
 		return calculoEnMinutos;
+	}
+
+	@Override
+	public void eliminarTripulanteDePlan(Tripulante tripulante, PlanDeVuelo plan) {
+		List<Tripulante> tripulantesDelPlan = plan.getTripulantes();
+		tripulantesDelPlan.remove(tripulante);
+		plan.setTripulantes(tripulantesDelPlan);
+		planDeVueloDao.eliminarTripulanteDePlan(plan);
 	}
 }
