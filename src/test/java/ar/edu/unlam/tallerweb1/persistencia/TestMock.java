@@ -8,13 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import org.assertj.core.condition.AnyOf;
 import org.hibernate.type.AnyType;
 import org.junit.Test;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorTripulante;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
 
 public class TestMock {
+	
 	@Test
+    @Transactional
+    @Rollback(true)
 	public void testQueCreaUnTripulante() {
 		ServicioTripulante servicioTripulanteMock = mock(ServicioTripulante.class);
 		Tripulante tripulanteMock = mock(Tripulante.class);

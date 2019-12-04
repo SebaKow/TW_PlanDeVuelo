@@ -21,7 +21,7 @@ public class VueloDaoImpl implements VueloDao {
 	public List<Vuelo> listarVuelos(){
 		List<Vuelo> listaDeVuelos = sessionFactory.getCurrentSession()
 				.createCriteria(Vuelo.class)
-				.add(Restrictions.eq("estado",true))
+				.add(Restrictions.eq("estado", true))
 				.list();
 		
 		return listaDeVuelos;

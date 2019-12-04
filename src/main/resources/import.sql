@@ -24,9 +24,4 @@ insert into tripulante (nombre, apellido, dni, email, password, esAdmin, estado)
 insert into tripulante (nombre, apellido, dni, email, password, esAdmin, estado) values ("Emiliano", "Ovejero", 10000000, "emiovejero@gmail.com", "123", 0, b'1');
 insert into tripulante (nombre, apellido, dni, email, password, esAdmin, estado) values ("Sebastian", "Dominikow", 20000000, "sebadominikow@gmail.com", "123", 0, b'1');
 insert into tripulante (nombre, apellido, dni, email, password, esAdmin, estado) values ("Rodrigo", "Sosa", 30000000, "rodrisosa@gmail.com", "123", 0, b'1');
-
-insert into tripulante_plandevuelo (tripulantes_id, planesDeVuelo_id) values (1, 1);
-insert into tripulante_plandevuelo (tripulantes_id, planesDeVuelo_id) values (2, 1);
-insert into tripulante_plandevuelo (tripulantes_id, planesDeVuelo_id) values (3, 2);
-insert into tripulante_plandevuelo (tripulantes_id, planesDeVuelo_id) values (4, 3);
 /* ============================== */

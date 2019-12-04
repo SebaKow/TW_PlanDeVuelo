@@ -87,6 +87,5 @@ public class ControladorTripulante {
 
 	public void setServicioTripulante(ServicioTripulante servicioTripulanteMock) {
 		// TODO Auto-generated method stub
-		
 	}
 }

@@ -16,5 +16,5 @@ public interface PlanDeVueloDao {
 	void agregarTripulanteAPlan(PlanDeVuelo plan);
 	List<Tripulante> listarTripulantesEnPlan(PlanDeVuelo plan);
 	void eliminarTripulanteDePlan(PlanDeVuelo plan);
-	List<PlanDeVuelo>ListarPlanesPorTripulanteYFecha(Tripulante tripulante,Date fechaSalidaDePlan,int dias);
+	List<PlanDeVuelo> listarPlanesPorTripulanteYFecha(Tripulante tripulante, Date fechaSalidaDePlan, int dias);
 }

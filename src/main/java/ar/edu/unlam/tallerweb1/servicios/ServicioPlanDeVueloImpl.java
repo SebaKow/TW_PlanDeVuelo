@@ -23,8 +23,10 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 
 	@Inject
 	PlanDeVueloDao planDeVueloDao;
+	
 	@Inject
 	ItinerarioDao itinerarioDao;
+	
 	@Inject
 	ServicioItinerario servicioItinerario;
 
@@ -84,28 +86,25 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		}
 	}
 
-	public void validarQueElTripulanteNoSupereLas8HorasDeTV(List<Itinerario> itinerarios, Tripulante tripulante)
-			throws Exception {
-		Long calculoTotalEnMinutos = null;
+	public void validarQueElTripulanteNoSupereLas8HorasDeTV(List<Itinerario> itinerarios, Tripulante tripulante) throws Exception {
+		long calculoTotalEnMinutos = 0;
 		PlanDeVuelo plan = itinerarios.get(0).getPlandevuelo();
 		Itinerario primerItinerario = itinerarios.get(0);
 
 		calculoTotalEnMinutos += calcularTVDeUnPlan(plan);
 
-		List<PlanDeVuelo> planes = planDeVueloDao.ListarPlanesPorTripulanteYFecha(tripulante,
-				primerItinerario.getDespegueEstimado(), 1);
+		List<PlanDeVuelo> planes = planDeVueloDao.listarPlanesPorTripulanteYFecha(tripulante, primerItinerario.getDespegueEstimado(), 1);
 		for (PlanDeVuelo planDeVuelo : planes) {
 			calculoTotalEnMinutos += calcularTVDeUnPlan(planDeVuelo);
 		}
 
 		if (calculoTotalEnMinutos >= 480) {
-			throw new Exception(
-					"El tiempo de vuelo del tripulante no puede superar las 8 horas en 24 horas consecutivas.");
+			throw new Exception("El tiempo de vuelo del tripulante no puede superar las 8 horas en 24 horas consecutivas.");
 		}
 
 //		PlanDeVuelo plan = itinerarios.get(0).getPlandevuelo();
 //		Itinerario primerItinerario = itinerarios.get(0);
-//		List<PlanDeVuelo> planes = planDeVueloDao.ListarPlanesPorTripulanteYFecha(tripulante, primerItinerario.getDespegueEstimado(), 1);
+//		List<PlanDeVuelo> planes = planDeVueloDao.listarPlanesPorTripulanteYFecha(tripulante, primerItinerario.getDespegueEstimado(), 1);
 //		Calendar cal = Calendar.getInstance();
 //		Date fechaVacia = new Date();
 //		fechaVacia.setHours(0);
@@ -128,11 +127,10 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 
 	}
 
-	public void validarQueElTripulanteNoSupereLas13HorasDeTSV(PlanDeVuelo plan, Tripulante tripulante)
-			throws Exception {
+	public void validarQueElTripulanteNoSupereLas13HorasDeTSV(PlanDeVuelo plan, Tripulante tripulante) throws Exception {
 		Calendar cal = calcularTSVDeUnPlan(plan);
 
-		List<PlanDeVuelo> planes = planDeVueloDao.ListarPlanesPorTripulanteYFecha(tripulante, plan.getFecha(), 1);
+		List<PlanDeVuelo> planes = planDeVueloDao.listarPlanesPorTripulanteYFecha(tripulante, plan.getFecha(), 1);
 
 		for (PlanDeVuelo planDeVuelo : planes) {
 			Calendar cal2 = calcularTSVDeUnPlan(planDeVuelo);
@@ -168,12 +166,12 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 			long calculoEnMinutos = (int) (calculo / 60000);
 			calculoTotalEnMinutos += calculoEnMinutos;
 		}
+		
 		return calculoTotalEnMinutos;
 	}
 
 	public Long calcularTSVDeUnPlan(PlanDeVuelo plan) {
 		List<Itinerario> itinerarios = servicioItinerario.listarItinerariosDePlan(plan.getId());
-
 		Date horaFinal = itinerarios.get(itinerarios.size() - 1).getAterrizajeEstimado();
 		Date horaInicial = itinerarios.get(0).getDespegueEstimado();
 		long calculo = horaFinal.getTime() - horaInicial.getTime();

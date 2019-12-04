@@ -50,7 +50,7 @@ public class ItinerarioDaoImpl implements ItinerarioDao {
 	public void eliminarVueloDePlan(PlanDeVuelo plan, Long idItinerario) {
 		final Session session = sessionFactory.getCurrentSession();
 		Itinerario itinerarioAEliminar = (Itinerario) session.createCriteria(Itinerario.class)
-				.add(Restrictions.eq("id",idItinerario))
+				.add(Restrictions.eq("id", idItinerario))
 				.createAlias("plandevuelo", "plandevuelojoin")
 				.add(Restrictions.eq("plandevuelojoin.id", plan.getId()))
 				.uniqueResult();

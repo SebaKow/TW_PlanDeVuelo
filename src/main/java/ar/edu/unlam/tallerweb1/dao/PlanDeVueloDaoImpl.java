@@ -58,7 +58,6 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 	
 	@Override
 	public void agregarTripulanteAPlan(PlanDeVuelo plan) {
-		
 		sessionFactory.getCurrentSession().clear();
 		sessionFactory.getCurrentSession().saveOrUpdate(plan);
 	}
@@ -67,7 +66,7 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 	public List<Tripulante> listarTripulantesEnPlan(PlanDeVuelo plan) {
 		List<Tripulante> listaDeTripulantesEnPlan =  sessionFactory.getCurrentSession()
 				.createCriteria(Tripulante.class)
-				.createAlias("planesDeVuelo","planesDeVueloJoin")
+				.createAlias("planesDeVuelo", "planesDeVueloJoin")
 				.add(Restrictions.eq("planesDeVueloJoin.id", plan.getId()))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
@@ -81,17 +80,17 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 	}
 
 	@Override
-	public List<PlanDeVuelo> ListarPlanesPorTripulanteYFecha(Tripulante tripulante, Date fechaSalidaDePlan, int dias) {
+	public List<PlanDeVuelo> listarPlanesPorTripulanteYFecha(Tripulante tripulante, Date fechaSalidaDePlan, int dias) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(fechaSalidaDePlan);
-		cal.set(Calendar.DATE,cal.get(Calendar.DATE)-dias);
+		cal.set(Calendar.DATE, cal.get(Calendar.DATE) - dias);
 		Date fechaRestada = cal.getTime();
 		
 		List<PlanDeVuelo> listaDePlanes = sessionFactory.getCurrentSession()
 				.createCriteria(PlanDeVuelo.class)
 				.add(Restrictions.between("fecha", fechaRestada, fechaSalidaDePlan))
 				.createAlias("tripulantes", "tripulantesJoin")
-				.add(Restrictions.eq("tripulantesJoin.id",tripulante.getId()))
+				.add(Restrictions.eq("tripulantesJoin.id", tripulante.getId()))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
 		

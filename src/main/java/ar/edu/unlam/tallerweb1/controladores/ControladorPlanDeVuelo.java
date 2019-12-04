@@ -160,30 +160,27 @@ public class ControladorPlanDeVuelo {
 		Tripulante tripulante = servicioTripulante.consultarTripulanteId(idTripulante);
 		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
 		ModelMap modelo = new ModelMap();
-		String error=null;
+		String error = null;
 		try {
 			servicioPlanDeVuelo.agregarTripulanteAPlan(tripulante, plan);
 		} catch (Exception e) {
-			error=e.getMessage();
+			error = e.getMessage();
 		}
 
 		modelo.put("error", error);
-		
-		
-		
-		return new ModelAndView("redirect:/plandevueloseleccionado2?idPlanDeVuelo=" + idPlan,modelo);
+		return new ModelAndView("redirect:/plandevueloseleccionado2?idPlanDeVuelo=" + idPlan, modelo);
 	}
 	
 	// ELIMINAR TRIPULANTE DE PLAN
-		@RequestMapping(path = "/eliminarTripulanteDePlan", method = RequestMethod.GET)
-		public ModelAndView eliminarTripulanteDePlan(@RequestParam(value = "idTripulante") Long idTripulante, @RequestParam(value = "idPlan") Long idPlan) {
-			Tripulante tripulante = servicioTripulante.consultarTripulanteId(idTripulante);
-			PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
+	@RequestMapping(path = "/eliminarTripulanteDePlan", method = RequestMethod.GET)
+	public ModelAndView eliminarTripulanteDePlan(@RequestParam(value = "idTripulante") Long idTripulante, @RequestParam(value = "idPlan") Long idPlan) {
+		Tripulante tripulante = servicioTripulante.consultarTripulanteId(idTripulante);
+		PlanDeVuelo plan = servicioPlanDeVuelo.consultarPlanDeVueloId(idPlan);
+	
+		servicioPlanDeVuelo.eliminarTripulanteDePlan(tripulante, plan);
 		
-			servicioPlanDeVuelo.eliminarTripulanteDePlan(tripulante, plan);
-			
-			return new ModelAndView("redirect:/plandevueloseleccionado2?idPlanDeVuelo=" + idPlan);
-		}
+		return new ModelAndView("redirect:/plandevueloseleccionado2?idPlanDeVuelo=" + idPlan);
+	}
 	
 	// ELIMINAR VUELO DE PLAN
 	@RequestMapping(path = "/eliminarVueloDePlan", method = RequestMethod.GET)

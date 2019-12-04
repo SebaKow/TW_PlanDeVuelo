@@ -48,18 +48,15 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	}
 	
 	private void validarQueElOrigenSeaIgualAlDestinoAnterior(List<Itinerario> itinerarios) throws Exception {
-		
-		
-		if(itinerarios.size()> 1 ) {
-			if(!itinerarios.get(itinerarios.size()-2).getVuelo().getDestino().equals(itinerarios.get(itinerarios.size()-1).getVuelo().getOrigen())) {
-				throw new Exception("El origen del vuelo a agregar no coincide con el destino del vuelo anterior");
+		if(itinerarios.size() > 1 ) {
+			if(!itinerarios.get(itinerarios.size() - 2).getVuelo().getDestino().equals(itinerarios.get(itinerarios.size() - 1).getVuelo().getOrigen())) {
+				throw new Exception("El origen del vuelo a agregar no coincide con el destino del vuelo anterior.");
 			}
 		}
 	}
 	
 	private void validarQueElVueloAAgregarNoSupereLas8HorasDeTV(List<Itinerario> itinerarios) throws Exception {
 		List<Vuelo> listaDeVuelosEnPlan = new ArrayList<>();
-		
 		for (Itinerario itinerario : itinerarios) {
 			listaDeVuelosEnPlan.add(itinerario.getVuelo());
 		}
@@ -84,14 +81,13 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	}
 	
 	private void validarQueElVueloAAgregarNoSupereLas13HorasDeTSV(List<Itinerario> itinerarios) throws Exception {
-		
-		Date horaFinal = itinerarios.get(itinerarios.size()-1).getAterrizajeEstimado();
+		Date horaFinal = itinerarios.get(itinerarios.size() - 1).getAterrizajeEstimado();
 		Date horaInicial = itinerarios.get(0).getDespegueEstimado();
-		long calculo = horaFinal.getTime()-horaInicial.getTime();
+		long calculo = horaFinal.getTime() - horaInicial.getTime();
 		long calculoEnMinutos = (int)(calculo/60000);
 
 		if(calculoEnMinutos >= 690 ) {
-			throw new Exception("El tiempo de servicio no puede superar las 11.30 horas.");
+			throw new Exception("El tiempo de servicio de vuelo no puede superar las 11 horas y media.");
 		}
 	}
 	
@@ -99,7 +95,6 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 		Calendar cal = Calendar.getInstance();
 		Date fechaPlan = plan.getFecha();
 		Itinerario itinerario = new Itinerario();
-		Vuelo vuelo2 = new Vuelo();
 		
 		List<Itinerario> itinerariosEnPlan = listarItinerariosDePlan(plan.getId());
 		if(itinerariosEnPlan.size() == 0) {

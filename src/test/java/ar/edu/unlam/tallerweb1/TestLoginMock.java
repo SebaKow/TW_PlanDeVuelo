@@ -16,8 +16,10 @@ import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
 
 public class TestLoginMock extends SpringTest{
+	
 	@Test
-    @Transactional @Rollback(true)
+    @Transactional
+    @Rollback(true)
     public void testQueRedirigeALaVistaCorrectaAlLoguearse(){
 		Tripulante tripulanteMock = new Tripulante();
 		ServicioTripulante servicioTripulanteMock = mock(ServicioTripulante.class);
