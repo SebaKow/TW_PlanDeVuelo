@@ -5,15 +5,12 @@ import static org.mockito.Mockito.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.assertj.core.condition.AnyOf;
-import org.hibernate.type.AnyType;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
-import ar.edu.unlam.tallerweb1.controladores.ControladorTripulante;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
@@ -32,8 +29,6 @@ public class TestMock {
 		tripulanteMock.setDni(123312);
 		tripulanteMock.setEmail("sebakow@gmail.com");
 		tripulanteMock.setPassword("1234");
-		ControladorTripulante controladorTripulante = new ControladorTripulante();
-		controladorTripulante.setServicioTripulante(servicioTripulanteMock);
 		
 		servicioTripulanteMock.agregarTripulante(tripulanteMock);
 		when(servicioTripulanteMock.consultarTripulante(tripulanteMock)).thenReturn(tripulanteMock);

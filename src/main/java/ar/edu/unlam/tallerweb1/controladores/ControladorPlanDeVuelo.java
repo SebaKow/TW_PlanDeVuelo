@@ -129,7 +129,7 @@ public class ControladorPlanDeVuelo {
 		List<Tripulante> listaDeTripulantes = servicioTripulante.listarTripulantes();
 		modelo.put("listaDeTripulantes", listaDeTripulantes);
 		List<Tripulante> tripulantesAgregados = servicioPlanDeVuelo.listarTripulantesEnPlan(planDeVuelo);
-		modelo.put("tripulantesAgregados",tripulantesAgregados);
+		modelo.put("tripulantesAgregados", tripulantesAgregados);
 		modelo.put("error", error);
 		return new ModelAndView("tripulantesEnPlan", modelo);
 	}

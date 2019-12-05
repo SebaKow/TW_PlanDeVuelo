@@ -72,12 +72,12 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 	private void validaciones(PlanDeVuelo plan, Tripulante tripulante, List<Itinerario> itinerarios) throws Exception {
 		validarQueNoSeAgregueDosVecesElMismoTripulante(plan,tripulante);
 		
-		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 1);
-		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 2);
-		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 7);
-		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 30);
-		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 90);
-		validarQueElTripulanteNoSupereLas8HorasDeTV(itinerarios, tripulante, 365);
+		validarQueElTripulanteNoSupereLasHorasDeTV(itinerarios, tripulante, 1);
+		validarQueElTripulanteNoSupereLasHorasDeTV(itinerarios, tripulante, 2);
+		validarQueElTripulanteNoSupereLasHorasDeTV(itinerarios, tripulante, 7);
+		validarQueElTripulanteNoSupereLasHorasDeTV(itinerarios, tripulante, 30);
+		validarQueElTripulanteNoSupereLasHorasDeTV(itinerarios, tripulante, 90);
+		validarQueElTripulanteNoSupereLasHorasDeTV(itinerarios, tripulante, 365);
 		
 		validarQueElTripulanteNoSupereLasHorasDeTSV(itinerarios, tripulante, 1);
 		validarQueElTripulanteNoSupereLasHorasDeTSV(itinerarios, tripulante, 2);
@@ -94,7 +94,7 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		}
 	}
 
-	public void validarQueElTripulanteNoSupereLas8HorasDeTV(List<Itinerario> itinerarios, Tripulante tripulante, Integer dias) throws Exception {
+	public void validarQueElTripulanteNoSupereLasHorasDeTV(List<Itinerario> itinerarios, Tripulante tripulante, Integer dias) throws Exception {
 		long calculoTotalEnMinutos = 0;
 		PlanDeVuelo plan = itinerarios.get(0).getPlandevuelo();
 		Itinerario primerItinerario = itinerarios.get(0);
