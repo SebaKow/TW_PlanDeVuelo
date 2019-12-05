@@ -111,9 +111,6 @@ public class ControladorPlanDeVuelo {
 		List<Vuelo> listaDeVuelos = servicioVuelo.listarVuelos();
 		modelo.put("listaDeVuelos", listaDeVuelos);
 		
-//		List<Vuelo> vuelosAgregados = servicioItinerario.listarVuelosDePlan(idObtenido);
-//		modelo.put("vuelosAgregados", vuelosAgregados);
-		
 		List<Itinerario> listaDeItinerarios = servicioItinerario.listarItinerariosDePlan(idObtenido);
 		modelo.put("itinerariosAgregados", listaDeItinerarios);
 		

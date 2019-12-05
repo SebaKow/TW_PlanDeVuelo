@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -88,7 +89,7 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		List<Tripulante> tripulantesDelPlan = plan.getTripulantes();
 		for (Tripulante tripulante2 : tripulantesDelPlan) {
 			if (tripulante2.getId() == tripulante.getId()) {
-				throw new Exception("El tripulante ya pertenece a este plan de vuelo");
+				throw new Exception("El tripulante ya pertenece a este plan de vuelo.");
 			}
 		}
 	}
@@ -128,7 +129,7 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		}
 		
 		if(calculoTotalEnMinutos >= tiempoMaximo) {
-			throw new Exception("El tiempo de vuelo del tripulante no puede superar las "+(tiempoMaximo/60)+" horas en los ultimos "+dias+" días.");
+			throw new Exception("El tiempo de vuelo del tripulante no puede superar las "+(tiempoMaximo/60)+" horas en los ultimos "+dias+" dias.");
 		}
 	}
 
@@ -161,7 +162,7 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 		}
 		
 		if(calculoTotalEnMinutos >= tiempoMaximo) {
-			throw new Exception("El tiempo de servicio de vuelo del tripulante no puede superar las "+(tiempoMaximo/60)+" horas en los ultimos "+dias+" días.");
+			throw new Exception("El tiempo de servicio de vuelo del tripulante no puede superar las "+(tiempoMaximo/60)+" horas en los ultimos "+dias+" dias.");
 		}
 	}
 
@@ -193,8 +194,15 @@ public class ServicioPlanDeVueloImpl implements ServicioPlanDeVuelo {
 	@Override
 	public void eliminarTripulanteDePlan(Tripulante tripulante, PlanDeVuelo plan) {
 		List<Tripulante> tripulantesDelPlan = plan.getTripulantes();
+		List<Tripulante> nuevaListaTripulantes = new ArrayList<>();
+		for (Tripulante tripulante2 : tripulantesDelPlan) {
+			if(tripulante2.getId() != tripulante.getId()) {
+				nuevaListaTripulantes.add(tripulante2);
+			}
+		}
+		
 		tripulantesDelPlan.remove(tripulante);
-		plan.setTripulantes(tripulantesDelPlan);
+		plan.setTripulantes(nuevaListaTripulantes);
 		planDeVueloDao.eliminarTripulanteDePlan(plan);
 	}
 }

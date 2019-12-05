@@ -8,7 +8,6 @@ import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 public interface ServicioItinerario {
 	
-//	List<Vuelo> listarVuelosDePlan(Long idObtenido);
 	List<Itinerario> listarItinerariosDePlan(Long id);
 	void agregarItinerario(PlanDeVuelo plan, Vuelo vuelo) throws Exception;
 	void eliminarVueloDePlan(PlanDeVuelo plan, Long idItinerario);

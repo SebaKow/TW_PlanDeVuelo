@@ -21,11 +21,6 @@ public class ServicioItinerarioImpl implements ServicioItinerario {
 	
 	@Inject
 	private ItinerarioDao itinerarioDao;
-
-//	@Override
-//	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
-//		return itinerarioDao.listarVuelosDePlan(idObtenido);
-//	}
 	
 	@Override
 	public List<Itinerario> listarItinerariosDePlan(Long id){

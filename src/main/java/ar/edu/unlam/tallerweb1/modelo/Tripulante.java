@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +23,6 @@ public class Tripulante {
 	private Boolean esAdmin;
 	private Boolean estado;
 	
-
 	@ManyToMany(mappedBy = "tripulantes")
 	private List<PlanDeVuelo> planesDeVuelo;
 	

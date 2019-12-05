@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -11,30 +12,19 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Itinerario;
 import ar.edu.unlam.tallerweb1.modelo.PlanDeVuelo;
-import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 
 @Repository("ItinerarioDao")
 public class ItinerarioDaoImpl implements ItinerarioDao {
 	
 	@Inject
 	SessionFactory sessionFactory;
-
-//	@Override
-//	public List<Vuelo> listarVuelosDePlan(Long idObtenido) {
-//		List<Vuelo> listaDeVuelos = sessionFactory.getCurrentSession().createCriteria(Vuelo.class)
-//				.createAlias("itinerarios", "itinerariosjoin")
-//				.createAlias("itinerariosjoin.plandevuelo", "plandevuelojoin")
-//				.add(Restrictions.eq("plandevuelojoin.id", idObtenido))
-//				.list();
-//				
-//		return listaDeVuelos;
-//	}
 	
 	@Override
 	public List<Itinerario> listarItinerariosDePlan(Long id){
 		List<Itinerario> listaItinerarios = sessionFactory.getCurrentSession().createCriteria(Itinerario.class)
 				.createAlias("plandevuelo", "plandevuelojoin")
 				.add(Restrictions.eq("plandevuelojoin.id", id))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
 		
 		return listaItinerarios;

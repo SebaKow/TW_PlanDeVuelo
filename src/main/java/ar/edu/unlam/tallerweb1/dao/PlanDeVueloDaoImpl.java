@@ -76,6 +76,7 @@ public class PlanDeVueloDaoImpl implements PlanDeVueloDao{
 
 	@Override
 	public void eliminarTripulanteDePlan(PlanDeVuelo plan) {
+		sessionFactory.getCurrentSession().clear();
 		sessionFactory.getCurrentSession().saveOrUpdate(plan);
 	}
 

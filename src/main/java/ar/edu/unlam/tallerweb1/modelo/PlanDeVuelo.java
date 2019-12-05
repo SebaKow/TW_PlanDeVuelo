@@ -27,8 +27,8 @@ public class PlanDeVuelo {
 	
 	@ManyToOne
 	private Avion avion;
-
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<Tripulante> tripulantes;
 	
 	public PlanDeVuelo() {
